@@ -1,0 +1,27 @@
+# Installerede pakker
+node_modules/
+
+# Genererede build-filer
+dist/
+dist-ssr/
+*.tsbuildinfo
+
+# Lokale miljøvariabler
+.env
+.env.*
+!.env.example
+*.local
+
+# Logfiler
+*.log
+
+# Lokale editorindstillinger
+.vscode/
+.idea/
+
+# Operativsystemfiler
+.DS_Store
+Thumbs.db
+
+# Testresultater
+coverage/
