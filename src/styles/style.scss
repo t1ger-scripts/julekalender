@@ -1,1 +1,6 @@
-/* Samler stylesheets og indeholder global grundstyling. */
+/* Samler projektets stylesheets og global grundstyling. */
+
+@use './tokens';
+@use './header';
+@use './calendar';
+@use './activities';
