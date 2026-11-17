@@ -1,0 +1,1 @@
+/* Viser dagens foruddefinerede aktivitet i en modal. */

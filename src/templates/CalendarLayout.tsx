@@ -1,0 +1,1 @@
+/* Definerer sidens layout og placeringen af kalenderens sektioner. */
