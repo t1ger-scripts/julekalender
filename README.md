@@ -1,75 +1,71 @@
-# React + TypeScript + Vite
+# Ringsted Dun - Julekalender
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Skoleprojekt udviklet med React, TypeScript, Vite og SCSS.
 
-Currently, two official plugins are available:
+## Status
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Projektets grundstruktur er oprettet. Arbejdsfilerne indeholder
+formålskommentarer, men funktionaliteten er endnu ikke implementeret.
+En tom side ved opstart er derfor forventet.
 
-## React Compiler
+## Lokal opsætning
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Installér Node.js med npm. Kør derefter fra projektets rod:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Åbn localhost-adressen fra terminalen.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Kommandoer
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run dev      # Starter udviklingsserveren
+npm run build    # Kontrollerer TypeScript og bygger projektet
+npm run preview  # Viser det byggede projekt lokalt
+npm run lint     # Kontrollerer koden med ESLint
 ```
+
+## Projektstruktur
+
+| Mappe | Formål |
+|---|---|
+| public/data | Kalenderens lokale JSON-indhold |
+| public/images | Billeder og grafik |
+| src/components | Genbrugelige UI-komponenter |
+| src/components/activities | Kalenderens fem aktivitetstyper |
+| src/templates | Sidens layout |
+| src/pages | Samler data, fælles state og komponenter |
+| src/api | Indlæsning af lokal JSON |
+| src/types | Fælles TypeScript-interfaces og typer |
+| src/utils | Hjælpefunktioner og lokal lagring |
+| src/styles | SCSS og fælles design tokens |
+
+## Atomic Design
+
+Komponenterne opdeles efter ansvar og genbrug:
+atomer, molekyler, organismer, templates og sider.
+Niveauerne dokumenteres, selvom komponentmapperne ikke er navngivet efter dem.
+
+## Planlagt dataflow
+
+- Kalenderindhold indlæses fra public/data/doors.json.
+- CalendarPage ejer den fælles state.
+- Aktiviteter melder gennemførelse tilbage via onComplete.
+- Åbnede og gennemførte dage gemmes i localStorage.
+- Hver gennemført dagsaktivitet giver ét lod.
+- Genbesøg giver ikke ekstra lodder.
+- Oversete dage giver ikke mulighed for efterfølgende optjening.
+
+localStorage gælder kun den aktuelle browser og enhed.
+Rigtig nyhedsbrevstilmelding og fælles vindertrækning er ikke tilkoblet.
+
+## Samarbejde
+
+- Arbejd på en separat branch til hver opgave.
+- Aftal fælles datatyper og props, før komponenterne implementeres.
+- Brug fælles design tokens frem for gentagne farvekoder.
+- Commit package-lock.json, men aldrig node_modules eller dist.
+- Nye SCSS-filer tilkobles i src/styles/style.scss.
