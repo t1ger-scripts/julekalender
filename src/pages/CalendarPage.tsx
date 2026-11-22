@@ -14,9 +14,21 @@ import { getCalendarDay } from '../utils/calendar'
 import ActivityInfo from '../components/ActivityInfo'
 import { activityContents } from '../data/activities'
 
+// Lokal testdato: 1-24 vælger en decemberdag.
+// Sæt til null for at bruge den rigtige dato.
+const testDay: number | null = 1
+
+function getCurrentDay(): number {
+  if (import.meta.env.DEV && testDay !== null) {
+    return testDay
+  }
+
+  return getCalendarDay()
+}
+
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
-  const [currentDay, setCurrentDay] = useState(getCalendarDay)
+  const [currentDay, setCurrentDay] = useState(getCurrentDay)
 
   const [completedDays] = useState<number[]>(loadCompletedDays)
 
@@ -40,7 +52,7 @@ function CalendarPage() {
   // Opdaterer datoen, hvis siden står åben hen over midnat.
   useEffect(() => {
     function updateDay() {
-      setCurrentDay(getCalendarDay())
+      setCurrentDay(getCurrentDay())
     }
 
     const intervalId = window.setInterval(updateDay, 60_000)
