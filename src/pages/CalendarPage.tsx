@@ -2,6 +2,7 @@ import CalendarLayout from '../templates/CalendarLayout'
 import Header from '../components/Header'
 import Calendar from '../components/Calendar'
 import DecemberJourney from '../components/DecemberJourney'
+import CalendarRoute from '../components/CalendarRoute'
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
@@ -25,6 +26,7 @@ function CalendarPage() {
       <Calendar
         onOpenDoor={(day) => console.log(`Åbn låge ${day}`)}
       />
+      <CalendarRoute />
     </CalendarLayout>
   )
 }
