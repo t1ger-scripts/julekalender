@@ -32,8 +32,19 @@ export type ActivityType =
   | 'advent'
   | 'scratch'
 
+// Produktet, der er på højkant den pågældende dag.
+export interface CalendarPrize {
+  name: string
+  image: string
+  productUrl: string
+}
+
+// Indholdet bag en bestemt låge.
 export interface CalendarDoor {
   day: number
   activity: ActivityType | null
   adventNumber?: number
+  prize: CalendarPrize | null
+  discountCode: string | null
+  content: ActivityContent | null
 }
