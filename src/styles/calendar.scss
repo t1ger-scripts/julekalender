@@ -71,11 +71,27 @@
 
 // Genbrugelig kalenderlåge.
 .door {
+  position: relative;
   width: 280px;
   background-color: $white;
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.05),
     0 6px 16px rgba(0, 0, 0, 0.10);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 16px;
+    height: 36px;
+    transform: translateX(-50%);
+    background-image: url('/images/img/handles-red.png');
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
 
   &__header {
     padding: $px-20;
@@ -201,26 +217,6 @@
       outline-offset: 4px;
     }
   }
-
-  &--completed &__button {
-    background-color: $white;
-    color: $red;
-
-    &:hover {
-      background-color: $white-beige;
-    }
-  }
-
-  &--locked &__day {
-    color: $grey-medium;
-  }
-
-  &--locked &__button {
-    border-color: $grey-light;
-    background-color: $grey-light;
-    color: $black-light;
-    cursor: not-allowed;
-  }
 }
 
 // Tidligere dage, som brugeren ikke gennemførte.
@@ -315,20 +311,6 @@
       opacity: 0.4;
       cursor: not-allowed;
     }
-  }
-}
-
-// Centrerer pile uafhængigt af skrifttypen.
-.calendar__arrow {
-  svg {
-    display: block;
-    width: 24px;
-    height: 24px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
   }
 }
 
@@ -508,26 +490,6 @@
       opacity: 1;
       cursor: not-allowed;
     }
-  }
-}
-
-// Snor og ring under lågerne.
-.door {
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    width: 16px;
-    height: 36px;
-    transform: translateX(-50%);
-    background-image: url('/images/img/handles-red.png');
-    background-size: contain;
-    background-position: center top;
-    background-repeat: no-repeat;
-    pointer-events: none;
   }
 }
 
