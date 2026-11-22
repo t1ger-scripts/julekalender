@@ -29,6 +29,37 @@ function Door({ day, status, onOpen }: DoorProps) {
       </div>
 
       <div className="door__body">
+        <div className="door__icon" aria-hidden="true">
+          {status === 'available' && (
+            <img
+              src="/images/icons/calendar/icon-feather-black.png"
+              alt=""
+            />
+          )}
+
+          {status === 'completed' && (
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m8 12 3 3 5-6" />
+            </svg>
+          )}
+
+          {status === 'locked' && (
+            <img
+              src="/images/icons/calendar/icon-lock-red-big.png"
+              alt=""
+              className="door__lock"
+            />
+          )}
+
+          {status === 'missed' && (
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m9 9 6 6m0-6-6 6" />
+            </svg>
+          )}
+        </div>
+        
         <span className="door__day">{day}</span>
         <span className="door__month">December</span>
 

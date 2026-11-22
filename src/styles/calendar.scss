@@ -71,15 +71,49 @@
   }
 
   &__body {
-    min-height: 300px;
+    min-height: 380px;
     padding: $px-20;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
+  &__icon {
+    width: 100%;
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $px-12;
+    color: $red;
+
+    img,
+    svg {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+
+  &__lock {
+    filter: grayscale(1);
+  }
+
+  &--missed &__icon {
+    color: $grey-medium;
+  }
+
   &__day {
-    font-size: 88px;
+    font-size: 72px;
     line-height: 1.1;
   }
 
@@ -91,8 +125,8 @@
   }
 
   &__status {
-    margin-top: $px-20;
-    margin-bottom: $px-20;
+    margin-top: $px-12;
+    margin-bottom: $px-12;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
@@ -220,7 +254,7 @@
 
 // Reserverer plads til den største låge, også når den ikke vises.
 .calendar__doors {
-  min-height: 480px;
+  min-height: 560px;
 }
 
 // Centrerer pile uafhængigt af skrifttypen.
