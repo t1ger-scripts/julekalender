@@ -1,9 +1,7 @@
 @charset "UTF-8";
-/* Samler projektets stylesheets og global grundstyling. */
 /* Fælles design tokens til farver, typografi, afstande, hjørner og skygger. */
 /* Styling af header, navigation og tællere. */
 /* Styling af låger, rute, præmiebånd og decemberrejse. */
-/* Samler projektets stylesheets og global grundstyling. */
 /* Styling af aktiviteter, modaler og belønningsvisning. */
 @font-face {
   font-family: "Gill Sans Std";
@@ -236,4 +234,36 @@
   font-size: 20px;
   font-weight: 300;
   line-height: 1.4;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Gill Sans Std", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #222222;
+  background-color: #f7f4f1;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }/*# sourceMappingURL=style.css.map */

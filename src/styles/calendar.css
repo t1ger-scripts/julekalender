@@ -1,2 +1,19 @@
 @charset "UTF-8";
-/* Styling af låger, rute, præmiebånd og decemberrejse. *//*# sourceMappingURL=calendar.css.map */
+/* Fælles design tokens til farver, typografi, afstande, hjørner og skygger. */
+.calendar-layout {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+.calendar-layout__header {
+  min-height: 80px;
+  padding: 16px 48px;
+  background-color: #ffffff;
+}
+.calendar-layout__main {
+  padding: 30px 48px;
+}
+.calendar-layout__journey {
+  padding: 20px 48px;
+  background-color: #ffffff;
+}/*# sourceMappingURL=calendar.css.map */
