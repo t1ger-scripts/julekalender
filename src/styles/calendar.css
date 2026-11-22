@@ -61,11 +61,32 @@
   border-top: 1px dashed #818080;
 }
 .door__body {
+  position: relative;
+  isolation: isolate;
   min-height: 300px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.door__body::before, .door__body::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  width: 16px;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='140' viewBox='0 0 16 140'%3E%3Cg fill='none' stroke='%23cccccc' stroke-width='.8' stroke-linecap='round'%3E%3Cpath d='M8 8v12m-6-6h12M4 10l8 8m0-8-8 8'/%3E%3C/g%3E%3Cpath fill='%23a6192e' fill-opacity='.55' d='m8 60 1.4 4.6L14 66l-4.6 1.4L8 72l-1.4-4.6L2 66l4.6-1.4Z'/%3E%3Cpath fill='%23cccccc' d='m8 108 1.2 3.8L13 113l-3.8 1.2L8 118l-1.2-3.8L3 113l3.8-1.2Z'/%3E%3C/svg%3E");
+  background-size: 16px 140px;
+  background-repeat: repeat-y;
+}
+.door__body::before {
+  left: 5px;
+}
+.door__body::after {
+  right: 5px;
+  background-position: center 45px;
 }
 .door__icon {
   width: 100%;
