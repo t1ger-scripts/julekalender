@@ -36,7 +36,9 @@ function Calendar({ onOpenDoor }: CalendarProps) {
         disabled={startDay === 1}
         onClick={() => setStartDay((day) => day - 1)}
       >
-        <span aria-hidden="true">‹</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 6 9 12l6 6" />
+        </svg>
       </button>
 
       <div className="calendar__doors">
@@ -57,7 +59,9 @@ function Calendar({ onOpenDoor }: CalendarProps) {
         disabled={startDay === lastStartDay}
         onClick={() => setStartDay((day) => day + 1)}
       >
-        <span aria-hidden="true">›</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m9 6 6 6-6 6" />
+        </svg>
       </button>
     </section>
   )
