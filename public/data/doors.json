@@ -1,1 +1,53 @@
-[]
+[
+  {
+    "day": 1,
+    "activity": "wheel",
+    "prize": {
+      "name": "En dunpude fra Ringsted Dun",
+      "image": "/images/prizes/day-01.webp",
+      "productUrl": "https://ringsted-dun.dk/"
+    },
+    "discountCode": "EKSEMPEL-JUL10"
+  },
+  { "day": 2, "activity": null, "prize": null, "discountCode": null },
+  { "day": 3, "activity": null, "prize": null, "discountCode": null },
+  { "day": 4, "activity": null, "prize": null, "discountCode": null },
+  { "day": 5, "activity": null, "prize": null, "discountCode": null },
+  {
+    "day": 6,
+    "activity": "advent",
+    "adventNumber": 2,
+    "prize": null,
+    "discountCode": null
+  },
+  { "day": 7, "activity": null, "prize": null, "discountCode": null },
+  { "day": 8, "activity": null, "prize": null, "discountCode": null },
+  { "day": 9, "activity": null, "prize": null, "discountCode": null },
+  { "day": 10, "activity": null, "prize": null, "discountCode": null },
+  { "day": 11, "activity": null, "prize": null, "discountCode": null },
+  { "day": 12, "activity": null, "prize": null, "discountCode": null },
+  {
+    "day": 13,
+    "activity": "advent",
+    "adventNumber": 3,
+    "prize": null,
+    "discountCode": null
+  },
+  { "day": 14, "activity": null, "prize": null, "discountCode": null },
+  { "day": 15, "activity": null, "prize": null, "discountCode": null },
+  { "day": 16, "activity": null, "prize": null, "discountCode": null },
+  { "day": 17, "activity": null, "prize": null, "discountCode": null },
+  { "day": 18, "activity": null, "prize": null, "discountCode": null },
+  { "day": 19, "activity": null, "prize": null, "discountCode": null },
+  {
+    "day": 20,
+    "activity": "advent",
+    "adventNumber": 4,
+    "prize": null,
+    "discountCode": null
+  },
+  { "day": 21, "activity": null, "prize": null, "discountCode": null },
+  { "day": 22, "activity": null, "prize": null, "discountCode": null },
+  { "day": 23, "activity": null, "prize": null, "discountCode": null },
+  { "day": 24, "activity": null, "prize": null, "discountCode": null }
+]

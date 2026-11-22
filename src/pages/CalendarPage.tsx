@@ -16,7 +16,7 @@ import { activityContents } from '../data/activities'
 
 // Lokal testdato: 1-24 vælger en decemberdag.
 // Sæt til null for at bruge den rigtige dato.
-const testDay: number | null = 1
+const testDay: number | null = 8
 
 function getCurrentDay(): number {
   if (import.meta.env.DEV && testDay !== null) {
