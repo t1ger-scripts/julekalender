@@ -71,7 +71,7 @@
   }
 
   &__body {
-    min-height: 380px;
+    min-height: 300px;
     padding: $px-20;
     display: flex;
     flex-direction: column;
@@ -254,7 +254,7 @@
 
 // Reserverer plads til den største låge, også når den ikke vises.
 .calendar__doors {
-  min-height: 560px;
+  min-height: 460px;
 }
 
 // Centrerer pile uafhængigt af skrifttypen.
