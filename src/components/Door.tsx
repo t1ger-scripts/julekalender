@@ -8,6 +8,7 @@ interface DoorProps {
 // Viser en låge med dato, status og knap.
 function Door({ day, status, onOpen, adventNumber }: DoorProps) {
   const isDisabled = status === 'locked' || status === 'missed'
+  const isChristmas = day === 24
 
   const statusText = {
     available: 'Dagens låge',
@@ -25,7 +26,7 @@ function Door({ day, status, onOpen, adventNumber }: DoorProps) {
 
   return (
     <article
-      className={`door door--${status}${adventNumber ? ' door--advent' : ''}`}
+      className={`door door--${status}${adventNumber ? ' door--advent' : ''}${isChristmas ? ' door--christmas' : ''}`}
     >
       <div className="door__header">
         <img src="/images/logo.webp" alt="Ringsted Dun" />
@@ -33,7 +34,11 @@ function Door({ day, status, onOpen, adventNumber }: DoorProps) {
 
       <div className="door__body">
         <div className="door__icon" aria-hidden="true">
-          {adventNumber ? (
+          {isChristmas ? (
+            <svg viewBox="0 0 24 24" className="door__star">
+              <path d="m12 2 3 6.5 7 .9-5.1 4.9 1.3 7-6.2-3.4-6.2 3.4 1.3-7L2 9.4l7-.9Z" />
+            </svg>
+          ) : adventNumber ? (
             <img
               src={`/images/icons/calendar/icon-candles-advent-${adventNumber}-${isDisabled ? 'locked' : 'active'}.png`}
               alt=""
@@ -76,7 +81,11 @@ function Door({ day, status, onOpen, adventNumber }: DoorProps) {
         <span className="door__month">December</span>
 
         <p className="door__status">
-          {adventNumber ? `${adventNumber}. advent` : statusText[status]}
+          {isChristmas
+            ? 'Juleaften'
+            : adventNumber
+              ? `${adventNumber}. advent`
+              : statusText[status]}
         </p>
 
         <button

@@ -313,3 +313,47 @@
     object-fit: contain;
   }
 }
+
+// Særlig udgave til juleaften.
+.door--christmas {
+  .door__body {
+    background-color: $red;
+    color: $white;
+  }
+
+  .door__day,
+  .door__icon {
+    color: $white;
+  }
+
+  .door__icon .door__star {
+    fill: currentColor;
+    stroke: none;
+  }
+
+  .door__body::before,
+  .door__body::after {
+    filter: brightness(0) invert(1);
+    opacity: 0.5;
+  }
+
+  .door__button {
+    background-color: $white;
+    border-color: $white;
+    color: $red;
+
+    &:hover:not(:disabled) {
+      background-color: $white-beige;
+    }
+
+    &:disabled {
+      background-color: $white-beige;
+      border-color: $white-beige;
+      color: $grey-dark;
+    }
+
+    &:focus-visible {
+      outline-color: $white;
+    }
+  }
+}

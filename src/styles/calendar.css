@@ -258,4 +258,38 @@
   width: 44px;
   height: 32px;
   object-fit: contain;
+}
+
+.door--christmas .door__body {
+  background-color: #a6192e;
+  color: #ffffff;
+}
+.door--christmas .door__day,
+.door--christmas .door__icon {
+  color: #ffffff;
+}
+.door--christmas .door__icon .door__star {
+  fill: currentColor;
+  stroke: none;
+}
+.door--christmas .door__body::before,
+.door--christmas .door__body::after {
+  filter: brightness(0) invert(1);
+  opacity: 0.5;
+}
+.door--christmas .door__button {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #a6192e;
+}
+.door--christmas .door__button:hover:not(:disabled) {
+  background-color: #f7f4f1;
+}
+.door--christmas .door__button:disabled {
+  background-color: #f7f4f1;
+  border-color: #f7f4f1;
+  color: #4f4e4d;
+}
+.door--christmas .door__button:focus-visible {
+  outline-color: #ffffff;
 }/*# sourceMappingURL=calendar.css.map */
