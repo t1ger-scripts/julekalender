@@ -10,11 +10,11 @@ import DecemberJourney from '../components/DecemberJourney'
 import CalendarRoute from '../components/CalendarRoute'
 import ActivityModal from '../components/ActivityModal'
 import { calendarDoors } from '../data/doors'
+import { getCalendarDay } from '../utils/calendar'
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
-  // Midlertidig dato, mens aktiviteterne kobles til.
-  const currentDay = 8
+  const [currentDay, setCurrentDay] = useState(getCalendarDay)
 
   const [completedDays] = useState<number[]>(loadCompletedDays)
 
@@ -30,6 +30,22 @@ function CalendarPage() {
   useEffect(() => {
     saveCompletedDays(completedDays)
   }, [completedDays])
+
+  // Opdaterer datoen, hvis siden står åben hen over midnat.
+  useEffect(() => {
+    function updateDay() {
+      setCurrentDay(getCalendarDay())
+    }
+
+    const intervalId = window.setInterval(updateDay, 60_000)
+
+    window.addEventListener('focus', updateDay)
+
+    return () => {
+      window.clearInterval(intervalId)
+      window.removeEventListener('focus', updateDay)
+    }
+  }, [])
 
   return (
     <CalendarLayout
