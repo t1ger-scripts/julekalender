@@ -6,20 +6,11 @@
   gap: 32px;
 }
 .site-header__brand {
-  display: flex;
-  flex-direction: column;
   flex-shrink: 0;
-  line-height: 1.2;
 }
-.site-header__brand span {
-  font-size: 20px;
-  letter-spacing: 1px;
-}
-.site-header__brand small {
-  margin-top: 5px;
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: #4f4e4d;
+.site-header__logo {
+  width: 220px;
+  height: auto;
 }
 .site-header__navigation {
   display: flex;

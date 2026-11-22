@@ -7,22 +7,12 @@
   gap: $px-32;
 
   &__brand {
-    display: flex;
-    flex-direction: column;
     flex-shrink: 0;
-    line-height: 1.2;
+  }
 
-    span {
-      font-size: $px-20;
-      letter-spacing: 1px;
-    }
-
-    small {
-      margin-top: $px-5;
-      font-size: $px-12;
-      letter-spacing: 2px;
-      color: $grey-dark;
-    }
+  &__logo {
+    width: 220px;
+    height: auto;
   }
 
   &__navigation {

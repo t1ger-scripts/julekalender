@@ -8,8 +8,11 @@ function Header({ tickets, completedDoors }: HeaderProps) {
   return (
     <div className="site-header">
       <div className="site-header__brand">
-        <span>RINGSTED DUN</span>
-        <small>ESTABLISHED 1947</small>
+        <img
+          src="/images/logo.webp"
+          alt="Ringsted Dun - Established 1947"
+          className="site-header__logo"
+        />
       </div>
 
       <nav className="site-header__navigation" aria-label="Hovednavigation">
