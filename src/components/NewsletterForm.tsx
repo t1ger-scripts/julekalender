@@ -1,1 +1,0 @@
-/* Viser formular og feedback til prototypens nyhedsbrevstilmelding. */
