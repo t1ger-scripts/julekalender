@@ -4,15 +4,13 @@ interface CalendarLayoutProps {
   header: ReactNode
   children: ReactNode
   journey: ReactNode
-  afterJourney?: ReactNode
 }
 
-// Placerer header, kalender, decemberrejse og efterfølgende indhold.
+// Placerer header, kalender og decemberrejse.
 function CalendarLayout({
   header,
   children,
   journey,
-  afterJourney,
 }: CalendarLayoutProps) {
   return (
     <div className="calendar-layout">
@@ -31,8 +29,6 @@ function CalendarLayout({
         >
           {journey}
         </section>
-
-        {afterJourney}
       </main>
     </div>
   )
