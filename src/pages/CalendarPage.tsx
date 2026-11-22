@@ -43,7 +43,9 @@ function CalendarPage() {
         completedDays={completedDays}
         onOpenDoor={(day) => console.log(`Åbn låge ${day}`)}
       />
+
       <CalendarRoute />
+
     </CalendarLayout>
   )
 }

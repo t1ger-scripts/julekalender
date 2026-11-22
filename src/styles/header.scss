@@ -16,32 +16,9 @@
     height: auto;
   }
 
-  &__navigation {
-    display: flex;
-    align-items: center;
-    gap: $px-30;
-    margin-left: auto;
-  }
-
-  &__link {
-    padding: $px-5 0;
-    border: none;
-    background: transparent;
-    color: $text-dark-tone;
-    cursor: pointer;
-
-    &:hover {
-      color: $red;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $red;
-      outline-offset: 4px;
-    }
-  }
-
   &__counters {
     display: flex;
+    margin-left: auto;
     gap: $px-16;
   }
 

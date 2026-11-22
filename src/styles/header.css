@@ -13,28 +13,9 @@
   width: 150px;
   height: auto;
 }
-.site-header__navigation {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  margin-left: auto;
-}
-.site-header__link {
-  padding: 5px 0;
-  border: none;
-  background: transparent;
-  color: #222222;
-  cursor: pointer;
-}
-.site-header__link:hover {
-  color: #a6192e;
-}
-.site-header__link:focus-visible {
-  outline: 2px solid #a6192e;
-  outline-offset: 4px;
-}
 .site-header__counters {
   display: flex;
+  margin-left: auto;
   gap: 16px;
 }
 .site-header__counter {
