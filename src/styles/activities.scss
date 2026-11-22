@@ -127,24 +127,21 @@
 // FÆLLES AKTIVITETSLAYOUT
 
 .activity-modal {
-  position: relative;
-  width: 95%;
-  max-width: 1400px;
-  margin: $px-30 auto;
+  position: fixed;
+  width: min(1100px, calc(100% - 48px));
+  max-height: calc(100dvh - 48px);
+  margin: auto;
   padding: $px-30;
-  box-sizing: border-box;
+  overflow-y: auto;
   background-color: $white;
   border: 1px solid $golden-dark;
   border-radius: $border-medium;
-  font-family: 'Gill Sans Std', 'Gill Sans', sans-serif;
-  font-weight: 400;
   color: $text-dark-tone;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 
-  button,
-  input,
-  select,
-  textarea {
-    font-family: inherit;
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
   }
 }
 
@@ -155,8 +152,14 @@
   background: none;
   border: none;
   color: $grey-medium;
+  min-height: 44px;
   text-decoration: underline;
   cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $red;
+    outline-offset: 3px;
+  }
 
   &:hover {
     color: $hover-grey-medium;
