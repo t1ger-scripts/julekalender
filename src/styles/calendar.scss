@@ -220,14 +220,16 @@
   &__doors {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    align-items: center;
+    align-items: start;
     gap: $px-32;
     min-height: 480px;
     padding-inline: $px-16;
+    padding-block: 24px;
 
     .door {
       width: 100%;
       min-width: 0;
+      transform-origin: top center;
     }
 
     .door--available {
@@ -410,5 +412,46 @@
   .door__body::after {
     filter: sepia(1) saturate(0.6);
     opacity: 0.7;
+  }
+}
+
+// Gennemførte gaver vises sammenfoldede.
+.door--completed {
+  .door__header img {
+    filter: grayscale(1);
+    opacity: 0.6;
+  }
+
+  .door__body {
+    min-height: 0;
+    padding: $px-12;
+    background-color: $white-beige;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  .door__icon,
+  .door__day,
+  .door__month,
+  .door__status {
+    display: none;
+  }
+
+  .door__button {
+    margin-top: 0;
+    border-color: $grey-light;
+    border-radius: $border-mini;
+    background-color: $grey-light;
+    color: $black-light;
+    font-weight: 400;
+
+    &:hover:not(:disabled) {
+      background-color: $grey-medium;
+      border-color: $grey-medium;
+      color: $white;
+    }
   }
 }
