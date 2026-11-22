@@ -11,6 +11,7 @@ import CalendarRoute from '../components/CalendarRoute'
 import ActivityModal from '../components/ActivityModal'
 import { calendarDoors } from '../data/doors'
 import { getCalendarDay } from '../utils/calendar'
+import ActivityInfo from '../components/ActivityInfo'
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
@@ -91,10 +92,16 @@ function CalendarPage() {
           title={`Gave ${selectedDoor.day}`}
           onClose={() => setSelectedDay(null)}
           info={
-            <>
-              <h2>Gave {selectedDoor.day}</h2>
-              <p>{selectedDoor.day}. december</p>
-            </>
+            <ActivityInfo
+              title={`Gave ${selectedDoor.day}`}
+              progress={completedDays.length}
+              description={[
+                `${selectedDoor.day}. december`,
+                completedDays.includes(selectedDoor.day)
+                  ? 'Du har allerede gennemført denne dags aktivitet.'
+                  : 'Gennemfør dagens aktivitet for at åbne din gave.',
+              ]}
+            />
           }
         >
           <p>Aktiviteten vises her.</p>

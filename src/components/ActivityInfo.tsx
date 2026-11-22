@@ -1,27 +1,25 @@
-interface ActivityRule {
-  icon: string
-  text: string
-}
+import type { ActivityRule } from '../types/calendar'
 
 interface ActivityInfoProps {
   title: string
   progress: number
   description: string[]
-  rules: ActivityRule[]
+  rules?: ActivityRule[]
 }
 
+// Viser aktivitetens titel, fremgang, beskrivelse og spilleregler.
 function ActivityInfo({
   title,
   progress,
   description,
-  rules
+  rules = [],
 }: ActivityInfoProps) {
   return (
     <div className="activity-details">
-      <h1>{title}</h1>
+      <h2>{title}</h2>
 
       <div className="activity-progress">
-        🎁 {progress}/24
+        {progress} / 24 gaver gennemført
       </div>
 
       <div className="activity-description">
@@ -30,16 +28,18 @@ function ActivityInfo({
         ))}
       </div>
 
-      <div className="activity-rules">
-        <h3>SÅDAN SPILLER DU</h3>
+      {rules.length > 0 && (
+        <div className="activity-rules">
+          <h3>Sådan spiller du</h3>
 
-        {rules.map((rule, index) => (
-          <div className="activity-rule" key={index}>
-            <img src={rule.icon} alt="" />
-            <p>{rule.text}</p>
-          </div>
-        ))}
-      </div>
+          {rules.map((rule, index) => (
+            <div className="activity-rule" key={index}>
+              <img src={rule.icon} alt="" />
+              <p>{rule.text}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
