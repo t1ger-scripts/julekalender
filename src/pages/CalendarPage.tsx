@@ -1,3 +1,8 @@
+import { useEffect, useState } from 'react'
+import {
+  loadCompletedDays,
+  saveCompletedDays,
+} from '../utils/storage'
 import CalendarLayout from '../templates/CalendarLayout'
 import Header from '../components/Header'
 import Calendar from '../components/Calendar'
@@ -6,10 +11,17 @@ import CalendarRoute from '../components/CalendarRoute'
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
-  // Eksempeldata, indtil vi tilkobler dato og lokal lagring.
+  // Midlertidig dato, mens aktiviteterne kobles til.
   const currentDay = 8
-  const completedDays = [6, 7]
+
+  const [completedDays] = useState<number[]>(loadCompletedDays)
+
+  // Foreløbig beregning, indtil gruppen har aftalt lodreglerne.
   const tickets = completedDays.length
+
+  useEffect(() => {
+    saveCompletedDays(completedDays)
+  }, [completedDays])
 
   return (
     <CalendarLayout
