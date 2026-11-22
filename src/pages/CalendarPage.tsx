@@ -1,13 +1,14 @@
 import CalendarLayout from '../templates/CalendarLayout'
 import Header from '../components/Header'
 import Calendar from '../components/Calendar'
+import DecemberJourney from '../components/DecemberJourney'
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
   return (
     <CalendarLayout
       header={<Header tickets={0} completedDoors={0} />}
-      journey={<p>Decemberrejse placeres her</p>}
+      journey={<DecemberJourney completedDoors={2} />}
     >
       <div className="calendar-intro">
         <h1 className="calendar-intro__title">

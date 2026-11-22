@@ -525,3 +525,93 @@
 .door--missed::after {
   background-image: url('/images/img/handles-silver.png');
 }
+
+// Gaveoversigt og decemberrejse.
+.december-journey {
+  max-width: 1344px;
+  margin-inline: auto;
+  padding: $px-12;
+  display: flex;
+  align-items: center;
+  gap: $px-30;
+  border: 1px solid $grey-light;
+  border-radius: $border-medium;
+  background-color: $white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+  &__collection {
+    flex: 0 0 180px;
+    padding: $px-12;
+    border-radius: $border-medium;
+    background-color: $golden-dark;
+    text-align: center;
+
+    h2 {
+      font-size: $px-14;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    img {
+      width: 28px;
+      height: 28px;
+      margin: $px-5 auto;
+      object-fit: contain;
+    }
+
+    p {
+      font-size: $px-12;
+    }
+  }
+
+  &__milestones {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    list-style: none;
+  }
+
+  &__milestone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $px-5;
+    text-align: center;
+
+    p {
+      font-size: $px-12;
+    }
+  }
+
+  &__icon {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: auto;
+      max-width: 48px;
+      height: 28px;
+      object-fit: contain;
+    }
+
+    span {
+      color: $grey-medium;
+      font-size: $px-30;
+      line-height: 1;
+    }
+  }
+
+  &__marker {
+    width: 16px;
+    height: 16px;
+    border: 2px solid $grey-medium;
+    border-radius: 50%;
+    background-color: $white;
+  }
+}

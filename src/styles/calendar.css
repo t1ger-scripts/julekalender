@@ -428,4 +428,82 @@
 .door--completed::after,
 .door--missed::after {
   background-image: url("/images/img/handles-silver.png");
+}
+
+.december-journey {
+  max-width: 1344px;
+  margin-inline: auto;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border: 1px solid #bdbcbc;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+.december-journey__collection {
+  flex: 0 0 180px;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #cc9f7b;
+  text-align: center;
+}
+.december-journey__collection h2 {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.december-journey__collection img {
+  width: 28px;
+  height: 28px;
+  margin: 5px auto;
+  object-fit: contain;
+}
+.december-journey__collection p {
+  font-size: 12px;
+}
+.december-journey__milestones {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  list-style: none;
+}
+.december-journey__milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+}
+.december-journey__milestone p {
+  font-size: 12px;
+}
+.december-journey__icon {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.december-journey__icon img {
+  width: auto;
+  max-width: 48px;
+  height: 28px;
+  object-fit: contain;
+}
+.december-journey__icon span {
+  color: #818080;
+  font-size: 30px;
+  line-height: 1;
+}
+.december-journey__marker {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #818080;
+  border-radius: 50%;
+  background-color: #ffffff;
 }/*# sourceMappingURL=calendar.css.map */
