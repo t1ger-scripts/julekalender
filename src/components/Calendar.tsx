@@ -5,6 +5,12 @@ interface CalendarProps {
   onOpenDoor: (day: number) => void
 }
 
+// Eksempelværdier, indtil vi tilkobler dato og gemt fremgang.
+const currentDay = 8
+const completedDays = [6, 7]
+const visibleDoors = 5
+const lastStartDay = 24 - visibleDoors + 1
+
 // Adventsdage i december 2026.
 // Første advent falder den 29. november og er uden for kalenderen.
 const adventDays: Record<number, number> = {
@@ -12,12 +18,6 @@ const adventDays: Record<number, number> = {
   13: 3,
   20: 4,
 }
-
-// Eksempelværdier, indtil vi tilkobler dato og gemt fremgang.
-const currentDay = 8
-const completedDays = [6, 7]
-const visibleDoors = 5
-const lastStartDay = 24 - visibleDoors + 1
 
 function getDoorStatus(day: number) {
   if (completedDays.includes(day)) return 'completed'
