@@ -1,7 +1,120 @@
 @charset "UTF-8";
 /* Fælles design tokens til farver, typografi, afstande, hjørner og skygger. */
-/* Styling af header, navigation og tællere. */
-/* Styling af låger, rute, præmiebånd og decemberrejse. */
+@font-face {
+  font-family: "Gill Sans Std";
+  src: url("../../Gill Sans Std Font/GillSansStd.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gill Sans Std";
+  src: url("../../Gill Sans Std Font/GillSansStdLight.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gill Sans Std";
+  src: url("../../Gill Sans Std Font/GillSansStdBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.site-header__brand {
+  flex-shrink: 0;
+}
+.site-header__logo {
+  width: 220px;
+  height: auto;
+}
+.site-header__navigation {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+}
+.site-header__link {
+  padding: 5px 0;
+  border: none;
+  background: transparent;
+  color: #222222;
+  cursor: pointer;
+}
+.site-header__link:hover {
+  color: #a6192e;
+}
+.site-header__link:focus-visible {
+  outline: 2px solid #a6192e;
+  outline-offset: 4px;
+}
+.site-header__counters {
+  display: flex;
+  gap: 16px;
+}
+.site-header__counter {
+  padding: 5px 16px;
+  border: 1px solid #bdbcbc;
+  border-radius: 10px;
+  background-color: #f7f4f1;
+  white-space: nowrap;
+}
+
+.calendar-layout {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+.calendar-layout__header {
+  min-height: 80px;
+  padding: 16px 48px;
+  background-color: #ffffff;
+}
+.calendar-layout__main {
+  padding: 30px 48px;
+  background-color: #f7f4f1;
+  background-image: url("/images/background.webp");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+.calendar-layout__journey {
+  padding: 20px 48px;
+  background-color: #ffffff;
+}
+
+.calendar-intro {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.calendar-intro__title {
+  color: #a6192e;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.calendar-intro__description {
+  margin-top: 16px;
+  color: #4f4e4d;
+  font-size: 20px;
+}
+.calendar-intro::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 2px;
+  margin: 16px auto 0;
+  background-color: #a6192e;
+  opacity: 0.35;
+}
+
 /* Styling af aktiviteter, modaler og belønningsvisning. */
 @font-face {
   font-family: "Gill Sans Std";

@@ -2,30 +2,6 @@
 
 @use './tokens' as *;
 
-// TYPOGRAFI
-
-@font-face {
-  font-family: 'Gill Sans Std';
-  src: url('../../Gill Sans Std Font/GillSansStd.otf') format('opentype');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gill Sans Std';
-  src: url('../../Gill Sans Std Font/GillSansStdLight.otf') format('opentype');
-  font-weight: 300;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gill Sans Std';
-  src: url('../../Gill Sans Std Font/GillSansStdBold.otf') format('opentype');
-  font-weight: 700;
-  font-display: swap;
-}
-
-
 // LYKKEHJUL
 
 .spin-wheel {
