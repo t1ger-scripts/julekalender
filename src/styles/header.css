@@ -1,2 +1,54 @@
 @charset "UTF-8";
-/* Styling af header, navigation og tællere. *//*# sourceMappingURL=header.css.map */
+/* Fælles design tokens til farver, typografi, afstande, hjørner og skygger. */
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.site-header__brand {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+.site-header__brand span {
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.site-header__brand small {
+  margin-top: 5px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #4f4e4d;
+}
+.site-header__navigation {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+}
+.site-header__link {
+  padding: 5px 0;
+  border: none;
+  background: transparent;
+  color: #222222;
+  cursor: pointer;
+}
+.site-header__link:hover {
+  color: #a6192e;
+}
+.site-header__link:focus-visible {
+  outline: 2px solid #a6192e;
+  outline-offset: 4px;
+}
+.site-header__counters {
+  display: flex;
+  gap: 16px;
+}
+.site-header__counter {
+  padding: 5px 16px;
+  border: 1px solid #bdbcbc;
+  border-radius: 10px;
+  background-color: #f7f4f1;
+  white-space: nowrap;
+}/*# sourceMappingURL=header.css.map */

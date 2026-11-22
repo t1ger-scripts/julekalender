@@ -1,1 +1,64 @@
-/* Styling af header, navigation og tællere. */
+@use './tokens' as *;
+
+// Headerens indhold.
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: $px-32;
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    line-height: 1.2;
+
+    span {
+      font-size: $px-20;
+      letter-spacing: 1px;
+    }
+
+    small {
+      margin-top: $px-5;
+      font-size: $px-12;
+      letter-spacing: 2px;
+      color: $grey-dark;
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    gap: $px-30;
+    margin-left: auto;
+  }
+
+  &__link {
+    padding: $px-5 0;
+    border: none;
+    background: transparent;
+    color: $text-dark-tone;
+    cursor: pointer;
+
+    &:hover {
+      color: $red;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $red;
+      outline-offset: 4px;
+    }
+  }
+
+  &__counters {
+    display: flex;
+    gap: $px-16;
+  }
+
+  &__counter {
+    padding: $px-5 $px-16;
+    border: 1px solid $grey-light;
+    border-radius: $border-medium;
+    background-color: $white-beige;
+    white-space: nowrap;
+  }
+}
