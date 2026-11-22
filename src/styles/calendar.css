@@ -12,6 +12,11 @@
 }
 .calendar-layout__main {
   padding: 30px 48px;
+  background-color: #f7f4f1;
+  background-image: url("/images/background.webp");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
 }
 .calendar-layout__journey {
   padding: 20px 48px;
