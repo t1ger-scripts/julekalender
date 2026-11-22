@@ -260,17 +260,18 @@
     padding: 0;
     display: grid;
     place-items: center;
-    border: 1px solid $grey-light;
+    border: 1px solid $red;
     border-radius: 50%;
-    background-color: $white;
-    color: $red;
+    background-color: $red;
+    color: $white;
     font-size: $px-36;
     line-height: 1;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     cursor: pointer;
 
     &:hover:not(:disabled) {
-      background-color: $white-beige;
+      background-color: $red-dark;
+      border-color: $red-dark;
     }
 
     &:focus-visible {
@@ -656,7 +657,7 @@
   }
 }
 
-// Prikket rute under lågerne.
+// Prikket rute under lågerne. Lavet med AI.
 .calendar-route {
   position: relative;
   width: 100%;

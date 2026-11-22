@@ -218,17 +218,18 @@
   padding: 0;
   display: grid;
   place-items: center;
-  border: 1px solid #bdbcbc;
+  border: 1px solid #a6192e;
   border-radius: 50%;
-  background-color: #ffffff;
-  color: #a6192e;
+  background-color: #a6192e;
+  color: #ffffff;
   font-size: 36px;
   line-height: 1;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   cursor: pointer;
 }
 .calendar__arrow:hover:not(:disabled) {
-  background-color: #f7f4f1;
+  background-color: #6a1010;
+  border-color: #6a1010;
 }
 .calendar__arrow:focus-visible {
   outline: 2px solid #a6192e;

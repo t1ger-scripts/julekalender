@@ -1,4 +1,4 @@
-// Viser den dekorative rute gennem kalenderens vinterlandskab.
+// Viser den dekorative rute gennem kalenderens vinterlandskab. Lavet med AI.
 function CalendarRoute() {
   return (
     <div className="calendar-route" aria-hidden="true">
