@@ -12,6 +12,7 @@ import ActivityModal from '../components/ActivityModal'
 import { calendarDoors } from '../data/doors'
 import { getCalendarDay } from '../utils/calendar'
 import ActivityInfo from '../components/ActivityInfo'
+import { activityContents } from '../data/activities'
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
@@ -24,6 +25,10 @@ function CalendarPage() {
   const selectedDoor = calendarDoors.find(
     (door) => door.day === selectedDay,
   )
+
+  const activityContent = selectedDoor?.activity
+    ? activityContents[selectedDoor.activity]
+    : null
 
   // Foreløbig beregning, indtil gruppen har aftalt lodreglerne.
   const tickets = completedDays.length
@@ -89,18 +94,18 @@ function CalendarPage() {
 
       {selectedDoor && (
         <ActivityModal
-          title={`Gave ${selectedDoor.day}`}
+          title={activityContent?.title ?? `Gave ${selectedDoor.day}`}
           onClose={() => setSelectedDay(null)}
           info={
             <ActivityInfo
-              title={`Gave ${selectedDoor.day}`}
+              title={activityContent?.title ?? `Gave ${selectedDoor.day}`}
               progress={completedDays.length}
-              description={[
-                `${selectedDoor.day}. december`,
-                completedDays.includes(selectedDoor.day)
-                  ? 'Du har allerede gennemført denne dags aktivitet.'
-                  : 'Gennemfør dagens aktivitet for at åbne din gave.',
-              ]}
+              description={
+                activityContent?.description ?? [
+                  `${selectedDoor.day}. december`,
+                ]
+              }
+              rules={activityContent?.rules ?? []}
             />
           }
         >

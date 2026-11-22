@@ -46,5 +46,4 @@ export interface CalendarDoor {
   adventNumber?: number
   prize: CalendarPrize | null
   discountCode: string | null
-  content: ActivityContent | null
 }
