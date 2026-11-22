@@ -7,8 +7,10 @@
   grid-template-rows: auto 1fr;
 
   &__header {
-    min-height: 80px;
-    padding: $px-16 $px-48;
+    min-height: 64px;
+    padding: 8px 32px;
+    display: flex;
+    align-items: center;
     background-color: $white;
   }
 
@@ -221,19 +223,37 @@
   }
 }
 
-// Placering og størrelser for kalenderens låger.
+// Tidligere dage, som brugeren ikke gennemførte.
+.door--missed {
+  .door__day {
+    color: $grey-medium;
+  }
+
+  .door__button {
+    border-color: $grey-light;
+    background-color: $grey-light;
+    color: $black-light;
+    cursor: not-allowed;
+  }
+}
+
+// Kalenderens placering, størrelser og navigation.
 .calendar {
   width: 100%;
+  max-width: 1600px;
   margin-inline: auto;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 20px;
 
   &__doors {
+    min-height: 480px;
+    padding: 24px 12px 48px;
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     align-items: start;
-    gap: $px-32;
-    min-height: 480px;
-    padding-inline: $px-16;
-    padding-block: 24px;
+    gap: 28px;
 
     .door {
       width: 100%;
@@ -241,24 +261,21 @@
       transform-origin: top center;
     }
 
-    .door--available {
-      position: relative;
-      box-shadow:
-        0 3px 6px rgba(0, 0, 0, 0.06),
-        0 10px 24px rgba(0, 0, 0, 0.14);
-      z-index: 1;
-      transform: scale(1.12);
+    .door:nth-child(1),
+    .door:nth-child(5) {
+      transform: translateY(40px) scale(0.84);
+    }
+
+    .door:nth-child(2),
+    .door:nth-child(4) {
+      transform: translateY(20px) scale(0.94);
+    }
+
+    .door:nth-child(3) {
+      transform: scale(1.06);
+      z-index: 2;
     }
   }
-}
-
-// Navigation omkring lågerne.
-.calendar {
-  max-width: 1344px;
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 44px;
-  align-items: center;
-  gap: $px-16;
 
   &__arrow {
     width: 44px;
@@ -270,10 +287,19 @@
     border-radius: 50%;
     background-color: $red;
     color: $white;
-    font-size: $px-36;
-    line-height: 1;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     cursor: pointer;
+
+    svg {
+      display: block;
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
     &:hover:not(:disabled) {
       background-color: $red-dark;
@@ -290,25 +316,6 @@
       cursor: not-allowed;
     }
   }
-}
-
-// Tidligere dage, som brugeren ikke gennemførte.
-.door--missed {
-  .door__day {
-    color: $grey-medium;
-  }
-
-  .door__button {
-    border-color: $grey-light;
-    background-color: $grey-light;
-    color: $black-light;
-    cursor: not-allowed;
-  }
-}
-
-// Reserverer plads til den største låge, også når den ikke vises.
-.calendar__doors {
-  min-height: 520px;
 }
 
 // Centrerer pile uafhængigt af skrifttypen.
@@ -701,5 +708,63 @@
     height: 60px;
     object-fit: contain;
     transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 1400px) {
+  .calendar-layout__main {
+    padding-inline: 24px;
+  }
+
+  .calendar {
+    gap: 12px;
+  }
+
+  .calendar__doors {
+    gap: 20px;
+  }
+
+  .calendar-intro {
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .calendar {
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    gap: 8px;
+  }
+
+  .calendar__doors {
+    gap: 12px;
+  }
+
+  .calendar__arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .calendar .door__header {
+    padding: 12px;
+  }
+
+  .calendar .door__body {
+    padding-inline: 16px;
+  }
+
+  .calendar .door__day {
+    font-size: 60px;
+  }
+
+  .calendar .door__month,
+  .calendar .door__status {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .calendar .door__button {
+    padding-inline: 4px;
+    font-size: 11px;
+    letter-spacing: 0;
   }
 }

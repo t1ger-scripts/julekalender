@@ -5,13 +5,14 @@
   display: flex;
   align-items: center;
   gap: $px-32;
+  width: 100%;
 
   &__brand {
     flex-shrink: 0;
   }
 
   &__logo {
-    width: 220px;
+    width: 150px;
     height: auto;
   }
 
