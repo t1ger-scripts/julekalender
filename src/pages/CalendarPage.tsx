@@ -11,11 +11,13 @@ function CalendarPage() {
     >
       <div className="calendar-intro">
         <h1 className="calendar-intro__title">
-          24 låger. Ét juleeventyr.
+          <span aria-hidden="true">✦</span>
+          Julekalender 2026
+          <span aria-hidden="true">✦</span>
         </h1>
 
         <p className="calendar-intro__description">
-          Saml lodder på din vej mod juleaftens hovedpræmie.
+          24 låger. Ét juleeventyr.
         </p>
       </div>
 

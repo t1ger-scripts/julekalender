@@ -24,30 +24,33 @@
 }
 
 .calendar-intro {
-  text-align: center;
   margin-bottom: 48px;
+  text-align: center;
 }
 .calendar-intro__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
   color: #a6192e;
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: 1px;
+  line-height: 1.2;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+}
+.calendar-intro__title span {
+  font-size: 20px;
+  text-shadow: none;
 }
 .calendar-intro__description {
-  margin-top: 16px;
-  color: #4f4e4d;
+  margin-top: 5px;
+  color: #cc9f7b;
   font-size: 20px;
-}
-.calendar-intro::after {
-  content: "";
-  display: block;
-  width: 64px;
-  height: 2px;
-  margin: 16px auto 0;
-  background-color: #a6192e;
-  opacity: 0.35;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .door {
