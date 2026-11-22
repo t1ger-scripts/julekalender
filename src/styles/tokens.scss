@@ -1,1 +1,94 @@
 /* Fælles design tokens til farver, typografi, afstande, hjørner og skygger. */
+
+//SIZING
+//-pixel
+$px-none: 0px;
+$px-5: 5px;
+$px10: 10px;
+$px-12: 12px;
+$px-14: 14px;
+$px-15: 15px;
+$px-16: 16px;
+$px-20: 20px;
+$px-30: 30px;
+$px-32: 32px;
+$px-36: 36px;
+$px-48: 48px;
+$px-55: 55px;
+$px-70: 70px;
+$px-88: 88px;
+$px-100: 100px;
+//-em
+//-rem
+//-%
+//-vh
+//-vw
+
+
+
+//COLORS
+//-brand
+$red: #a6192e;
+$red-dark: #6a1010;
+$golden: #dcbea5;
+$golden-dark: #cc9f7b;
+$white-beige: #f7f4f1;
+//-tones
+$white: #ffffff;
+$grey-light: #bdbcbc;
+$grey-medium: #818080;
+$grey-dark: #4f4e4d;
+$black-light: #222222;
+$black-dark: #000000;
+//-on:hover
+$hover-red: $red-dark;
+$hover-red-dark: #470b0b;
+$hover-golden: $golden-dark;
+$hover-golden-dark: #c08a5d;
+$hover-white-beige: #e9e0d8;
+$hover-white: $grey-light;
+$hover-grey-light: $grey-medium;
+$hover-grey-medium: $grey-dark;
+$hover-grey-dark: $black-light;
+$hover-black-light: $grey-light;
+$hover-black-dark: $white;
+//-shades
+$shading-golden: linear-gradient(0deg,rgba(204, 159, 123, 0.5) 0%, rgba(220, 190, 165, 1) 50%, rgba(204, 159, 123, 0.5) 100%);
+$shading-silver: linear-gradient(0deg,rgba(129, 128, 128, 0.5) 0%, rgba(189, 188, 188, 1) 50%, rgba(129, 128, 128, 0.5) 100%);
+$shading-red: linear-gradient(0deg,rgba(106, 16, 16, 0.5) 0%, rgba(166, 25, 46, 1) 50%, rgba(106, 16, 16, 0.5) 100%);
+
+
+
+//TEXT
+//--colors
+//-standard
+$text-light-tone: $white;
+$text-medium-tone: $grey-medium;
+$text-medium-dark-tone: $grey-dark;
+$text-dark-tone: $black-light;
+$text-ultra-dark: $black-dark;
+//-on:buttons
+$text-door-button-openable: $text-dark-tone;
+$text-door-button-locked: $text-light-tone;
+$text-door-button-opened: $text-medium-tone;
+//-headings
+$text-h1-color-christmas: $red;
+$text-h2-color-christmas: $golden;
+$text-h3-color-standard: $text-dark-tone;
+//--font-size-regular-text
+$text-h1-size: $px-48;
+$text-h2-size: $px-32;
+$text-h3-size: $px-36;
+$text-p-size: $px-20;
+$text-button-size-standard: $px-20;
+$text-button-door-openable: $px-20;
+$text-button-door-closest-to-openable: $px-14;
+$text-button-door-furthest-from-openable: $px-12;
+
+
+//BORDER-RADIUS
+$border-none: $px-none;
+$border-mini: $px-5;
+$border-medium: $px10;
+$border-big: $px-30;
+$border-round: $px-100;

@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/* Samler projektets stylesheets og global grundstyling. */
+/* Fælles design tokens til farver, typografi, afstande, hjørner og skygger. */
+/* Styling af header, navigation og tællere. */
+/* Styling af låger, rute, præmiebånd og decemberrejse. */
+/* Samler projektets stylesheets og global grundstyling. */
+/* Styling af aktiviteter, modaler, formularer og belønningsvisning. */
+.spin-wheel {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1/1;
+  margin: 40px auto;
+}
+
+.wheel-segment {
+  position: absolute;
+  width: 50%;
+  left: 49.25%;
+  top: 50%;
+  translate: 0 -51.5%;
+  transform-origin: 1.5% 51.5%;
+}
+
+.wheel-segment-image {
+  display: block;
+  width: 100%;
+}
+
+.wheel-label {
+  position: absolute;
+  top: 51.5%;
+  left: 62%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  white-space: nowrap;
+  font-size: 20px;
+  font-family: Gill Sans, sans-serif;
+}
+.wheel-label.white {
+  color: #a6192e;
+}
+.wheel-label.red {
+  color: #ffffff;
+}
+
+.wheel-pointer {
+  position: absolute;
+  width: 16%;
+  top: -8%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.wheel-icon {
+  position: absolute;
+  width: 18%;
+  top: 51.5%;
+  left: 80%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.wheel-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wheel-button {
+  background-color: #a6192e;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 48px;
+  font-size: 20px;
+  font-family: Gill Sans, sans-serif;
+  cursor: pointer;
+}
+.wheel-button:hover:not(:disabled) {
+  background-color: #6a1010;
+}
+.wheel-button:disabled {
+  background-color: #bdbcbc;
+  cursor: not-allowed;
+}
+
+.wheel-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 3s ease-out;
+}/*# sourceMappingURL=style.css.map */

@@ -1,1 +1,272 @@
-/* Styling af aktiviteter, modaler, formularer og belønningsvisning. */
+/* Styling af aktiviteter, modaler og belønningsvisning. */
+
+@use './tokens' as *;
+
+// TYPOGRAFI
+
+@font-face {
+  font-family: 'Gill Sans Std';
+  src: url('../../Gill Sans Std Font/GillSansStd.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gill Sans Std';
+  src: url('../../Gill Sans Std Font/GillSansStdLight.otf') format('opentype');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gill Sans Std';
+  src: url('../../Gill Sans Std Font/GillSansStdBold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+
+// LYKKEHJUL
+
+.spin-wheel {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  margin: $px-48 auto;
+}
+
+.wheel-segment {
+  position: absolute;
+  width: 50%;
+  left: 49.25%;
+  top: 50%;
+  translate: 0 -51.5%;
+  transform-origin: 1.5% 51.5%;
+}
+
+.wheel-segment-image {
+  display: block;
+  width: 100%;
+}
+
+.wheel-label {
+  position: absolute;
+  top: 51.5%;
+  left: 62%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  white-space: nowrap;
+  font-size: $text-button-size-standard;
+
+  &.white {
+    color: $red;
+  }
+
+  &.red {
+    color: $white;
+  }
+}
+
+.wheel-pointer {
+  position: absolute;
+  width: 16%;
+  top: -8%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.wheel-icon {
+  position: absolute;
+  width: 18%;
+  top: 51.5%;
+  left: 80%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.wheel-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wheel-button {
+  background-color: $red;
+  color: $text-light-tone;
+  border: none;
+  border-radius: $border-big;
+  padding: $px-12 $px-48;
+  font-size: $text-button-size-standard;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: $hover-red;
+  }
+
+  &:disabled {
+    background-color: $grey-light;
+    cursor: not-allowed;
+  }
+}
+
+.wheel-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 2s ease-out;
+}
+
+
+// RESULTATBOKS
+
+.activity-reward {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 90%;
+  box-sizing: border-box;
+  padding: $px-30;
+  background-color: $white-beige;
+  border: 3px solid $golden-dark;
+  border-radius: $border-medium;
+  color: $text-dark-tone;
+
+  h2 {
+    text-align: center;
+    font-weight: 700;
+    font-size: $text-h2-size;
+  }
+
+  p {
+    font-size: $text-p-size;
+    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: $px-20;
+  }
+}
+
+
+// FÆLLES AKTIVITETSLAYOUT
+
+.activity-modal {
+  position: relative;
+  width: 95%;
+  max-width: 1400px;
+  margin: $px-30 auto;
+  padding: $px-30;
+  box-sizing: border-box;
+  background-color: $white;
+  border: 1px solid $golden-dark;
+  border-radius: $border-medium;
+  font-family: 'Gill Sans Std', 'Gill Sans', sans-serif;
+  font-weight: 400;
+  color: $text-dark-tone;
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+}
+
+.activity-back {
+  display: block;
+  margin-left: auto;
+  margin-bottom: $px-20;
+  background: none;
+  border: none;
+  color: $grey-medium;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: $hover-grey-medium;
+  }
+}
+
+.activity-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $px-48;
+}
+
+.activity-info,
+.activity-game {
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .activity-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+
+// AKTIVITETSINFORMATION
+
+.activity-details {
+  h1 {
+    font-size: $text-h1-size;
+    font-weight: 700;
+    color: $text-ultra-dark;
+    margin-bottom: $px-20;
+  }
+}
+
+.activity-progress {
+  display: inline-flex;
+  align-items: center;
+  background-color: $grey-light;
+  border-radius: $border-big;
+  padding: $px-5 $px-20;
+  margin-bottom: $px-20;
+}
+
+.activity-description {
+  p {
+    font-size: $text-p-size;
+    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: $px-20;
+  }
+}
+
+
+// SPILLEREGLER
+
+.activity-rules {
+  border-top: 1px solid $grey-medium;
+  padding-top: $px-20;
+
+  h3 {
+    margin-bottom: $px-20;
+    font-size: $text-p-size;
+    font-weight: 700;
+  }
+}
+
+.activity-rule {
+  display: flex;
+  align-items: flex-start;
+  gap: $px-20;
+  margin-bottom: $px-20;
+
+  img {
+    width: $px-20;
+    height: $px-20;
+    object-fit: contain;
+    flex-shrink: 0;
+    margin-top: $px-5;
+  }
+
+  p {
+    margin: 0;
+    font-size: $text-p-size;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+}
