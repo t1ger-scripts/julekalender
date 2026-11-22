@@ -4,7 +4,7 @@
 .calendar-layout {
   min-height: 100dvh;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr;
 
   &__header {
     min-height: 80px;
@@ -12,7 +12,14 @@
     background-color: $white;
   }
 
+  &__page {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
   &__main {
+    flex: 1;
     padding: $px-30 $px-48;
     background-color: $white-beige;
     background-image: url('/images/background.webp');
