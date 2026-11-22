@@ -116,4 +116,30 @@
   background-color: #bdbcbc;
   color: #222222;
   cursor: not-allowed;
+}
+
+.calendar {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+.calendar__doors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.calendar__doors .door {
+  width: 220px;
+  min-width: 0;
+  flex-shrink: 1;
+}
+.calendar__doors .door--available {
+  width: 280px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.calendar__doors .door--available .door__body {
+  min-height: 360px;
 }/*# sourceMappingURL=calendar.css.map */

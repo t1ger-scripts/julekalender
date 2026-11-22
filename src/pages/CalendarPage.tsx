@@ -1,6 +1,6 @@
 import CalendarLayout from '../templates/CalendarLayout'
 import Header from '../components/Header'
-import Door from '../components/Door'
+import Calendar from '../components/Calendar'
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
@@ -19,10 +19,8 @@ function CalendarPage() {
         </p>
       </div>
 
-      <Door
-        day={8}
-        status="available"
-        onOpen={() => console.log('Åbn låge 8')}
+      <Calendar
+        onOpenDoor={(day) => console.log(`Åbn låge ${day}`)}
       />
     </CalendarLayout>
   )

@@ -138,3 +138,34 @@
     cursor: not-allowed;
   }
 }
+
+// Placering og størrelser for kalenderens låger.
+.calendar {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+
+  &__doors {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $px-20;
+
+    .door {
+      width: 220px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .door--available {
+      width: 280px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .door--available .door__body {
+      min-height: 360px;
+    }
+  }
+}
