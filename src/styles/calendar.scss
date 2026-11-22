@@ -16,11 +16,6 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-  }
-
-  &__main {
-    flex: 1;
-    padding: $px-30 $px-48;
     background-color: $white-beige;
     background-image: url('/images/background.webp');
     background-size: cover;
@@ -28,9 +23,13 @@
     background-repeat: no-repeat;
   }
 
+  &__main {
+    flex: 1;
+    padding: $px-30 $px-48;
+  }
+
   &__journey {
-    padding: $px-20 $px-48;
-    background-color: $white;
+    padding: 0 $px-48 $px-20;
   }
 }
 

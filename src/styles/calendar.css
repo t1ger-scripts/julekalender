@@ -14,19 +14,18 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-}
-.calendar-layout__main {
-  flex: 1;
-  padding: 30px 48px;
   background-color: #f7f4f1;
   background-image: url("/images/background.webp");
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
 }
+.calendar-layout__main {
+  flex: 1;
+  padding: 30px 48px;
+}
 .calendar-layout__journey {
-  padding: 20px 48px;
-  background-color: #ffffff;
+  padding: 0 48px 20px;
 }
 
 .calendar-intro {
