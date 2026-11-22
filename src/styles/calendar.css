@@ -465,8 +465,6 @@
   font-size: 12px;
 }
 .december-journey__milestones {
-  flex: 1;
-  min-width: 0;
   margin: 0;
   padding: 0;
   display: grid;
@@ -482,6 +480,24 @@
 }
 .december-journey__milestone p {
   font-size: 12px;
+}
+.december-journey__timeline {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+.december-journey__track {
+  position: absolute;
+  top: 39px;
+  left: 10%;
+  right: 10%;
+  height: 4px;
+  background-color: #bdbcbc;
+}
+.december-journey__track span {
+  display: block;
+  height: 100%;
+  background-color: #a6192e;
 }
 .december-journey__icon {
   height: 28px;
@@ -506,4 +522,20 @@
   border: 2px solid #818080;
   border-radius: 50%;
   background-color: #ffffff;
+  position: relative;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  line-height: 1;
+}
+.december-journey__milestone.is-reached .december-journey__marker {
+  border-color: #cc9f7b;
+  background-color: #cc9f7b;
+  color: #ffffff;
+}
+.december-journey__milestone.is-reached .december-journey__icon img {
+  filter: grayscale(1) sepia(0.6);
+}
+.december-journey__milestone.is-reached .december-journey__icon span {
+  color: #cc9f7b;
 }/*# sourceMappingURL=calendar.css.map */

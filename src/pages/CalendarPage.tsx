@@ -8,7 +8,7 @@ function CalendarPage() {
   return (
     <CalendarLayout
       header={<Header tickets={0} completedDoors={0} />}
-      journey={<DecemberJourney completedDoors={2} />}
+      journey={<DecemberJourney completedDoors={2} currentDay={8} />}
     >
       <div className="calendar-intro">
         <h1 className="calendar-intro__title">
