@@ -96,11 +96,27 @@
   &__header {
     padding: $px-20;
     background-color: $white-beige;
-    border-top: 1px dashed $grey-medium;
     position: relative;
     z-index: 1;
     margin-inline: -8px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.14);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 8px;
+      right: 8px;
+      height: 1px;
+      background-image: repeating-linear-gradient(
+        to right,
+        $grey-medium 0,
+        $grey-medium 8px,
+        transparent 8px,
+        transparent 14px
+      );
+      pointer-events: none;
+    }
   }
 
   &__body {
