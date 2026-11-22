@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Door from './Door'
+import { calendarDoors } from '../data/doors'
 
 interface CalendarProps {
   currentDay: number
@@ -9,15 +10,7 @@ interface CalendarProps {
 
 // Eksempelværdier, indtil vi tilkobler dato og gemt fremgang.
 const visibleDoors = 5
-const lastStartDay = 24 - visibleDoors + 1
-
-// Adventsdage i december 2026.
-// Første advent falder den 29. november og er uden for kalenderen.
-const adventDays: Record<number, number> = {
-  6: 2,
-  13: 3,
-  20: 4,
-}
+const lastStartDay = calendarDoors.length - visibleDoors + 1
 
 // Viser fem låger og navigation mellem kalenderens dage.
 function Calendar({
@@ -36,9 +29,9 @@ function Calendar({
     return 'missed'
   }
 
-  const days = Array.from(
-    { length: visibleDoors },
-    (_, index) => startDay + index,
+  const visibleCalendarDoors = calendarDoors.slice(
+    startDay - 1,
+    startDay - 1 + visibleDoors,
   )
 
   return (
@@ -56,13 +49,13 @@ function Calendar({
       </button>
 
       <div className="calendar__doors">
-        {days.map((day) => (
+        {visibleCalendarDoors.map((door) => (
           <Door
-            key={day}
-            day={day}
-            status={getDoorStatus(day)}
-            onOpen={() => onOpenDoor(day)}
-            adventNumber={adventDays[day]}
+            key={door.day}
+            day={door.day}
+            status={getDoorStatus(door.day)}
+            onOpen={() => onOpenDoor(door.day)}
+            adventNumber={door.adventNumber}
           />
         ))}
       </div>

@@ -24,3 +24,16 @@ export interface WheelDoor {
   content: ActivityContent
   segments: WheelSegment[]
 }
+
+export type ActivityType =
+  | 'wheel'
+  | 'memory'
+  | 'quiz'
+  | 'advent'
+  | 'scratch'
+
+export interface CalendarDoor {
+  day: number
+  activity: ActivityType | null
+  adventNumber?: number
+}
