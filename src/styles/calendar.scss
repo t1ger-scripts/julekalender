@@ -62,12 +62,18 @@
 .door {
   width: 280px;
   background-color: $white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 6px 16px rgba(0, 0, 0, 0.10);
 
   &__header {
     padding: $px-20;
     background-color: $white-beige;
     border-top: 1px dashed $grey-medium;
+    position: relative;
+    z-index: 1;
+    margin-inline: -8px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.14);
   }
 
   &__body {
@@ -163,6 +169,7 @@
 
   &__button {
     width: 100%;
+    min-height: 44px;
     margin-top: auto;
     padding: $px-12;
     border: 1px solid $red;
@@ -171,6 +178,8 @@
     cursor: pointer;
     text-transform: uppercase;
     font-size: $px-14;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 
     &:hover:not(:disabled) {
       background-color: $red-dark;
@@ -223,6 +232,9 @@
 
     .door--available {
       position: relative;
+      box-shadow:
+        0 3px 6px rgba(0, 0, 0, 0.06),
+        0 10px 24px rgba(0, 0, 0, 0.14);
       z-index: 1;
       transform: scale(1.12);
     }
