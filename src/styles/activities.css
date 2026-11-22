@@ -223,8 +223,7 @@
 .activity-rule img {
   width: 20px;
   height: 20px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   flex-shrink: 0;
   margin-top: 5px;
 }

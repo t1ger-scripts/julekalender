@@ -4,13 +4,31 @@
 /* Styling af header, navigation og tællere. */
 /* Styling af låger, rute, præmiebånd og decemberrejse. */
 /* Samler projektets stylesheets og global grundstyling. */
-/* Styling af aktiviteter, modaler, formularer og belønningsvisning. */
+/* Styling af aktiviteter, modaler og belønningsvisning. */
+@font-face {
+  font-family: "Gill Sans Std";
+  src: url("../../Gill Sans Std Font/GillSansStd.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gill Sans Std";
+  src: url("../../Gill Sans Std Font/GillSansStdLight.otf") format("opentype");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gill Sans Std";
+  src: url("../../Gill Sans Std Font/GillSansStdBold.otf") format("opentype");
+  font-weight: 700;
+  font-display: swap;
+}
 .spin-wheel {
   position: relative;
   width: 100%;
   max-width: 500px;
   aspect-ratio: 1/1;
-  margin: 40px auto;
+  margin: 48px auto;
 }
 
 .wheel-segment {
@@ -34,7 +52,6 @@
   transform: translate(-50%, -50%) rotate(90deg);
   white-space: nowrap;
   font-size: 20px;
-  font-family: Gill Sans, sans-serif;
 }
 .wheel-label.white {
   color: #a6192e;
@@ -73,7 +90,6 @@
   border-radius: 30px;
   padding: 12px 48px;
   font-size: 20px;
-  font-family: Gill Sans, sans-serif;
   cursor: pointer;
 }
 .wheel-button:hover:not(:disabled) {
@@ -88,5 +104,136 @@
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 3s ease-out;
+  transition: transform 2s ease-out;
+}
+
+.activity-reward {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 90%;
+  box-sizing: border-box;
+  padding: 30px;
+  background-color: #f7f4f1;
+  border: 3px solid #cc9f7b;
+  border-radius: 10px;
+  color: #222222;
+}
+.activity-reward h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 32px;
+}
+.activity-reward p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.activity-modal {
+  position: relative;
+  width: 95%;
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #cc9f7b;
+  border-radius: 10px;
+  font-family: "Gill Sans Std", "Gill Sans", sans-serif;
+  font-weight: 400;
+  color: #222222;
+}
+.activity-modal button,
+.activity-modal input,
+.activity-modal select,
+.activity-modal textarea {
+  font-family: inherit;
+}
+
+.activity-back {
+  display: block;
+  margin-left: auto;
+  margin-bottom: 20px;
+  background: none;
+  border: none;
+  color: #818080;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.activity-back:hover {
+  color: #4f4e4d;
+}
+
+.activity-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+.activity-info,
+.activity-game {
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .activity-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+.activity-details h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.activity-progress {
+  display: inline-flex;
+  align-items: center;
+  background-color: #bdbcbc;
+  border-radius: 30px;
+  padding: 5px 20px;
+  margin-bottom: 20px;
+}
+
+.activity-description p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.activity-rules {
+  border-top: 1px solid #818080;
+  padding-top: 20px;
+}
+.activity-rules h3 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.activity-rule {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.activity-rule img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.activity-rule p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.4;
 }/*# sourceMappingURL=style.css.map */
