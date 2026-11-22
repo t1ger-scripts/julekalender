@@ -298,7 +298,7 @@
 
 // Reserverer plads til den største låge, også når den ikke vises.
 .calendar__doors {
-  min-height: 460px;
+  min-height: 520px;
 }
 
 // Centrerer pile uafhængigt af skrifttypen.
@@ -487,4 +487,33 @@
       cursor: not-allowed;
     }
   }
+}
+
+// Snor og ring under lågerne.
+.door {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 16px;
+    height: 36px;
+    transform: translateX(-50%);
+    background-image: url('/images/img/handles-red.png');
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+}
+
+.door--available:not(.door--christmas)::after {
+  background-image: url('/images/img/handles-golden.png');
+}
+
+.door--completed::after,
+.door--missed::after {
+  background-image: url('/images/img/handles-silver.png');
 }

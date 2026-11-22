@@ -247,7 +247,7 @@
 }
 
 .calendar__doors {
-  min-height: 460px;
+  min-height: 520px;
 }
 
 .calendar__arrow svg {
@@ -393,4 +393,31 @@
 .door--locked:not(.door--christmas) .door__button:disabled {
   opacity: 1;
   cursor: not-allowed;
+}
+
+.door {
+  position: relative;
+}
+.door::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 16px;
+  height: 36px;
+  transform: translateX(-50%);
+  background-image: url("/images/img/handles-red.png");
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.door--available:not(.door--christmas)::after {
+  background-image: url("/images/img/handles-golden.png");
+}
+
+.door--completed::after,
+.door--missed::after {
+  background-image: url("/images/img/handles-silver.png");
 }/*# sourceMappingURL=calendar.css.map */
