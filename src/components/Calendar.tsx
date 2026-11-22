@@ -5,6 +5,14 @@ interface CalendarProps {
   onOpenDoor: (day: number) => void
 }
 
+// Adventsdage i december 2026.
+// Første advent falder den 29. november og er uden for kalenderen.
+const adventDays: Record<number, number> = {
+  6: 2,
+  13: 3,
+  20: 4,
+}
+
 // Eksempelværdier, indtil vi tilkobler dato og gemt fremgang.
 const currentDay = 8
 const completedDays = [6, 7]
@@ -48,6 +56,7 @@ function Calendar({ onOpenDoor }: CalendarProps) {
             day={day}
             status={getDoorStatus(day)}
             onOpen={() => onOpenDoor(day)}
+            adventNumber={adventDays[day]}
           />
         ))}
       </div>

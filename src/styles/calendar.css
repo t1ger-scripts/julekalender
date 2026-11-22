@@ -249,4 +249,13 @@
   stroke-width: 2.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.door--advent:not(.door--locked):not(.door--missed) .door__day {
+  color: #a6192e;
+}
+.door--advent .door__icon img {
+  width: 44px;
+  height: 32px;
+  object-fit: contain;
 }/*# sourceMappingURL=calendar.css.map */
