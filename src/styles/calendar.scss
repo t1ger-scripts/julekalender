@@ -142,30 +142,25 @@
 // Placering og størrelser for kalenderens låger.
 .calendar {
   width: 100%;
-  max-width: 1200px;
   margin-inline: auto;
 
   &__doors {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     align-items: center;
-    gap: $px-20;
+    gap: $px-32;
+    min-height: 480px;
+    padding-inline: $px-16;
 
     .door {
-      width: 220px;
+      width: 100%;
       min-width: 0;
-      flex-shrink: 1;
     }
 
     .door--available {
-      width: 280px;
-      flex-shrink: 0;
       position: relative;
       z-index: 1;
-    }
-
-    .door--available .door__body {
-      min-height: 360px;
+      transform: scale(1.12);
     }
   }
 }
