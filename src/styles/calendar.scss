@@ -455,3 +455,36 @@
     }
   }
 }
+
+// Kommende gaver i det opdaterede design.
+.door--locked:not(.door--christmas) {
+  .door__header {
+    background-color: $white;
+  }
+
+  .door__day {
+    color: $red;
+  }
+
+  .door__lock {
+    filter: none;
+  }
+
+  .door__status {
+    font-weight: 700;
+  }
+
+  .door__button {
+    border-color: $red-dark;
+    border-radius: $border-mini;
+    background-color: $red-dark;
+    background-image: $shading-red;
+    color: $white;
+    font-size: $px-12;
+
+    &:disabled {
+      opacity: 1;
+      cursor: not-allowed;
+    }
+  }
+}

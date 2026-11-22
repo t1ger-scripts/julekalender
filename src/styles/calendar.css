@@ -368,4 +368,29 @@
   background-color: #818080;
   border-color: #818080;
   color: #ffffff;
+}
+
+.door--locked:not(.door--christmas) .door__header {
+  background-color: #ffffff;
+}
+.door--locked:not(.door--christmas) .door__day {
+  color: #a6192e;
+}
+.door--locked:not(.door--christmas) .door__lock {
+  filter: none;
+}
+.door--locked:not(.door--christmas) .door__status {
+  font-weight: 700;
+}
+.door--locked:not(.door--christmas) .door__button {
+  border-color: #6a1010;
+  border-radius: 5px;
+  background-color: #6a1010;
+  background-image: linear-gradient(0deg, rgba(106, 16, 16, 0.5) 0%, rgb(166, 25, 46) 50%, rgba(106, 16, 16, 0.5) 100%);
+  color: #ffffff;
+  font-size: 12px;
+}
+.door--locked:not(.door--christmas) .door__button:disabled {
+  opacity: 1;
+  cursor: not-allowed;
 }/*# sourceMappingURL=calendar.css.map */
