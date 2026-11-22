@@ -48,4 +48,72 @@
   margin: 16px auto 0;
   background-color: #a6192e;
   opacity: 0.35;
+}
+
+.door {
+  width: 280px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+.door__header {
+  padding: 20px;
+  background-color: #f7f4f1;
+  border-top: 1px dashed #818080;
+}
+.door__body {
+  min-height: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.door__day {
+  font-size: 88px;
+  line-height: 1.1;
+}
+.door__month {
+  margin-top: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.door__status {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.door__button {
+  width: 100%;
+  margin-top: auto;
+  padding: 12px;
+  border: 1px solid #a6192e;
+  background-color: #a6192e;
+  color: #ffffff;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.door__button:hover:not(:disabled) {
+  background-color: #6a1010;
+}
+.door__button:focus-visible {
+  outline: 2px solid #a6192e;
+  outline-offset: 4px;
+}
+.door--completed .door__button {
+  background-color: #ffffff;
+  color: #a6192e;
+}
+.door--completed .door__button:hover {
+  background-color: #f7f4f1;
+}
+.door--locked .door__day {
+  color: #818080;
+}
+.door--locked .door__button {
+  border-color: #bdbcbc;
+  background-color: #bdbcbc;
+  color: #222222;
+  cursor: not-allowed;
 }/*# sourceMappingURL=calendar.css.map */

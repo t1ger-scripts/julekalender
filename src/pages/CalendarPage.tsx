@@ -1,5 +1,6 @@
 import CalendarLayout from '../templates/CalendarLayout'
 import Header from '../components/Header'
+import Door from '../components/Door'
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
@@ -17,6 +18,12 @@ function CalendarPage() {
           Saml lodder på din vej mod juleaftens hovedpræmie.
         </p>
       </div>
+
+      <Door
+        day={8}
+        status="available"
+        onOpen={() => console.log('Åbn låge 8')}
+      />
     </CalendarLayout>
   )
 }
