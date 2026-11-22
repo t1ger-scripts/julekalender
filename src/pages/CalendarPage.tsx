@@ -6,10 +6,25 @@ import CalendarRoute from '../components/CalendarRoute'
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
+  // Eksempeldata, indtil vi tilkobler dato og lokal lagring.
+  const currentDay = 8
+  const completedDays = [6, 7]
+  const tickets = completedDays.length
+
   return (
     <CalendarLayout
-      header={<Header tickets={0} completedDoors={0} />}
-      journey={<DecemberJourney completedDoors={2} currentDay={8} />}
+      header={
+        <Header
+          tickets={tickets}
+          completedDoors={completedDays.length}
+        />
+      }
+      journey={
+        <DecemberJourney
+          completedDoors={completedDays.length}
+          currentDay={currentDay}
+        />
+      }
     >
       <div className="calendar-intro">
         <h1 className="calendar-intro__title">
@@ -24,6 +39,8 @@ function CalendarPage() {
       </div>
 
       <Calendar
+        currentDay={currentDay}
+        completedDays={completedDays}
         onOpenDoor={(day) => console.log(`Åbn låge ${day}`)}
       />
       <CalendarRoute />

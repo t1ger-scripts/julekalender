@@ -2,12 +2,12 @@ import { useState } from 'react'
 import Door from './Door'
 
 interface CalendarProps {
+  currentDay: number
+  completedDays: number[]
   onOpenDoor: (day: number) => void
 }
 
 // Eksempelværdier, indtil vi tilkobler dato og gemt fremgang.
-const currentDay = 8
-const completedDays = [6, 7]
 const visibleDoors = 5
 const lastStartDay = 24 - visibleDoors + 1
 
@@ -19,16 +19,22 @@ const adventDays: Record<number, number> = {
   20: 4,
 }
 
-function getDoorStatus(day: number) {
-  if (completedDays.includes(day)) return 'completed'
-  if (day === currentDay) return 'available'
-  if (day < currentDay) return 'missed'
-  return 'locked'
-}
-
 // Viser fem låger og navigation mellem kalenderens dage.
-function Calendar({ onOpenDoor }: CalendarProps) {
-  const [startDay, setStartDay] = useState(6)
+function Calendar({
+  currentDay,
+  completedDays,
+  onOpenDoor,
+}: CalendarProps) {
+  const [startDay, setStartDay] = useState(() =>
+    Math.max(1, Math.min(currentDay - 2, lastStartDay)),
+  )
+
+  function getDoorStatus(day: number) {
+    if (day > currentDay) return 'locked'
+    if (completedDays.includes(day)) return 'completed'
+    if (day === currentDay) return 'available'
+    return 'missed'
+  }
 
   const days = Array.from(
     { length: visibleDoors },
