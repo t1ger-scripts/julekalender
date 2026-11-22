@@ -396,6 +396,7 @@
   .door__button {
     border-color: $golden-dark;
     border-radius: $border-mini;
+    background-image: none;
     background-color: $golden-dark;
     color: $black-light;
 
@@ -444,7 +445,9 @@
     margin-top: 0;
     border-color: $grey-light;
     border-radius: $border-mini;
+    background-image: none;
     background-color: $grey-light;
+    box-shadow: none;
     color: $black-light;
     font-weight: 400;
 
@@ -477,8 +480,10 @@
   .door__button {
     border-color: $red-dark;
     border-radius: $border-mini;
+    background-image: none;
     background-color: $red-dark;
-    background-image: $shading-red;
+    font-weight: 400;
+    letter-spacing: 0.5px;
     color: $white;
     font-size: $px-12;
 
