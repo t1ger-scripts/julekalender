@@ -1,23 +1,26 @@
 import { useState } from 'react'
 import Door from './Door'
-import { calendarDoors } from '../data/doors'
+import type { CalendarDoor } from '../types/calendar'
 
 interface CalendarProps {
   currentDay: number
   completedDays: number[]
+  calendarDoors: CalendarDoor[]
   onOpenDoor: (day: number) => void
 }
 
 // Eksempelværdier, indtil vi tilkobler dato og gemt fremgang.
 const visibleDoors = 5
-const lastStartDay = calendarDoors.length - visibleDoors + 1
 
 // Viser fem låger og navigation mellem kalenderens dage.
 function Calendar({
+  calendarDoors,
   currentDay,
   completedDays,
   onOpenDoor,
 }: CalendarProps) {
+  const lastStartDay = calendarDoors.length - visibleDoors + 1
+  
   const [startDay, setStartDay] = useState(() =>
     Math.max(1, Math.min(currentDay - 2, lastStartDay)),
   )

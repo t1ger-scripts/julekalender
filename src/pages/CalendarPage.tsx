@@ -9,10 +9,10 @@ import Calendar from '../components/Calendar'
 import DecemberJourney from '../components/DecemberJourney'
 import CalendarRoute from '../components/CalendarRoute'
 import ActivityModal from '../components/ActivityModal'
-import { calendarDoors } from '../data/doors'
 import { getCalendarDay } from '../utils/calendar'
 import ActivityInfo from '../components/ActivityInfo'
-import { activityContents } from '../data/activities'
+import { loadCalendarData } from '../api/loadCalendarData'
+import type { CalendarData } from '../types/calendar'
 
 // Lokal testdato: 1-24 vælger en decemberdag.
 // Sæt til null for at bruge den rigtige dato.
@@ -33,13 +33,15 @@ function CalendarPage() {
   const [completedDays] = useState<number[]>(loadCompletedDays)
 
   const [selectedDay, setSelectedDay] = useState<number | null>(null)
+  const [calendarData, setCalendarData] = useState<CalendarData | null>(null)
+  const [loadError, setLoadError] = useState(false)
 
-  const selectedDoor = calendarDoors.find(
+  const selectedDoor = calendarData?.doors.find(
     (door) => door.day === selectedDay,
   )
 
   const activityContent = selectedDoor?.activity
-    ? activityContents[selectedDoor.activity]
+    ? calendarData?.activities[selectedDoor.activity] ?? null
     : null
 
   // Foreløbig beregning, indtil gruppen har aftalt lodreglerne.
@@ -62,6 +64,27 @@ function CalendarPage() {
     return () => {
       window.clearInterval(intervalId)
       window.removeEventListener('focus', updateDay)
+    }
+  }, [])
+
+  // Indlæser kalenderens indhold ved opstart.
+  useEffect(() => {
+    let isActive = true
+
+    loadCalendarData()
+      .then((data) => {
+        if (isActive) {
+          setCalendarData(data)
+        }
+      })
+      .catch(() => {
+        if (isActive) {
+          setLoadError(true)
+        }
+      })
+
+    return () => {
+      isActive = false
     }
   }, [])
 
@@ -92,15 +115,24 @@ function CalendarPage() {
         </p>
       </div>
 
-      <Calendar
-        currentDay={currentDay}
-        completedDays={completedDays}
-        onOpenDoor={(day) => {
-          if (day !== currentDay && !completedDays.includes(day)) return
+      {calendarData ? (
+        <Calendar
+          calendarDoors={calendarData.doors}
+          currentDay={currentDay}
+          completedDays={completedDays}
+          onOpenDoor={(day) => {
+            if (day !== currentDay && !completedDays.includes(day)) return
 
-          setSelectedDay(day)
-        }}
-      />
+            setSelectedDay(day)
+          }}
+        />
+      ) : loadError ? (
+        <p role="alert">
+          Kalenderen kunne ikke indlæses. Prøv at genindlæse siden.
+        </p>
+      ) : (
+        <p role="status">Henter kalenderen...</p>
+      )}
 
       <CalendarRoute />
 

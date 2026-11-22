@@ -47,3 +47,9 @@ export interface CalendarDoor {
   prize: CalendarPrize | null
   discountCode: string | null
 }
+
+// Det samlede indhold fra kalenderens JSON-filer.
+export interface CalendarData {
+  doors: CalendarDoor[]
+  activities: Record<ActivityType, ActivityContent | null>
+}
