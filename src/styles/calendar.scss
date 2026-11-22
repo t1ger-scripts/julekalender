@@ -85,7 +85,7 @@
       position: absolute;
       top: 12px;
       bottom: 80px;
-      width: 12px;
+      width: 16px;
       z-index: -1;
       pointer-events: none;
 
@@ -93,6 +93,7 @@
 
       background-size: 16px 180px;
       background-repeat: repeat-y;
+      background-position: center top;
     }
 
     &::before {
