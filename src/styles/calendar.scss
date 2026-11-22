@@ -169,3 +169,56 @@
     }
   }
 }
+
+// Navigation omkring lågerne.
+.calendar {
+  max-width: 1344px;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: $px-16;
+
+  &__arrow {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid $grey-light;
+    border-radius: 50%;
+    background-color: $white;
+    color: $red;
+    font-size: $px-36;
+    line-height: 1;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background-color: $white-beige;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $red;
+      outline-offset: 4px;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Tidligere dage, som brugeren ikke gennemførte.
+.door--missed {
+  .door__day {
+    color: $grey-medium;
+  }
+
+  .door__button {
+    border-color: $grey-light;
+    background-color: $grey-light;
+    color: $black-light;
+    cursor: not-allowed;
+  }
+}

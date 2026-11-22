@@ -142,4 +142,48 @@
 }
 .calendar__doors .door--available .door__body {
   min-height: 360px;
+}
+
+.calendar {
+  max-width: 1344px;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 16px;
+}
+.calendar__arrow {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #bdbcbc;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #a6192e;
+  font-size: 36px;
+  line-height: 1;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.calendar__arrow:hover:not(:disabled) {
+  background-color: #f7f4f1;
+}
+.calendar__arrow:focus-visible {
+  outline: 2px solid #a6192e;
+  outline-offset: 4px;
+}
+.calendar__arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.door--missed .door__day {
+  color: #818080;
+}
+.door--missed .door__button {
+  border-color: #bdbcbc;
+  background-color: #bdbcbc;
+  color: #222222;
+  cursor: not-allowed;
 }/*# sourceMappingURL=calendar.css.map */

@@ -1,23 +1,25 @@
 interface DoorProps {
   day: number
-  status: 'available' | 'completed' | 'locked'
+  status: 'available' | 'completed' | 'locked' | 'missed'
   onOpen: () => void
 }
 
 // Viser en låge med dato, status og knap.
 function Door({ day, status, onOpen }: DoorProps) {
-  const isLocked = status === 'locked'
+  const isDisabled = status === 'locked' || status === 'missed'
 
   const statusText = {
     available: 'Dagens låge',
     completed: 'Gennemført',
     locked: 'Låst',
+    missed: 'Misset',
   }
 
   const buttonText = {
     available: 'Åbn lågen',
     completed: 'Genbesøg',
     locked: `Åbner ${day}. dec.`,
+    missed: 'Dagen er udløbet',
   }
 
   return (
@@ -35,7 +37,7 @@ function Door({ day, status, onOpen }: DoorProps) {
         <button
           type="button"
           className="door__button"
-          disabled={isLocked}
+          disabled={isDisabled}
           onClick={onOpen}
           aria-label={`${buttonText[status]} - ${day}. december`}
         >
