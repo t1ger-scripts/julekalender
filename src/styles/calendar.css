@@ -16,4 +16,31 @@
 .calendar-layout__journey {
   padding: 20px 48px;
   background-color: #ffffff;
+}
+
+.calendar-intro {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.calendar-intro__title {
+  color: #a6192e;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.calendar-intro__description {
+  margin-top: 16px;
+  color: #4f4e4d;
+  font-size: 20px;
+}
+.calendar-intro::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 2px;
+  margin: 16px auto 0;
+  background-color: #a6192e;
+  opacity: 0.35;
 }/*# sourceMappingURL=calendar.css.map */
