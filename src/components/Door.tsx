@@ -47,7 +47,7 @@ function Door({ day, status, onOpen, adventNumber }: DoorProps) {
             <>
               {status === 'available' && (
                 <img
-                  src="/images/icons/calendar/icon-feather-black.png"
+                  src="/images/icons/calendar/icon-door-gift-golden-big.png"
                   alt=""
                 />
               )}
