@@ -87,11 +87,13 @@ function Door({ date, status, onOpen, adventNumber }: DoorProps) {
         <span className="door__month">{month}</span>
 
         <p className="door__status">
-          {isChristmas
-            ? 'Juleaften'
-            : adventNumber
-              ? `${adventNumber}. advent`
-              : statusText[status]}
+          {status === 'completed' || status === 'missed'
+            ? statusText[status]
+            : isChristmas
+              ? 'Juleaften'
+              : adventNumber
+                ? `${adventNumber}. advent`
+                : statusText[status]}
         </p>
 
         <button
