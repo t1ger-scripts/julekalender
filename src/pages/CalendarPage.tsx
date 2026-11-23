@@ -7,21 +7,35 @@ import CalendarRoute from '../components/CalendarRoute'
 import DecemberJourney from '../components/DecemberJourney'
 import Header from '../components/Header'
 import CalendarLayout from '../templates/CalendarLayout'
-import type { CalendarData } from '../types/calendar'
+import type {
+  CalendarData,
+  SavedActivityResult,
+} from '../types/calendar'
+import { loadActivityResults } from '../utils/activityResults'
 import { animateGoose } from '../utils/animateGoose'
 import {
   formatCalendarDate,
   getCalendarDate,
   totalDoors,
 } from '../utils/calendar'
-import { loadCompletedDays } from '../utils/storage'
 
 // Testindstillinger bruges kun lokalt og gemmes ikke i browseren.
-// Sæt enabled til false for at bruge rigtig dato og gemt fremgang.
+// Sæt enabled til false for at bruge rigtig dato og gemte resultater.
 const testConfig = {
   enabled: true,
-  date: '2026-12-01',
-  completedDates: ['2026-12-06', '2026-12-07'],
+  date: '2026-12-08',
+  results: [
+    {
+      date: '2026-12-06',
+      tickets: 1,
+      discountPercent: 0,
+    },
+    {
+      date: '2026-12-07',
+      tickets: 2,
+      discountPercent: 10,
+    },
+  ],
 }
 
 const isTestMode = import.meta.env.DEV && testConfig.enabled
@@ -30,17 +44,26 @@ function getCurrentDate(): string {
   return isTestMode ? testConfig.date : getCalendarDate()
 }
 
-// Samler kalenderens indhold, fremgang og åbning af aktiviteter.
+// Samler kalenderens indhold, resultater og åbning af aktiviteter.
 function CalendarPage() {
   const isOpeningDoor = useRef(false)
 
   const [currentDate, setCurrentDate] = useState(getCurrentDate)
-  const [completedDates] = useState<string[]>(() =>
-    isTestMode ? [...testConfig.completedDates] : loadCompletedDays(),
+  const [activityResults] = useState<SavedActivityResult[]>(() =>
+    isTestMode
+      ? testConfig.results.map((result) => ({ ...result }))
+      : loadActivityResults(),
   )
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null)
   const [loadError, setLoadError] = useState(false)
+
+  const completedDates = activityResults.map((result) => result.date)
+
+  const tickets = activityResults.reduce(
+    (total, result) => total + result.tickets,
+    0,
+  )
 
   const selectedDoor = calendarData?.doors.find(
     (door) => door.date === selectedDate,
@@ -53,9 +76,6 @@ function CalendarPage() {
   const activityTitle =
     activityContent?.title ??
     (selectedDoor ? formatCalendarDate(selectedDoor.date) : '')
-
-  // Tilkobles de gemte aktivitetsresultater ved integration.
-  const tickets = 0
 
   // Holder datoen opdateret ved midnat og ved tilbagevenden til siden.
   useEffect(() => {
