@@ -1,22 +1,169 @@
-/* Styling af aktiviteter, modaler og belønningsvisning. */
-
 @use './tokens' as *;
 
+// MODAL OG LAYOUT
+
+.activity-modal {
+  position: fixed;
+  width: min(1100px, calc(100% - 48px));
+  max-height: calc(100dvh - 48px);
+  margin: auto;
+  padding: $px-30;
+  overflow-y: auto;
+  background-color: $white;
+  border: 1px solid $golden-dark;
+  border-radius: $border-medium;
+  color: $text-dark-tone;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+  }
+}
+
+.activity-back {
+  display: block;
+  min-height: 44px;
+  margin-left: auto;
+  margin-bottom: $px-20;
+  background: none;
+  border: none;
+  color: $grey-medium;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: $hover-grey-medium;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $red;
+    outline-offset: 3px;
+  }
+}
+
+.activity-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $px-48;
+}
+
+.activity-info,
+.activity-game {
+  min-width: 0;
+}
+
+// FÆLLES BRØDTEKST
+
+.activity-description p,
+.activity-rule p,
+.activity-reward p {
+  font-size: $text-p-size;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: $px-20;
+}
+
+// AKTIVITETSINFORMATION
+
+.activity-details h2 {
+  margin-bottom: $px-20;
+  color: $text-ultra-dark;
+  font-size: $text-h1-size;
+  font-weight: 700;
+}
+
+.activity-progress {
+  display: inline-flex;
+  align-items: center;
+  padding: $px-5 $px-20;
+  margin-bottom: $px-20;
+  border-radius: $border-big;
+  background-color: $grey-light;
+}
+
+// SPILLEREGLER
+
+.activity-rules {
+  padding-top: $px-20;
+  border-top: 1px solid $grey-medium;
+
+  h3 {
+    margin-bottom: $px-20;
+    font-size: $text-p-size;
+    font-weight: 700;
+  }
+}
+
+.activity-rule {
+  display: flex;
+  align-items: flex-start;
+  gap: $px-20;
+  margin-bottom: $px-20;
+
+  img {
+    width: $px-20;
+    height: $px-20;
+    flex-shrink: 0;
+    margin-top: $px-5;
+    object-fit: contain;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+// BELØNNINGSBESKED INDE I AKTIVITETEN
+
+.activity-reward {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: 90%;
+  padding: $px-30;
+  transform: translate(-50%, -50%);
+  border: 3px solid $golden-dark;
+  border-radius: $border-medium;
+  background-color: $white-beige;
+  color: $text-dark-tone;
+
+  h2 {
+    font-size: $text-h2-size;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
 // LYKKEHJUL
+
+.wheel-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .spin-wheel {
   position: relative;
   width: 100%;
   max-width: 500px;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1;
   margin: $px-48 auto;
+}
+
+.wheel-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 2s ease-out;
 }
 
 .wheel-segment {
   position: absolute;
-  width: 50%;
-  left: 49.25%;
   top: 50%;
+  left: 49.25%;
+  width: 50%;
   translate: 0 -51.5%;
   transform-origin: 1.5% 51.5%;
 }
@@ -43,40 +190,39 @@
   }
 }
 
-.wheel-pointer {
-  position: absolute;
-  width: 16%;
-  top: -8%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-}
-
 .wheel-icon {
   position: absolute;
-  width: 18%;
   top: 51.5%;
   left: 80%;
+  width: 18%;
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.wheel-game {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.wheel-pointer {
+  position: absolute;
+  top: -8%;
+  left: 50%;
+  z-index: 2;
+  width: 16%;
+  transform: translateX(-50%);
 }
 
 .wheel-button {
-  background-color: $red;
-  color: $text-light-tone;
+  padding: $px-12 $px-48;
   border: none;
   border-radius: $border-big;
-  padding: $px-12 $px-48;
+  background-color: $red;
+  color: $text-light-tone;
   font-size: $text-button-size-standard;
   cursor: pointer;
 
   &:hover:not(:disabled) {
     background-color: $hover-red;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $red;
+    outline-offset: 4px;
   }
 
   &:disabled {
@@ -85,167 +231,11 @@
   }
 }
 
-.wheel-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 2s ease-out;
-}
-
-
-// RESULTATBOKS
-
-.activity-reward {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  width: 90%;
-  box-sizing: border-box;
-  padding: $px-30;
-  background-color: $white-beige;
-  border: 3px solid $golden-dark;
-  border-radius: $border-medium;
-  color: $text-dark-tone;
-
-  h2 {
-    text-align: center;
-    font-weight: 700;
-    font-size: $text-h2-size;
-  }
-
-  p {
-    font-size: $text-p-size;
-    font-weight: 300;
-    line-height: 1.4;
-    margin-bottom: $px-20;
-  }
-}
-
-
-// FÆLLES AKTIVITETSLAYOUT
-
-.activity-modal {
-  position: fixed;
-  width: min(1100px, calc(100% - 48px));
-  max-height: calc(100dvh - 48px);
-  margin: auto;
-  padding: $px-30;
-  overflow-y: auto;
-  background-color: $white;
-  border: 1px solid $golden-dark;
-  border-radius: $border-medium;
-  color: $text-dark-tone;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-
-  &::backdrop {
-    background-color: rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(5px);
-  }
-}
-
-.activity-back {
-  display: block;
-  margin-left: auto;
-  margin-bottom: $px-20;
-  background: none;
-  border: none;
-  color: $grey-medium;
-  min-height: 44px;
-  text-decoration: underline;
-  cursor: pointer;
-
-  &:focus-visible {
-    outline: 2px solid $red;
-    outline-offset: 3px;
-  }
-
-  &:hover {
-    color: $hover-grey-medium;
-  }
-}
-
-.activity-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $px-48;
-}
-
-.activity-info,
-.activity-game {
-  min-width: 0;
-}
+// TO KOLONNER PÅ DESKTOP
 
 @media (min-width: 900px) {
   .activity-layout {
     grid-template-columns: 1fr 1fr;
     align-items: center;
-  }
-}
-
-
-// AKTIVITETSINFORMATION
-
-.activity-details {
-  h2 {
-    font-size: $text-h1-size;
-    font-weight: 700;
-    color: $text-ultra-dark;
-    margin-bottom: $px-20;
-  }
-}
-
-.activity-progress {
-  display: inline-flex;
-  align-items: center;
-  background-color: $grey-light;
-  border-radius: $border-big;
-  padding: $px-5 $px-20;
-  margin-bottom: $px-20;
-}
-
-.activity-description {
-  p {
-    font-size: $text-p-size;
-    font-weight: 300;
-    line-height: 1.4;
-    margin-bottom: $px-20;
-  }
-}
-
-
-// SPILLEREGLER
-
-.activity-rules {
-  border-top: 1px solid $grey-medium;
-  padding-top: $px-20;
-
-  h3 {
-    margin-bottom: $px-20;
-    font-size: $text-p-size;
-    font-weight: 700;
-  }
-}
-
-.activity-rule {
-  display: flex;
-  align-items: flex-start;
-  gap: $px-20;
-  margin-bottom: $px-20;
-
-  img {
-    width: $px-20;
-    height: $px-20;
-    object-fit: contain;
-    flex-shrink: 0;
-    margin-top: $px-5;
-  }
-
-  p {
-    margin: 0;
-    font-size: $text-p-size;
-    font-weight: 300;
-    line-height: 1.4;
   }
 }
