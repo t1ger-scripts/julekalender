@@ -5,6 +5,8 @@ interface CalendarRouteProps {
   currentDate: string
 }
 
+// Nedenstående er kodet vha. AI.
+
 const routePath =
   'M40 25 C90 10 110 60 190 50 S350 95 500 85 C640 95 700 30 790 45 S910 15 960 20'
 
@@ -13,7 +15,6 @@ const lastDate = Date.parse(
   `${calendarDates[calendarDates.length - 1]}T00:00:00Z`,
 )
 
-// Viser kalenderens tidsforløb og placerer gåsen på ruten.
 function CalendarRoute({ currentDate }: CalendarRouteProps) {
   const pathRef = useRef<SVGPathElement>(null)
   const gooseRef = useRef<HTMLImageElement>(null)
@@ -24,7 +25,6 @@ function CalendarRoute({ currentDate }: CalendarRouteProps) {
     Math.min(1, (today - firstDate) / (lastDate - firstDate)),
   )
 
-  // Finder gåsens position på den samme kurve som den synlige rute.
   useLayoutEffect(() => {
     const path = pathRef.current
     const goose = gooseRef.current
