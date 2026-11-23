@@ -746,3 +746,30 @@
     letter-spacing: 0;
   }
 }
+
+// Tomme pladser holder første og sidste låge centreret.
+.calendar__placeholder {
+  min-width: 0;
+  pointer-events: none;
+}
+
+// Tre låger på mindre desktopskærme.
+@media (max-width: 1200px) {
+  .calendar__doors {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 840px;
+    width: 100%;
+    margin-inline: auto;
+
+    .door:nth-child(1),
+    .door:nth-child(3) {
+      transform: translateY(20px) scale(0.94);
+      z-index: auto;
+    }
+
+    .door:nth-child(2) {
+      transform: scale(1.06);
+      z-index: 2;
+    }
+  }
+}

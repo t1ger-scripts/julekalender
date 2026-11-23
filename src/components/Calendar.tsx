@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Door from './Door'
 import type { CalendarDoor } from '../types/calendar'
 
@@ -9,21 +9,43 @@ interface CalendarProps {
   onOpenDoor: (day: number) => void
 }
 
-// Eksempelværdier, indtil vi tilkobler dato og gemt fremgang.
-const visibleDoors = 5
+const compactQuery = '(max-width: 1200px)'
 
-// Viser fem låger og navigation mellem kalenderens dage.
+// Viser kalenderens låger med den valgte dag i midten.
 function Calendar({
   calendarDoors,
   currentDay,
   completedDays,
   onOpenDoor,
 }: CalendarProps) {
-  const lastStartDay = calendarDoors.length - visibleDoors + 1
-  
-  const [startDay, setStartDay] = useState(() =>
-    Math.max(1, Math.min(currentDay - 2, lastStartDay)),
+  const [visibleCount, setVisibleCount] = useState(() =>
+    window.matchMedia(compactQuery).matches ? 3 : 5,
   )
+
+  const [centerIndex, setCenterIndex] = useState(() => {
+    const index = calendarDoors.findIndex(
+      (door) => door.day >= currentDay,
+    )
+
+    return index === -1
+      ? Math.max(0, calendarDoors.length - 1)
+      : index
+  })
+
+  // Tilpasser antallet af låger, når vinduets bredde ændres.
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(compactQuery)
+
+    function updateVisibleCount() {
+      setVisibleCount(mediaQuery.matches ? 3 : 5)
+    }
+
+    mediaQuery.addEventListener('change', updateVisibleCount)
+
+    return () => {
+      mediaQuery.removeEventListener('change', updateVisibleCount)
+    }
+  }, [])
 
   function getDoorStatus(day: number) {
     if (day > currentDay) return 'locked'
@@ -32,9 +54,15 @@ function Calendar({
     return 'missed'
   }
 
-  const visibleCalendarDoors = calendarDoors.slice(
-    startDay - 1,
-    startDay - 1 + visibleDoors,
+  const middleSlot = Math.floor(visibleCount / 2)
+
+  const visibleSlots = Array.from(
+    { length: visibleCount },
+    (_, slotIndex) => {
+      const doorIndex = centerIndex + slotIndex - middleSlot
+
+      return calendarDoors[doorIndex] ?? null
+    },
   )
 
   return (
@@ -43,8 +71,10 @@ function Calendar({
         type="button"
         className="calendar__arrow"
         aria-label="Vis tidligere låger"
-        disabled={startDay === 1}
-        onClick={() => setStartDay((day) => day - 1)}
+        disabled={centerIndex === 0}
+        onClick={() =>
+          setCenterIndex((index) => Math.max(0, index - 1))
+        }
       >
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M15 6 9 12l6 6" />
@@ -52,23 +82,35 @@ function Calendar({
       </button>
 
       <div className="calendar__doors">
-        {visibleCalendarDoors.map((door) => (
-          <Door
-            key={door.day}
-            day={door.day}
-            status={getDoorStatus(door.day)}
-            onOpen={() => onOpenDoor(door.day)}
-            adventNumber={door.adventNumber}
-          />
-        ))}
+        {visibleSlots.map((door, slotIndex) =>
+          door ? (
+            <Door
+              key={door.day}
+              day={door.day}
+              status={getDoorStatus(door.day)}
+              onOpen={() => onOpenDoor(door.day)}
+              adventNumber={door.adventNumber}
+            />
+          ) : (
+            <div
+              key={`empty-${slotIndex}`}
+              className="calendar__placeholder"
+              aria-hidden="true"
+            />
+          ),
+        )}
       </div>
 
       <button
         type="button"
         className="calendar__arrow"
         aria-label="Vis kommende låger"
-        disabled={startDay === lastStartDay}
-        onClick={() => setStartDay((day) => day + 1)}
+        disabled={centerIndex >= calendarDoors.length - 1}
+        onClick={() =>
+          setCenterIndex((index) =>
+            Math.min(calendarDoors.length - 1, index + 1),
+          )
+        }
       >
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="m9 6 6 6-6 6" />
