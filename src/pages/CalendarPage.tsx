@@ -20,7 +20,7 @@ import { loadCalendarData } from '../api/loadCalendarData'
 import type { CalendarData } from '../types/calendar'
 
 // Lokal testdato. Sæt til null for at bruge den rigtige dato.
-const testDate: string | null = '2026-12-08'
+const testDate: string | null = '2026-12-24'
 
 function getCurrentDate(): string {
   if (import.meta.env.DEV && testDate !== null) {
@@ -146,7 +146,7 @@ function CalendarPage() {
         <p role="status">Henter kalenderen...</p>
       )}
 
-      <CalendarRoute />
+      <CalendarRoute currentDate={currentDate} />
 
       {selectedDoor && (
         <ActivityModal
