@@ -11,7 +11,7 @@ function WheelResult({ result }: WheelResultProps) {
       <ActivityReward
         title="TILLYKKE!"
         paragraphs={[
-          `Juleheldet var med dig! Lykkehjulet har givet dig ${result.value}% rabat på dagens hovedpræmie.`,
+          `Juleheldet var med dig! Lykkehjulet har givet dig ${result.value}% rabat på dagens produkt.`,
           "Forkæl dig selv eller en, du holder af, med lidt ekstra juleluksus.",
           "Du finder din rabatkode i din præmieoversigt under 'Mine gaver'."
         ]}

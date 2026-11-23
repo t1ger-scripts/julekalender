@@ -21,7 +21,7 @@
       },
       {
         "icon": "/images/icons/games/icon-ticket-red.png",
-        "text": "Eventuelle gevinster vises i din præmieoversigt, når kalenderen er koblet sammen."
+        "text": "Dit resultat gemmes automatisk og kan ses igen under Mine gaver. Når hjulet er stoppet, deltager du også i dagens lodtrækning."
       }
     ],
     "segments": [
@@ -80,7 +80,7 @@
     "description": [
       "Åh nej – alle de fine gaver er blevet blandet sammen! Hjælp os med at finde de rigtige par.",
       "Find alle seks par på højst 15 forsøg. Ét forsøg er to vendte puder.",
-      "Når du åbner dagens låge, deltager du automatisk i lodtrækningen om dagens hovedpræmie. Vinderen offentliggøres dagen efter."
+      "Når du gennemfører dagens aktivitet, deltager du automatisk i lodtrækningen om dagens præmie. Vundne lodder tæller med i konkurrencen om hovedpræmien juleaften."
     ],
     "rules": [
       {
@@ -97,7 +97,7 @@
       },
       {
         "icon": "/images/icons/games/icon-ticket-red.png",
-        "text": "Uanset resultatet deltager du i lodtrækningen om dagens hovedpræmie. Vinderen offentliggøres dagen efter."
+        "text": "Når du afslutter spillet, deltager du i dagens lodtrækning, uanset om du vinder spillet eller ej."
       }
     ],
     "memoryGame": {
@@ -135,7 +135,7 @@
     "description": [
       "Hvor godt kender du egentlig Ringsted Dun? Sæt din viden på prøve i dagens julequiz, og få chancen for en ekstra gevinst.",
       "Læs spørgsmålet grundigt, og vælg mellem de tre svarmuligheder. Du har ét forsøg, og kun ét svar er korrekt.",
-      "Når du åbner dagens låge, deltager du automatisk i lodtrækningen om dagens hovedpræmie. Vinderen offentliggøres dagen efter."
+      "Når du gennemfører dagens aktivitet, deltager du automatisk i lodtrækningen om dagens præmie. Vundne lodder tæller med i konkurrencen om hovedpræmien juleaften."
     ],
     "rules": [
       {
@@ -152,7 +152,7 @@
       },
       {
         "icon": "/images/icons/games/icon-door-gift-red-small.png",
-        "text": "Et korrekt svar giver en ekstra gevinst: rabat på dagens hovedpræmie eller lodder til julepræmien."
+        "text": "Et korrekt svar giver en ekstra gevinst: rabat på dagens produkt eller lodder til julepræmien."
       }
     ]
   },
@@ -160,8 +160,8 @@
     "title": "PUDE-FLIPPEREN",
     "description": [
       "Find de gemte gaver under puderne. Du har fem forsøg til at finde tre gaver.",
-      "Finder du alle tre, får du en ekstra gevinst. Ellers kan en fundet fjer give rabat, eller et lod kan give en ekstra chance i julekonkurrencen.",
-      "Når du åbner dagens låge, deltager du automatisk i lodtrækningen om dagens hovedpræmie. Vinderen offentliggøres dagen efter."
+      "Finder du tre gaver, får du spillets bonusgevinst. Ellers får du rabat for de fundne fjer. Har du ikke fundet fjer, får du ét lod pr. fundet lodsymbol.",
+      "Når du gennemfører dagens aktivitet, deltager du automatisk i lodtrækningen om dagens præmie. Vundne lodder tæller med i konkurrencen om hovedpræmien juleaften."
     ],
     "rules": [
       {
@@ -178,11 +178,11 @@
       },
       {
         "icon": "/images/icons/games/icon-ticket-red.png",
-        "text": "Lodder tæller med i lodtrækningen om den store julepræmie den 24. december."
+        "text": "Vundne lodder tæller kun med i lodtrækningen om hovedpræmien juleaften. Deltagelse i dagens lodtrækning kræver blot, at du gennemfører aktiviteten."
       },
       {
         "icon": "/images/icons/games/icon-check.png",
-        "text": "Du deltager altid i dagens lodtrækning ved at åbne lågen."
+        "text": "Du deltager automatisk i dagens lodtrækning, når spillet er afsluttet."
       }
     ],
     "scratchGame": {
