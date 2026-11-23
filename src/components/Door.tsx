@@ -7,28 +7,30 @@ interface DoorProps {
   adventNumber?: number
 }
 
-// Viser en låge med dato, status og knap.
+// Viser dato, status og eventuel handling for en kalenderlåge.
 function Door({ date, status, onOpen, adventNumber }: DoorProps) {
-  const isDisabled = status === 'locked' || status === 'missed'
   const day = Number(date.slice(8, 10))
   const isNovember = date.slice(5, 7) === '11'
   const month = isNovember ? 'November' : 'December'
   const shortMonth = isNovember ? 'nov.' : 'dec.'
   const isChristmas = date === '2026-12-24'
+  const isPast = status === 'completed' || status === 'missed'
+  const canOpen = status === 'available' || status === 'completed'
 
-  const statusText = {
-    available: 'Dagens låge',
-    completed: 'Gennemført',
-    locked: 'Låst',
-    missed: 'Misset',
-  }
+  const buttonText =
+    status === 'completed' ? 'Se din gave' : 'Åbn gaven'
 
-  const buttonText = {
-    available: 'Åbn lågen',
-    completed: 'Genbesøg',
-    locked: `Åbner ${day}. ${shortMonth}`,
-    missed: 'Dagen er udløbet',
-  }
+  const statusText = isPast
+    ? status === 'completed'
+      ? 'Gennemført'
+      : 'Ikke åbnet'
+    : isChristmas
+      ? 'Juleaften'
+      : adventNumber
+        ? `${adventNumber}. advent`
+        : status === 'locked'
+          ? 'Låst'
+          : 'Dagens gave'
 
   return (
     <article
@@ -46,65 +48,49 @@ function Door({ date, status, onOpen, adventNumber }: DoorProps) {
             </svg>
           ) : adventNumber ? (
             <img
-              src={`/images/icons/calendar/icon-candles-advent-${adventNumber}-${isDisabled ? 'locked' : 'active'}.png`}
+              src={`/images/icons/calendar/icon-candles-advent-${adventNumber}-${isPast || status === 'locked' ? 'locked' : 'active'}.png`}
               alt=""
             />
+          ) : status === 'completed' ? (
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m8 12 3 3 5-6" />
+            </svg>
+          ) : status === 'locked' ? (
+            <img
+              src="/images/icons/calendar/icon-lock-red-big.png"
+              alt=""
+              className="door__lock"
+            />
           ) : (
-            <>
-              {status === 'available' && (
-                <img
-                  src="/images/icons/calendar/icon-door-gift-golden-big.png"
-                  alt=""
-                />
-              )}
-
-              {status === 'completed' && (
-                <svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="m8 12 3 3 5-6" />
-                </svg>
-              )}
-
-              {status === 'locked' && (
-                <img
-                  src="/images/icons/calendar/icon-lock-red-big.png"
-                  alt=""
-                  className="door__lock"
-                />
-              )}
-
-              {status === 'missed' && (
-                <svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="m9 9 6 6m0-6-6 6" />
-                </svg>
-              )}
-            </>
+            <img
+              src="/images/icons/calendar/icon-door-gift-golden-big.png"
+              alt=""
+            />
           )}
         </div>
 
         <span className="door__day">{day}</span>
         <span className="door__month">{month}</span>
 
-        <p className="door__status">
-          {status === 'completed' || status === 'missed'
-            ? statusText[status]
-            : isChristmas
-              ? 'Juleaften'
-              : adventNumber
-                ? `${adventNumber}. advent`
-                : statusText[status]}
-        </p>
+        <p className="door__status">{statusText}</p>
 
-        <button
-          type="button"
-          className="door__button"
-          disabled={isDisabled}
-          onClick={onOpen}
-          aria-label={`${buttonText[status]} - ${formatCalendarDate(date)}`}
-        >
-          {buttonText[status]}
-        </button>
+        <div className="door__footer">
+          {canOpen ? (
+            <button
+              type="button"
+              className="door__button"
+              onClick={onOpen}
+              aria-label={`${buttonText} - ${formatCalendarDate(date)}`}
+            >
+              {buttonText}
+            </button>
+          ) : status === 'locked' ? (
+            <p className="door__notice">
+              Åbner {day}. {shortMonth}
+            </p>
+          ) : null}
+        </div>
       </div>
     </article>
   )

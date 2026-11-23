@@ -213,16 +213,22 @@
   &__button {
     width: 100%;
     min-height: 44px;
-    margin-top: auto;
     padding: $px-12;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid $red;
+    border-radius: $border-mini;
     background-color: $red;
     color: $white;
-    cursor: pointer;
-    text-transform: uppercase;
+    font-family: inherit;
     font-size: $px-14;
     font-weight: 700;
+    line-height: 1.2;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
 
     &:hover:not(:disabled) {
       background-color: $red-dark;
@@ -232,6 +238,23 @@
       outline: 2px solid $red;
       outline-offset: 4px;
     }
+  }
+
+  &__footer {
+    width: 100%;
+    min-height: 44px;
+    margin-top: auto;
+    display: grid;
+    align-items: center;
+  }
+
+  &__notice {
+    margin: 0;
+    color: $grey-dark;
+    font-size: $px-14;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
   }
 }
 
@@ -470,7 +493,7 @@
     background-image: none;
     background-color: $grey-light;
     color: $black-light;
-    font-weight: 400;
+    font-weight: 700;
 
     &:hover:not(:disabled) {
       background-color: $grey-medium;
@@ -500,22 +523,6 @@
 
   .door__status {
     font-weight: 700;
-  }
-
-  .door__button {
-    border-color: $red-dark;
-    border-radius: $border-mini;
-    background-image: none;
-    background-color: $red-dark;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    color: $white;
-    font-size: $px-12;
-
-    &:disabled {
-      opacity: 1;
-      cursor: not-allowed;
-    }
   }
 }
 
@@ -752,8 +759,6 @@
 
   .calendar .door__button {
     padding-inline: 4px;
-    font-size: 11px;
-    letter-spacing: 0;
   }
 }
 
