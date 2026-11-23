@@ -9,6 +9,7 @@ import DecemberJourney from '../components/DecemberJourney'
 import Header from '../components/Header'
 import SpinWheel from '../components/activities/SpinWheel'
 import Quiz from '../components/activities/Quiz'
+import MemoryGame from '../components/activities/MemoryGame'
 import CalendarLayout from '../templates/CalendarLayout'
 import type {
   ActivityResult,
@@ -30,7 +31,7 @@ import {
 // Resultater gemmes også i testtilstand, så genbesøg kan kontrolleres.
 const testConfig = {
   enabled: true,
-  date: '2026-11-29',
+  date: '2026-12-03',
 }
 
 function getCurrentDate(): string {
@@ -170,7 +171,10 @@ function CalendarPage() {
   function handleComplete(result: ActivityResult) {
     if (!selectedDoor || selectedResult) return
 
-    if (selectedDoor.activity === 'wheel') {
+    if (
+      selectedDoor.activity === 'wheel' ||
+      selectedDoor.activity === 'memory'
+    ) {
       setRevealingDate(selectedDoor.date)
     }
 
@@ -265,6 +269,12 @@ function CalendarPage() {
             ) : (
               <p role="alert">Dagens quiz kunne ikke findes.</p>
             )
+          ) : selectedDoor.activity === 'memory' ? (
+            <MemoryGame
+              key={selectedDoor.date}
+              game={calendarData.activities.memory.memoryGame}
+              onComplete={handleComplete}
+            />
           ) : (
             <p>Denne aktivitet er endnu ikke tilkoblet.</p>
           )}
