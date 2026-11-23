@@ -34,6 +34,7 @@ function Door({ date, status, onOpen, adventNumber }: DoorProps) {
 
   return (
     <article
+      data-door-date={date}
       className={`door door--${status}${adventNumber ? ' door--advent' : ''}${isChristmas ? ' door--christmas' : ''}`}
     >
       <div className="door__header">

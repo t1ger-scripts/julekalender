@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   loadCompletedDays,
   saveCompletedDays,
@@ -18,9 +18,10 @@ import {
 } from '../utils/calendar'
 import { loadCalendarData } from '../api/loadCalendarData'
 import type { CalendarData } from '../types/calendar'
+import { animateGoose } from '../utils/animateGoose'
 
 // Lokal testdato. Sæt til null for at bruge den rigtige dato.
-const testDate: string | null = '2026-12-15'
+const testDate: string | null = '2026-12-06'
 
 function getCurrentDate(): string {
   if (import.meta.env.DEV && testDate !== null) {
@@ -32,6 +33,7 @@ function getCurrentDate(): string {
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
+  const isOpeningDoor = useRef(false)
   const [currentDate, setCurrentDate] = useState(getCurrentDate)
   const [completedDates] = useState<string[]>(loadCompletedDays)
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
@@ -127,12 +129,25 @@ function CalendarPage() {
           calendarDoors={calendarData.doors}
           currentDate={currentDate}
           completedDates={completedDates}
-          onOpenDoor={(date) => {
+          onOpenDoor={async (date) => {
             if (
-              date !== currentDate &&
-              !completedDates.includes(date)
+              isOpeningDoor.current ||
+              (
+                date !== currentDate &&
+                !completedDates.includes(date)
+              )
             ) {
               return
+            }
+
+            isOpeningDoor.current = true
+
+            try {
+              await animateGoose(date)
+            } catch {
+              // Aktiviteten kan stadig åbnes, hvis animationen afbrydes.
+            } finally {
+              isOpeningDoor.current = false
             }
 
             setSelectedDate(date)
