@@ -2,49 +2,28 @@ import { totalDoors } from '../utils/calendar'
 
 interface DecemberJourneyProps {
   completedDoors: number
-  currentDay: number
+  currentDate: string
 }
 
 const milestones = [
-  {
-    day: -1,
-    label: '1. advent',
-    date: '29/11',
-    icon: '/images/icons/calendar/icon-candles-advent-1-active.png',
-  },
-  {
-    day: 6,
-    label: '2. advent',
-    date: '6/12',
-    icon: '/images/icons/calendar/icon-candles-advent-2-active.png',
-  },
-  {
-    day: 13,
-    label: '3. advent',
-    date: '13/12',
-    icon: '/images/icons/calendar/icon-candles-advent-3-locked.png',
-  },
-  {
-    day: 20,
-    label: '4. advent',
-    date: '20/12',
-    icon: '/images/icons/calendar/icon-candles-advent-4-locked.png',
-  },
-  {
-    day: 24,
-    label: 'Juleaften',
-    date: '24/12',
-    icon: null,
-  },
+  { date: '2026-11-29', label: '1. advent', adventNumber: 1 },
+  { date: '2026-12-06', label: '2. advent', adventNumber: 2 },
+  { date: '2026-12-13', label: '3. advent', adventNumber: 3 },
+  { date: '2026-12-20', label: '4. advent', adventNumber: 4 },
+  { date: '2026-12-24', label: 'Juleaften', adventNumber: null },
 ]
 
-// Viser antal gennemførte gaver og kalenderens milepæle.
+function getTimestamp(date: string): number {
+  return Date.parse(`${date}T00:00:00Z`)
+}
+
+// Viser brugerens gennemførte gaver og datoernes milepæle.
 function DecemberJourney({
   completedDoors,
-  currentDay,
+  currentDate,
 }: DecemberJourneyProps) {
   const nextIndex = milestones.findIndex(
-    (milestone) => milestone.day > currentDay,
+    (milestone) => milestone.date > currentDate,
   )
 
   let progress = 0
@@ -52,12 +31,16 @@ function DecemberJourney({
   if (nextIndex === -1) {
     progress = 100
   } else if (nextIndex > 0) {
-    const previousDay = milestones[nextIndex - 1].day
-    const nextDay = milestones[nextIndex].day
-    const fraction = (currentDay - previousDay) / (nextDay - previousDay)
+    const previousDate = getTimestamp(milestones[nextIndex - 1].date)
+    const nextDate = getTimestamp(milestones[nextIndex].date)
+    const today = getTimestamp(currentDate)
 
-    progress = ((nextIndex - 1 + fraction) / (milestones.length - 1)) * 100
+    const fraction = (today - previousDate) / (nextDate - previousDate)
+
+    progress =
+      ((nextIndex - 1 + fraction) / (milestones.length - 1)) * 100
   }
+
   return (
     <div className="december-journey">
       <div className="december-journey__collection">
@@ -78,20 +61,31 @@ function DecemberJourney({
 
         <ol className="december-journey__milestones">
           {milestones.map((milestone) => {
-            const isReached = currentDay >= milestone.day
+            const isReached = currentDate >= milestone.date
+            const iconState = isReached ? 'active' : 'locked'
+
+            const shortDate =
+              `${Number(milestone.date.slice(8, 10))}/` +
+              Number(milestone.date.slice(5, 7))
 
             return (
               <li
-                key={milestone.label}
-                className={`december-journey__milestone${isReached ? ' is-reached' : ''}`}
+                key={milestone.date}
+                className={
+                  `december-journey__milestone` +
+                  (isReached ? ' is-reached' : '')
+                }
               >
-                <div className="december-journey__icon" aria-hidden="true">
-                  {milestone.icon ? (
+                <div
+                  className="december-journey__icon"
+                  aria-hidden="true"
+                >
+                  {milestone.adventNumber ? (
                     <img
-                      src={milestone.icon.replace(
-                        /-(active|locked)\.png$/,
-                        `-${isReached ? 'active' : 'locked'}.png`,
-                      )}
+                      src={
+                        '/images/icons/calendar/' +
+                        `icon-candles-advent-${milestone.adventNumber}-${iconState}.png`
+                      }
                       alt=""
                     />
                   ) : (
@@ -99,11 +93,14 @@ function DecemberJourney({
                   )}
                 </div>
 
-                <span className="december-journey__marker" aria-hidden="true">
+                <span
+                  className="december-journey__marker"
+                  aria-hidden="true"
+                >
                   {isReached && '✓'}
                 </span>
 
-                <p>{milestone.label} · {milestone.date}</p>
+                <p>{milestone.label} · {shortDate}</p>
               </li>
             )
           })}

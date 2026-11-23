@@ -10,12 +10,7 @@ import DecemberJourney from '../components/DecemberJourney'
 import CalendarRoute from '../components/CalendarRoute'
 import ActivityModal from '../components/ActivityModal'
 import ActivityInfo from '../components/ActivityInfo'
-import {
-  formatCalendarDate,
-  getCalendarDate,
-  getCalendarDay,
-  totalDoors,
-} from '../utils/calendar'
+import { formatCalendarDate, getCalendarDate, totalDoors } from '../utils/calendar'
 import { loadCalendarData } from '../api/loadCalendarData'
 import type { CalendarData } from '../types/calendar'
 import { animateGoose } from '../utils/animateGoose'
@@ -55,11 +50,6 @@ function CalendarPage() {
   const activityContent = selectedDoor?.activity
     ? calendarData?.activities[selectedDoor.activity] ?? null
     : null
-
-  // Til den eksisterende milepælslinjes beregning.
-  const journeyDay = getCalendarDay(
-    new Date(`${currentDate}T12:00:00Z`),
-  )
 
   // Foreløbig værdi. Lodder kobles på aktiviteterne senere.
   const tickets = completedDates.length
@@ -115,7 +105,7 @@ function CalendarPage() {
       journey={
         <DecemberJourney
           completedDoors={completedDates.length}
-          currentDay={journeyDay}
+          currentDate={currentDate}
         />
       }
     >

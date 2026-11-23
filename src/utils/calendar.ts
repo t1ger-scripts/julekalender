@@ -32,13 +32,3 @@ export function formatCalendarDate(date: string): string {
     month: 'long',
   }).format(new Date(`${date}T12:00:00Z`))
 }
-
-// Bevarer tidsberegningen til den eksisterende milepælslinje.
-// 29. november er -1, og 1. december er 1.
-export function getCalendarDay(now = new Date()): number {
-  const date = getCalendarDate(now)
-  const today = Date.parse(`${date}T00:00:00Z`)
-  const firstDecember = Date.UTC(2026, 11, 1)
-
-  return Math.round((today - firstDecember) / 86_400_000) + 1
-}
