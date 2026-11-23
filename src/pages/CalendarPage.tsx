@@ -232,6 +232,7 @@ function CalendarPage() {
         <Header
           tickets={tickets}
           completedDoors={completedDates.length}
+          onOpenGifts={handleOpenGifts}
         />
       }
       journey={

@@ -4,10 +4,15 @@ import { totalDoors } from '../utils/calendar'
 interface HeaderProps {
   tickets: number
   completedDoors: number
+  onOpenGifts: () => void
 }
 
-// Viser logo og brugerens fremgang.
-function Header({ tickets, completedDoors }: HeaderProps) {
+// Viser logo, gaveoversigt og brugerens fremgang.
+function Header({
+  tickets,
+  completedDoors,
+  onOpenGifts,
+}: HeaderProps) {
   return (
     <div className="site-header">
       <div className="site-header__brand">
@@ -19,6 +24,15 @@ function Header({ tickets, completedDoors }: HeaderProps) {
       </div>
 
       <div className="site-header__counters">
+        <button
+          type="button"
+          className="site-header__gifts"
+          onClick={onOpenGifts}
+          aria-haspopup="dialog"
+        >
+          Mine gaver
+        </button>
+
         <Counter
           value={tickets}
           label={tickets === 1 ? 'lod' : 'lodder'}
