@@ -702,7 +702,7 @@
     width: 56px;
     height: 56px;
     object-fit: contain;
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, -100%) scaleX(-1);
     pointer-events: none;
   }
 }
