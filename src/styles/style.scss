@@ -4,6 +4,10 @@
 @use './calendar';
 @use './activities';
 
+html {
+  scrollbar-gutter: stable;
+}
+
 // Global grundstyling.
 *,
 *::before,
