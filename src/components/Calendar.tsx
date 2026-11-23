@@ -3,10 +3,10 @@ import Door from './Door'
 import type { CalendarDoor } from '../types/calendar'
 
 interface CalendarProps {
-  currentDay: number
-  completedDays: number[]
+  currentDate: string
+  completedDates: string[]
   calendarDoors: CalendarDoor[]
-  onOpenDoor: (day: number) => void
+  onOpenDoor: (date: string) => void
 }
 
 const compactQuery = '(max-width: 1200px)'
@@ -14,8 +14,8 @@ const compactQuery = '(max-width: 1200px)'
 // Viser kalenderens låger med den valgte dag i midten.
 function Calendar({
   calendarDoors,
-  currentDay,
-  completedDays,
+  currentDate,
+  completedDates,
   onOpenDoor,
 }: CalendarProps) {
   const [visibleCount, setVisibleCount] = useState(() =>
@@ -24,7 +24,7 @@ function Calendar({
 
   const [centerIndex, setCenterIndex] = useState(() => {
     const index = calendarDoors.findIndex(
-      (door) => door.day >= currentDay,
+      (door) => door.date >= currentDate,
     )
 
     return index === -1
@@ -47,10 +47,10 @@ function Calendar({
     }
   }, [])
 
-  function getDoorStatus(day: number) {
-    if (day > currentDay) return 'locked'
-    if (completedDays.includes(day)) return 'completed'
-    if (day === currentDay) return 'available'
+  function getDoorStatus(date: string) {
+    if (date > currentDate) return 'locked'
+    if (completedDates.includes(date)) return 'completed'
+    if (date === currentDate) return 'available'
     return 'missed'
   }
 
@@ -85,10 +85,10 @@ function Calendar({
         {visibleSlots.map((door, slotIndex) =>
           door ? (
             <Door
-              key={door.day}
-              day={door.day}
-              status={getDoorStatus(door.day)}
-              onOpen={() => onOpenDoor(door.day)}
+              key={door.date}
+              date={door.date}
+              status={getDoorStatus(door.date)}
+              onOpen={() => onOpenDoor(door.date)}
               adventNumber={door.adventNumber}
             />
           ) : (

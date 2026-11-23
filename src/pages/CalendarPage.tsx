@@ -9,61 +9,67 @@ import Calendar from '../components/Calendar'
 import DecemberJourney from '../components/DecemberJourney'
 import CalendarRoute from '../components/CalendarRoute'
 import ActivityModal from '../components/ActivityModal'
-import { getCalendarDay } from '../utils/calendar'
 import ActivityInfo from '../components/ActivityInfo'
+import {
+  formatCalendarDate,
+  getCalendarDate,
+  getCalendarDay,
+  totalDoors,
+} from '../utils/calendar'
 import { loadCalendarData } from '../api/loadCalendarData'
 import type { CalendarData } from '../types/calendar'
 
-// Lokal testdato: 1-24 vælger en decemberdag.
-// Sæt til null for at bruge den rigtige dato.
-const testDay: number | null = 8
+// Lokal testdato. Sæt til null for at bruge den rigtige dato.
+const testDate: string | null = '2026-11-29'
 
-function getCurrentDay(): number {
-  if (import.meta.env.DEV && testDay !== null) {
-    return testDay
+function getCurrentDate(): string {
+  if (import.meta.env.DEV && testDate !== null) {
+    return testDate
   }
 
-  return getCalendarDay()
+  return getCalendarDate()
 }
 
 // Samler kalenderens indhold, brugerens fremgang og handlinger.
 function CalendarPage() {
-  const [currentDay, setCurrentDay] = useState(getCurrentDay)
-
-  const [completedDays] = useState<number[]>(loadCompletedDays)
-
-  const [selectedDay, setSelectedDay] = useState<number | null>(null)
+  const [currentDate, setCurrentDate] = useState(getCurrentDate)
+  const [completedDates] = useState<string[]>(loadCompletedDays)
+  const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null)
   const [loadError, setLoadError] = useState(false)
 
   const selectedDoor = calendarData?.doors.find(
-    (door) => door.day === selectedDay,
+    (door) => door.date === selectedDate,
   )
 
   const activityContent = selectedDoor?.activity
     ? calendarData?.activities[selectedDoor.activity] ?? null
     : null
 
-  // Foreløbig beregning, indtil gruppen har aftalt lodreglerne.
-  const tickets = completedDays.length
+  // Til den eksisterende milepælslinjes beregning.
+  const journeyDay = getCalendarDay(
+    new Date(`${currentDate}T12:00:00Z`),
+  )
+
+  // Foreløbig værdi. Lodder kobles på aktiviteterne senere.
+  const tickets = completedDates.length
 
   useEffect(() => {
-    saveCompletedDays(completedDays)
-  }, [completedDays])
+    saveCompletedDays(completedDates)
+  }, [completedDates])
 
   // Opdaterer datoen, hvis siden står åben hen over midnat.
   useEffect(() => {
-    function updateDay() {
-      setCurrentDay(getCurrentDay())
+    function updateDate() {
+      setCurrentDate(getCurrentDate())
     }
 
-    const intervalId = window.setInterval(updateDay, 60_000)
-
-    window.addEventListener('focus', updateDay)
+    const intervalId = window.setInterval(updateDate, 60_000)
+    window.addEventListener('focus', updateDate)
 
     return () => {
       window.clearInterval(intervalId)
-      window.removeEventListener('focus', updateDay)
+      window.removeEventListener('focus', updateDate)
     }
   }, [])
 
@@ -93,13 +99,13 @@ function CalendarPage() {
       header={
         <Header
           tickets={tickets}
-          completedDoors={completedDays.length}
+          completedDoors={completedDates.length}
         />
       }
       journey={
         <DecemberJourney
-          completedDoors={completedDays.length}
-          currentDay={currentDay}
+          completedDoors={completedDates.length}
+          currentDay={journeyDay}
         />
       }
     >
@@ -111,19 +117,25 @@ function CalendarPage() {
         </h1>
 
         <p className="calendar-intro__description">
-          24 låger. Ét juleeventyr.
+          {totalDoors} låger. Ét juleeventyr.
         </p>
       </div>
 
       {calendarData ? (
         <Calendar
+          key={currentDate}
           calendarDoors={calendarData.doors}
-          currentDay={currentDay}
-          completedDays={completedDays}
-          onOpenDoor={(day) => {
-            if (day !== currentDay && !completedDays.includes(day)) return
+          currentDate={currentDate}
+          completedDates={completedDates}
+          onOpenDoor={(date) => {
+            if (
+              date !== currentDate &&
+              !completedDates.includes(date)
+            ) {
+              return
+            }
 
-            setSelectedDay(day)
+            setSelectedDate(date)
           }}
         />
       ) : loadError ? (
@@ -138,15 +150,21 @@ function CalendarPage() {
 
       {selectedDoor && (
         <ActivityModal
-          title={activityContent?.title ?? `Gave ${selectedDoor.day}`}
-          onClose={() => setSelectedDay(null)}
+          title={
+            activityContent?.title ??
+            formatCalendarDate(selectedDoor.date)
+          }
+          onClose={() => setSelectedDate(null)}
           info={
             <ActivityInfo
-              title={activityContent?.title ?? `Gave ${selectedDoor.day}`}
-              progress={completedDays.length}
+              title={
+                activityContent?.title ??
+                formatCalendarDate(selectedDoor.date)
+              }
+              progress={completedDates.length}
               description={
                 activityContent?.description ?? [
-                  `${selectedDoor.day}. december`,
+                  formatCalendarDate(selectedDoor.date),
                 ]
               }
               rules={activityContent?.rules ?? []}
@@ -156,7 +174,6 @@ function CalendarPage() {
           <p>Aktiviteten vises her.</p>
         </ActivityModal>
       )}
-
     </CalendarLayout>
   )
 }

@@ -1,4 +1,5 @@
-import type { CalendarData } from '../types/calendar'
+import type { CalendarData, CalendarDoor } from '../types/calendar'
+import { calendarDates } from '../utils/calendar'
 
 // Henter kalenderindhold fra projektets lokale JSON-filer.
 export async function loadCalendarData(): Promise<CalendarData> {
@@ -18,9 +19,25 @@ export async function loadCalendarData(): Promise<CalendarData> {
     activitiesResponse.json(),
   ])
 
-  if (!Array.isArray(doors) || doors.length !== 24) {
-    throw new Error('Kalenderen skal indeholde 24 låger.')
+  if (
+    !Array.isArray(doors) ||
+    doors.length !== calendarDates.length ||
+    !calendarDates.every(
+      (date) =>
+        doors.filter(
+          (door) =>
+            door !== null &&
+            typeof door === 'object' &&
+            door.date === date,
+        ).length === 1,
+    )
+  ) {
+    throw new Error('Kalenderen skal indeholde de 25 forventede datoer.')
   }
 
-  return { doors, activities }
+  const sortedDoors = (doors as CalendarDoor[]).sort((a, b) =>
+    a.date.localeCompare(b.date),
+  )
+
+  return { doors: sortedDoors, activities }
 }

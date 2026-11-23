@@ -1,3 +1,5 @@
+import { totalDoors } from '../utils/calendar'
+
 interface HeaderProps {
   tickets: number
   completedDoors: number
@@ -21,7 +23,7 @@ function Header({ tickets, completedDoors }: HeaderProps) {
         </span>
 
         <span className="site-header__counter">
-          {completedDoors} / 24 gennemført
+          {completedDoors} / {totalDoors} gennemført
         </span>
       </div>
     </div>

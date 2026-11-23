@@ -1,3 +1,5 @@
+import { totalDoors } from '../utils/calendar'
+
 interface DecemberJourneyProps {
   completedDoors: number
   currentDay: number
@@ -66,7 +68,7 @@ function DecemberJourney({
           alt=""
         />
 
-        <p>{completedDoors} / 24 gaver gennemført</p>
+        <p>{completedDoors} / {totalDoors} gaver gennemført</p>
       </div>
 
       <div className="december-journey__timeline">

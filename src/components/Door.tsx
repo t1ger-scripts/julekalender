@@ -1,14 +1,20 @@
+import { formatCalendarDate } from '../utils/calendar'
+
 interface DoorProps {
-  day: number
+  date: string
   status: 'available' | 'completed' | 'locked' | 'missed'
   onOpen: () => void
   adventNumber?: number
 }
 
 // Viser en låge med dato, status og knap.
-function Door({ day, status, onOpen, adventNumber }: DoorProps) {
+function Door({ date, status, onOpen, adventNumber }: DoorProps) {
   const isDisabled = status === 'locked' || status === 'missed'
-  const isChristmas = day === 24
+  const day = Number(date.slice(8, 10))
+  const isNovember = date.slice(5, 7) === '11'
+  const month = isNovember ? 'November' : 'December'
+  const shortMonth = isNovember ? 'nov.' : 'dec.'
+  const isChristmas = date === '2026-12-24'
 
   const statusText = {
     available: 'Dagens låge',
@@ -20,7 +26,7 @@ function Door({ day, status, onOpen, adventNumber }: DoorProps) {
   const buttonText = {
     available: 'Åbn lågen',
     completed: 'Genbesøg',
-    locked: `Åbner ${day}. dec.`,
+    locked: `Åbner ${day}. ${shortMonth}`,
     missed: 'Dagen er udløbet',
   }
 
@@ -78,7 +84,7 @@ function Door({ day, status, onOpen, adventNumber }: DoorProps) {
         </div>
 
         <span className="door__day">{day}</span>
-        <span className="door__month">December</span>
+        <span className="door__month">{month}</span>
 
         <p className="door__status">
           {isChristmas
@@ -93,7 +99,7 @@ function Door({ day, status, onOpen, adventNumber }: DoorProps) {
           className="door__button"
           disabled={isDisabled}
           onClick={onOpen}
-          aria-label={`${buttonText[status]} - ${day}. december`}
+          aria-label={`${buttonText[status]} - ${formatCalendarDate(date)}`}
         >
           {buttonText[status]}
         </button>

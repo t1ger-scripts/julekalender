@@ -1,4 +1,5 @@
 import type { ActivityRule } from '../types/calendar'
+import { totalDoors } from '../utils/calendar'
 
 interface ActivityInfoProps {
   title: string
@@ -19,7 +20,7 @@ function ActivityInfo({
       <h2>{title}</h2>
 
       <div className="activity-progress">
-        {progress} / 24 gaver gennemført
+        {progress} / {totalDoors} gaver gennemført
       </div>
 
       <div className="activity-description">

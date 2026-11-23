@@ -41,7 +41,7 @@ export interface CalendarPrize {
 
 // Indholdet bag en bestemt låge.
 export interface CalendarDoor {
-  day: number
+  date: string
   activity: ActivityType | null
   adventNumber?: number
   prize: CalendarPrize | null
