@@ -3,7 +3,6 @@ import type {
   ActivityResult,
   WheelSegment,
 } from '../../types/calendar'
-import WheelResult from './WheelResult'
 
 interface SpinWheelProps {
   segments: WheelSegment[]
@@ -24,7 +23,7 @@ function getIcon(segment: WheelSegment): string {
   return `icon-broken-heart-${iconColor}.png`
 }
 
-// Drejer hjulet og melder belønningen tilbage efter animationen.
+// Drejer hjulet og melder resultatet tilbage efter animationen.
 function SpinWheel({ segments, onComplete }: SpinWheelProps) {
   const hasStarted = useRef(false)
   const hasCompleted = useRef(false)
@@ -33,7 +32,6 @@ function SpinWheel({ segments, onComplete }: SpinWheelProps) {
   const [isSpinning, setIsSpinning] = useState(false)
   const [result, setResult] = useState<WheelSegment | null>(null)
 
-  // De eksisterende segmentbilleder er lavet til otte felter.
   if (segments.length !== 8) {
     return (
       <p role="alert">
@@ -71,43 +69,45 @@ function SpinWheel({ segments, onComplete }: SpinWheelProps) {
   return (
     <div className="wheel-game">
       <div className="spin-wheel">
-        <div
-          className="wheel-inner"
-          style={{ transform: `rotate(${rotation}deg)` }}
-          onTransitionEnd={(event) => {
-            if (
-              event.target === event.currentTarget &&
-              event.propertyName === 'transform'
-            ) {
-              handleComplete()
-            }
-          }}
-        >
-          {segments.map((segment, index) => (
-            <div
-              key={index}
-              className="wheel-segment"
-              style={{
-                transform: `rotate(${index * 45 - 90}deg)`,
-              }}
-            >
-              <img
-                src={`/images/icons/games/wheel/wheel-segment-${segment.color}.png`}
-                alt=""
-                className="wheel-segment-image"
-              />
+        <div className="wheel-disc">
+          <div
+            className="wheel-inner"
+            style={{ transform: `rotate(${rotation}deg)` }}
+            onTransitionEnd={(event) => {
+              if (
+                event.target === event.currentTarget &&
+                event.propertyName === 'transform'
+              ) {
+                handleComplete()
+              }
+            }}
+          >
+            {segments.map((segment, index) => (
+              <div
+                key={index}
+                className="wheel-segment"
+                style={{
+                  transform: `rotate(${index * 45 - 90}deg)`,
+                }}
+              >
+                <img
+                  src={`/images/icons/games/wheel/wheel-segment-${segment.color}.png`}
+                  alt=""
+                  className="wheel-segment-image"
+                />
 
-              <img
-                src={`/images/icons/games/${getIcon(segment)}`}
-                alt=""
-                className="wheel-icon"
-              />
+                <img
+                  src={`/images/icons/games/${getIcon(segment)}`}
+                  alt=""
+                  className="wheel-icon"
+                />
 
-              <span className={`wheel-label ${segment.color}`}>
-                {segment.label}
-              </span>
-            </div>
-          ))}
+                <span className={`wheel-label ${segment.color}`}>
+                  {segment.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <img
@@ -115,10 +115,6 @@ function SpinWheel({ segments, onComplete }: SpinWheelProps) {
           alt=""
           className="wheel-pointer"
         />
-
-        {result && !isSpinning && (
-          <WheelResult result={result} />
-        )}
       </div>
 
       <button
@@ -130,7 +126,7 @@ function SpinWheel({ segments, onComplete }: SpinWheelProps) {
         {isSpinning
           ? 'Hjulet drejer...'
           : result
-            ? 'Du har spillet'
+            ? 'Hjulet er stoppet'
             : 'Drej hjulet'}
       </button>
     </div>

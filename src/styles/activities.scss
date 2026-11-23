@@ -152,6 +152,13 @@
   margin: $px-48 auto;
 }
 
+.wheel-disc {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
 .wheel-inner {
   position: relative;
   width: 100%;

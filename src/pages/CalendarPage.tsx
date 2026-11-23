@@ -46,6 +46,7 @@ function CalendarPage() {
   const [activityResults, setActivityResults] =
     useState<SavedActivityResult[]>(loadActivityResults)
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
+  const [revealingDate, setRevealingDate] = useState<string | null>(null)
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null)
   const [loadError, setLoadError] = useState(false)
   const [unsavedResult, setUnsavedResult] =
@@ -106,6 +107,19 @@ function CalendarPage() {
     }
   }, [])
 
+  // Bevarer det stoppede hjul kortvarigt, mens resultatet er gemt. 
+  useEffect(() => {
+    if (!revealingDate) return
+
+    const timeoutId = window.setTimeout(() => {
+      setRevealingDate(null)
+    }, 1200)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
+  }, [revealingDate])
+
   async function handleOpenDoor(date: string): Promise<void> {
     const canOpen =
       date === currentDate || completedDates.includes(date)
@@ -122,6 +136,7 @@ function CalendarPage() {
       isOpeningDoor.current = false
     }
 
+    setRevealingDate(null)
     setSelectedDate(date)
   }
 
@@ -149,6 +164,10 @@ function CalendarPage() {
 
   function handleComplete(result: ActivityResult) {
     if (!selectedDoor || selectedResult) return
+
+    if (selectedDoor.activity === 'wheel') {
+      setRevealingDate(selectedDoor.date)
+    }
 
     const completedResult: SavedActivityResult = {
       date: selectedDoor.date,
@@ -223,7 +242,7 @@ function CalendarPage() {
             />
           }
         >
-          {selectedResult ? (
+          {selectedResult && revealingDate !== selectedDoor.date ? (
             <ActivityResultView result={selectedResult} />
           ) : selectedDoor.activity === 'wheel' ? (
             <SpinWheel
