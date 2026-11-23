@@ -1,3 +1,4 @@
+import Counter from './Counter'
 import { totalDoors } from '../utils/calendar'
 
 interface HeaderProps {
@@ -5,7 +6,7 @@ interface HeaderProps {
   completedDoors: number
 }
 
-// Viser brand og brugerens fremgang.
+// Viser logo og brugerens fremgang.
 function Header({ tickets, completedDoors }: HeaderProps) {
   return (
     <div className="site-header">
@@ -18,13 +19,18 @@ function Header({ tickets, completedDoors }: HeaderProps) {
       </div>
 
       <div className="site-header__counters">
-        <span className="site-header__counter">
-          {tickets} lodder
-        </span>
+        <Counter
+          value={tickets}
+          label={tickets === 1 ? 'lod' : 'lodder'}
+          className="site-header__counter"
+        />
 
-        <span className="site-header__counter">
-          {completedDoors} / {totalDoors} gennemført
-        </span>
+        <Counter
+          value={completedDoors}
+          total={totalDoors}
+          label="gennemført"
+          className="site-header__counter"
+        />
       </div>
     </div>
   )
