@@ -21,7 +21,9 @@ function ActivityResultView({
     result.tickets > 0 || result.discountPercent > 0
 
   const discountCode =
-    result.discountPercent > 0 ? door.discountCode : null
+    result.discountPercent > 0 && door.prize?.id
+      ? `${door.prize.id.toUpperCase()}-JUL${result.discountPercent}`
+      : null
 
   async function handleCopyCode() {
     if (!discountCode) return

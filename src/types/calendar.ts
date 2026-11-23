@@ -105,8 +105,9 @@ export interface ActivitiesData {
   quiz: ActivityContent
 }
 
-// Produktet tilknyttet en kalenderlåge.
+// Produktdata til en kalenderlåge.
 export interface CalendarPrize {
+  id: string
   name: string
   image: string
   productUrl: string
@@ -119,7 +120,6 @@ export interface CalendarDoor {
   quizId?: string
   adventNumber?: number
   prize: CalendarPrize | null
-  discountCode: string | null
 }
 
 // Det samlede indhold fra de tre JSON-filer.
