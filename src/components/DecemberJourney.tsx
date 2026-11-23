@@ -3,6 +3,7 @@ import { totalDoors } from '../utils/calendar'
 interface DecemberJourneyProps {
   completedDoors: number
   currentDate: string
+  onOpenGifts: () => void
 }
 
 const milestones = [
@@ -21,6 +22,7 @@ function getTimestamp(date: string): number {
 function DecemberJourney({
   completedDoors,
   currentDate,
+  onOpenGifts,
 }: DecemberJourneyProps) {
   const nextIndex = milestones.findIndex(
     (milestone) => milestone.date > currentDate,
@@ -43,16 +45,25 @@ function DecemberJourney({
 
   return (
     <div className="december-journey">
-      <div className="december-journey__collection">
-        <h2>Mine gaver</h2>
+      <button
+        type="button"
+        className="december-journey__collection"
+        onClick={onOpenGifts}
+        aria-haspopup="dialog"
+      >
+        <span className="december-journey__collection-title">
+          Mine gaver
+        </span>
 
         <img
           src="/images/icons/calendar/icon-door-gift-red-small.png"
           alt=""
         />
 
-        <p>{completedDoors} / {totalDoors} gaver gennemført</p>
-      </div>
+        <span className="december-journey__collection-count">
+          {completedDoors} / {totalDoors} gaver gennemført
+        </span>
+      </button>
 
       <div className="december-journey__timeline">
         <div className="december-journey__track" aria-hidden="true">

@@ -759,3 +759,33 @@
     padding-inline: 4px;
   }
 }
+
+// KLIKBAR GAVEOVERSIGT I DECEMBERREJSEN
+
+.december-journey__collection {
+  border: 1px solid transparent;
+  color: $black-light;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $hover-golden-dark;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $red;
+    outline-offset: 4px;
+  }
+}
+
+.december-journey__collection-title {
+  display: block;
+  font-size: $px-14;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.december-journey__collection-count {
+  display: block;
+  font-size: $px-12;
+}

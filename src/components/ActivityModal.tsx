@@ -3,17 +3,19 @@ import type { ReactNode } from 'react'
 
 interface ActivityModalProps {
   title: string
-  info: ReactNode
+  info?: ReactNode
   children: ReactNode
   onClose: () => void
+  onBack?: () => void
 }
 
-// Viser dagens aktivitet foran kalenderen.
+// Genbruger samme dialog til aktiviteter, gaveoversigt og belønninger.
 function ActivityModal({
   title,
   info,
   children,
   onClose,
+  onBack,
 }: ActivityModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
 
@@ -40,18 +42,34 @@ function ActivityModal({
         onClose()
       }}
     >
-      <button
-        className="activity-back"
-        type="button"
-        onClick={onClose}
-      >
-        Tilbage til kalender
-      </button>
+      <div className="activity-navigation">
+        {onBack && (
+          <button
+            type="button"
+            className="activity-back activity-back--overview"
+            onClick={onBack}
+          >
+            Tilbage til Mine gaver
+          </button>
+        )}
 
-      <div className="activity-layout">
-        <div className="activity-info">{info}</div>
-        <div className="activity-game">{children}</div>
+        <button
+          type="button"
+          className="activity-back"
+          onClick={onClose}
+        >
+          Tilbage til kalender
+        </button>
       </div>
+
+      {info ? (
+        <div className="activity-layout">
+          <div className="activity-info">{info}</div>
+          <div className="activity-game">{children}</div>
+        </div>
+      ) : (
+        children
+      )}
     </dialog>
   )
 }

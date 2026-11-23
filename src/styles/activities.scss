@@ -510,3 +510,214 @@
     transition: none;
   }
 }
+
+// PRODUKT OG RABATKODE I BELØNNINGSVISNINGEN
+
+.activity-summary {
+  &__discount,
+  &__product {
+    margin-top: $px-20;
+    padding-top: $px-20;
+    border-top: 1px solid $golden;
+  }
+
+  &__discount {
+    h3 {
+      margin-bottom: $px-12;
+      font-size: $px-20;
+    }
+
+    code {
+      display: block;
+      padding: $px-12;
+      border: 1px dashed $golden-dark;
+      border-radius: $border-mini;
+      background-color: $white;
+      font-family: inherit;
+      font-size: $px-20;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    p {
+      margin-top: $px-12;
+      font-size: $px-14;
+    }
+  }
+
+  &__product {
+    img {
+      width: 100%;
+      max-height: 240px;
+      margin-bottom: $px-16;
+      border-radius: $border-medium;
+      object-fit: cover;
+
+      &[hidden] {
+        display: none;
+      }
+    }
+
+    h3 {
+      font-size: $px-20;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $px-12;
+    margin-top: $px-16;
+
+    button,
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: $px-12 $px-20;
+      border: 1px solid $red;
+      border-radius: $border-big;
+      background-color: $red;
+      color: $white;
+      font-size: $px-14;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $red-dark;
+        border-color: $red-dark;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $red;
+        outline-offset: 3px;
+      }
+    }
+  }
+}
+
+// NAVIGATION I DEN FÆLLES MODAL
+
+.activity-navigation {
+  display: flex;
+  align-items: center;
+  gap: $px-16;
+  margin-bottom: $px-20;
+
+  .activity-back {
+    margin-bottom: 0;
+  }
+
+  .activity-back--overview {
+    margin-left: 0;
+  }
+}
+
+// MINE GAVER
+
+.gift-overview {
+  &__intro {
+    margin-bottom: $px-30;
+    text-align: center;
+
+    h2 {
+      margin-bottom: $px-12;
+      color: $red;
+      font-size: $text-h1-size;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    p {
+      color: $grey-dark;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: $px-16;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__day {
+    width: 100%;
+    min-height: 140px;
+    padding: $px-12;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid $grey-light;
+    border-radius: $border-mini;
+    background-color: $white-beige;
+    color: $grey-medium;
+    cursor: default;
+
+    &:focus-visible {
+      outline: 2px solid $red;
+      outline-offset: 3px;
+    }
+
+    &--completed {
+      color: $grey-dark;
+      cursor: pointer;
+
+      &:hover {
+        border-color: $golden-dark;
+        background-color: $white;
+      }
+    }
+
+    &--locked {
+      border-color: $golden;
+      background-color: $white;
+      color: $red;
+    }
+
+    &--available {
+      border-color: $golden-dark;
+      background-color: $white;
+      color: $golden-dark;
+    }
+  }
+
+  &__icon {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $px-20;
+
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+  }
+
+  &__number {
+    font-size: $px-32;
+    line-height: 1.2;
+  }
+
+  &__month {
+    font-size: $px-12;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__status {
+    margin-top: auto;
+    padding-top: $px-5;
+    font-size: $px-12;
+  }
+
+  &__reward {
+    max-width: 720px;
+    margin-inline: auto;
+  }
+}
