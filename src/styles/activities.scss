@@ -286,3 +286,89 @@
     cursor: pointer;
   }
 }
+
+// JULEQUIZ
+
+.quiz-game {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $px-30;
+  background-image: url('/images/img/quiz/quiz-decoration.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.quiz-image {
+  width: 45%;
+  margin-bottom: $px-30;
+  object-fit: contain;
+}
+
+.quiz-question {
+  margin-bottom: $px-36;
+  color: $text-dark-tone;
+  font-size: $text-p-size;
+  font-weight: 400;
+  text-align: center;
+}
+
+.quiz-answers {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $px-30;
+}
+
+.quiz-answer,
+.quiz-submit {
+  width: 50%;
+  padding: $px-12;
+  border: 2px solid transparent;
+  border-radius: $border-big;
+  font-size: $text-button-size-standard;
+  font-weight: 400;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $red;
+    outline-offset: 4px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.quiz-answer {
+  background-color: $red;
+  color: $text-light-tone;
+
+  &:hover:not(:disabled) {
+    background-color: $hover-red;
+  }
+
+  &.selected {
+    background-color: $red-dark;
+    border-color: $golden-dark;
+  }
+}
+
+.quiz-submit {
+  margin-top: $px-30;
+  background-color: $white-beige;
+  border-color: $red;
+  color: $red;
+
+  &:hover:not(:disabled) {
+    background-color: $hover-white-beige;
+  }
+
+  &:disabled {
+    border-color: $grey-light;
+    color: $grey-medium;
+  }
+}
