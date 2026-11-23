@@ -737,3 +737,33 @@
     margin-inline: auto;
   }
 }
+
+// LINK TIL RINGSTED DUNS NYHEDSBREV
+
+.activity-newsletter {
+  margin-bottom: $px-20;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: $px-12 $px-20;
+    border: 1px solid $red;
+    border-radius: $border-big;
+    background-color: $red;
+    color: $white;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+      background-color: $red-dark;
+      border-color: $red-dark;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $red;
+      outline-offset: 3px;
+    }
+  }
+}

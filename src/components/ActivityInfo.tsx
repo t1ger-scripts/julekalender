@@ -29,6 +29,17 @@ function ActivityInfo({
         ))}
       </div>
 
+      <div className="activity-newsletter">
+        <a
+          href="https://ringsted-dun.dk/nyhedsbrev-tilmeld/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tilmeld dig nyhedsbrevet hos Ringsted Dun (åbner i en ny fane)"
+        >
+          Tilmeld dig nyhedsbrevet
+        </a>
+      </div>
+
       {rules.length > 0 && (
         <div className="activity-rules">
           <h3>Sådan spiller du</h3>
