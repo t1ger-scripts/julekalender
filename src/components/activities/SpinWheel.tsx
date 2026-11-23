@@ -1,49 +1,71 @@
-import { useState } from "react"
-import type { WheelSegment } from "../../types/calendar"
-import WheelResult from "./WheelResult"
+import { useRef, useState } from 'react'
+import type {
+  ActivityResult,
+  WheelSegment,
+} from '../../types/calendar'
+import WheelResult from './WheelResult'
 
 interface SpinWheelProps {
   segments: WheelSegment[]
-  onComplete: (result: WheelSegment) => void
+  onComplete: (result: ActivityResult) => void
 }
 
-function getIcon(segment: WheelSegment) {
-  const iconColor = segment.color === "red" ? "white" : "red"
+function getIcon(segment: WheelSegment): string {
+  const iconColor = segment.color === 'red' ? 'white' : 'red'
 
-  if (segment.type === "discount") {
-    return "icon-door-gift-red-small.png"
+  if (segment.type === 'discount') {
+    return 'icon-door-gift-red-small.png'
   }
 
-  if (segment.type === "ticket") {
+  if (segment.type === 'ticket') {
     return `icon-ticket-${iconColor}.png`
   }
 
   return `icon-broken-heart-${iconColor}.png`
 }
 
+// Drejer hjulet og melder belønningen tilbage efter animationen.
 function SpinWheel({ segments, onComplete }: SpinWheelProps) {
+  const hasStarted = useRef(false)
+  const hasCompleted = useRef(false)
+
   const [rotation, setRotation] = useState(0)
   const [isSpinning, setIsSpinning] = useState(false)
   const [result, setResult] = useState<WheelSegment | null>(null)
 
-  // Rotationsberegning og håndtering af animation med AI-assistance
-  function handleSpin() {
-    if (isSpinning || result !== null) return
+  // De eksisterende segmentbilleder er lavet til otte felter.
+  if (segments.length !== 8) {
+    return (
+      <p role="alert">
+        Lykkehjulet skal have otte felter.
+      </p>
+    )
+  }
 
-    setIsSpinning(true)
+  function handleSpin() {
+    if (hasStarted.current) return
+
+    hasStarted.current = true
 
     const randomIndex = Math.floor(Math.random() * segments.length)
     const segmentAngle = 360 / segments.length
     const targetAngle = (360 - randomIndex * segmentAngle) % 360
-    const currentAngle = rotation % 360
-    const extraRotation = (targetAngle - currentAngle + 360) % 360
 
-    setRotation(rotation + 1800 + extraRotation)
+    setResult(segments[randomIndex])
+    setIsSpinning(true)
+    setRotation(1800 + targetAngle)
+  }
 
-    const winningSegment = segments[randomIndex]
+  function handleComplete() {
+    if (!isSpinning || !result || hasCompleted.current) return
 
-    setResult(winningSegment)
-    onComplete(winningSegment)
+    hasCompleted.current = true
+    setIsSpinning(false)
+
+    onComplete({
+      tickets: result.type === 'ticket' ? result.value : 0,
+      discountPercent: result.type === 'discount' ? result.value : 0,
+    })
   }
 
   return (
@@ -55,9 +77,9 @@ function SpinWheel({ segments, onComplete }: SpinWheelProps) {
           onTransitionEnd={(event) => {
             if (
               event.target === event.currentTarget &&
-              event.propertyName === "transform"
+              event.propertyName === 'transform'
             ) {
-              setIsSpinning(false)
+              handleComplete()
             }
           }}
         >
@@ -66,7 +88,7 @@ function SpinWheel({ segments, onComplete }: SpinWheelProps) {
               key={index}
               className="wheel-segment"
               style={{
-                transform: `rotate(${index * 45 - 90}deg)`
+                transform: `rotate(${index * 45 - 90}deg)`,
               }}
             >
               <img
@@ -94,22 +116,22 @@ function SpinWheel({ segments, onComplete }: SpinWheelProps) {
           className="wheel-pointer"
         />
 
-        {result !== null && !isSpinning && (
+        {result && !isSpinning && (
           <WheelResult result={result} />
         )}
       </div>
 
       <button
-        className="wheel-button"
         type="button"
+        className="wheel-button"
         onClick={handleSpin}
         disabled={isSpinning || result !== null}
       >
         {isSpinning
-          ? "Hjulet drejer..."
-          : result !== null
-            ? "Du har spillet"
-            : "Drej hjulet"}
+          ? 'Hjulet drejer...'
+          : result
+            ? 'Du har spillet'
+            : 'Drej hjulet'}
       </button>
     </div>
   )

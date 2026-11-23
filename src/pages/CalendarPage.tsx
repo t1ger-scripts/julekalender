@@ -23,7 +23,7 @@ import {
 // Sæt enabled til false for at bruge rigtig dato og gemte resultater.
 const testConfig = {
   enabled: true,
-  date: '2026-12-08',
+  date: '2026-12-01',
   results: [
     {
       date: '2026-12-06',
