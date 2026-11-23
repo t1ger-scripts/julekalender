@@ -47,3 +47,16 @@ export interface CalendarData {
   doors: CalendarDoor[]
   activities: Record<ActivityType, ActivityContent | null>
 }
+
+// Belønninger fra en afsluttet aktivitet.
+// Nul betyder, at den pågældende belønning ikke blev vundet.
+export interface ActivityResult {
+  tickets: number
+  discountPercent: number
+}
+
+// Et gemt resultat knyttet til en bestemt kalenderdato.
+// Et resultat med to nuller tæller også som gennemført.
+export interface SavedActivityResult extends ActivityResult {
+  date: string
+}
