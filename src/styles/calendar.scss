@@ -1,6 +1,7 @@
 @use './tokens' as *;
 
-// Sidens tre hovedområder.
+// SIDELAYOUT
+
 .calendar-layout {
   min-height: 100dvh;
   display: grid;
@@ -35,7 +36,8 @@
   }
 }
 
-// Introduktion til julekalenderen.
+// INTRODUKTION
+
 .calendar-intro {
   margin-bottom: $px-48;
   text-align: center;
@@ -69,210 +71,8 @@
   }
 }
 
-// Genbrugelig kalenderlåge.
-.door {
-  position: relative;
-  width: 280px;
-  background-color: $white;
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.05),
-    0 6px 16px rgba(0, 0, 0, 0.10);
+// KALENDER OG NAVIGATION
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    width: 16px;
-    height: 36px;
-    transform: translateX(-50%);
-    background-image: url('/images/img/handles-red.png');
-    background-size: contain;
-    background-position: center top;
-    background-repeat: no-repeat;
-    pointer-events: none;
-  }
-
-  &__header {
-    padding: $px-20;
-    background-color: $white-beige;
-    position: relative;
-    z-index: 1;
-    margin-inline: -8px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.14);
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 8px;
-      right: 8px;
-      height: 1px;
-      background-image: repeating-linear-gradient(
-        to right,
-        $grey-medium 0,
-        $grey-medium 8px,
-        transparent 8px,
-        transparent 14px
-      );
-      pointer-events: none;
-    }
-  }
-
-  &__body {
-    position: relative;
-    isolation: isolate;
-    min-height: 300px;
-    padding: $px-20;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    // Dekoration lavet med AI
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 12px;
-      bottom: 80px;
-      width: 16px;
-      z-index: -1;
-      pointer-events: none;
-
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='180' viewBox='0 0 16 180'%3E%3Cg fill='none' stroke='%23cccccc' stroke-width='.8' stroke-linecap='round'%3E%3Cpath d='M6 8v10m-5-5h10M2.5 9.5l7 7m0-7-7 7'/%3E%3Cpath d='M10 109v10m-5-5h10m-8.5-3.5 7 7m0-7-7 7'/%3E%3C/g%3E%3Cpath fill='%23a6192e' fill-opacity='.55' d='m11 54 1.1 3.9L16 59l-3.9 1.1L11 64l-1.1-3.9L6 59l3.9-1.1Z'/%3E%3Cpath fill='%23cccccc' d='m5 151 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z'/%3E%3C/svg%3E");
-
-      background-size: 16px 180px;
-      background-repeat: repeat-y;
-      background-position: center top;
-    }
-
-    &::before {
-      left: 3px;
-    }
-
-    &::after {
-      right: 3px;
-      background-position: center 37px;
-      transform: scaleX(-1);
-    }
-  }
-
-  &__icon {
-    width: 100%;
-    height: 40px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: $px-12;
-    color: $red;
-
-    img,
-    svg {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
-    }
-
-    svg {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-  }
-
-  &__lock {
-    filter: grayscale(1);
-  }
-
-  &--missed &__icon {
-    color: $grey-medium;
-  }
-
-  &__day {
-    font-size: 72px;
-    line-height: 1.1;
-  }
-
-  &__month {
-    margin-top: $px-5;
-    font-size: $px-16;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  &__status {
-    margin-top: $px-12;
-    margin-bottom: $px-12;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  &__button {
-    width: 100%;
-    min-height: 44px;
-    padding: $px-12;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid $red;
-    border-radius: $border-mini;
-    background-color: $red;
-    color: $white;
-    font-family: inherit;
-    font-size: $px-14;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: pointer;
-
-    &:hover:not(:disabled) {
-      background-color: $red-dark;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $red;
-      outline-offset: 4px;
-    }
-  }
-
-  &__footer {
-    width: 100%;
-    min-height: 44px;
-    margin-top: auto;
-    display: grid;
-    align-items: center;
-  }
-
-  &__notice {
-    margin: 0;
-    color: $grey-dark;
-    font-size: $px-14;
-    font-weight: 400;
-    line-height: 1.2;
-    text-align: center;
-  }
-}
-
-// Tidligere dage, som brugeren ikke gennemførte.
-.door--missed {
-  .door__day {
-    color: $grey-medium;
-  }
-
-  .door__button {
-    border-color: $grey-light;
-    background-color: $grey-light;
-    color: $black-light;
-    cursor: not-allowed;
-  }
-}
-
-// Kalenderens placering, størrelser og navigation.
 .calendar {
   width: 100%;
   max-width: 1600px;
@@ -280,7 +80,7 @@
   display: grid;
   grid-template-columns: 44px minmax(0, 1fr) 44px;
   align-items: center;
-  gap: 20px;
+  gap: $px-20;
 
   &__doors {
     min-height: 480px;
@@ -310,6 +110,11 @@
       transform: scale(1.06);
       z-index: 2;
     }
+  }
+
+  &__placeholder {
+    min-width: 0;
+    pointer-events: none;
   }
 
   &__arrow {
@@ -353,7 +158,188 @@
   }
 }
 
-// Adventslåger.
+// LÅGENS GRUNDSTYLING
+
+.door {
+  position: relative;
+  background-color: $white;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 6px 16px rgba(0, 0, 0, 0.1);
+
+  // Håndtag.
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 16px;
+    height: 36px;
+    transform: translateX(-50%);
+    background-image: url('/images/img/handles-red.png');
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+
+  &__header {
+    position: relative;
+    z-index: 1;
+    margin-inline: -8px;
+    padding: $px-20;
+    background-color: $white;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.14);
+
+    // Stiplet afrivningslinje.
+    &::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 8px;
+      right: 8px;
+      height: 1px;
+      background-image: repeating-linear-gradient(
+        to right,
+        $grey-medium 0,
+        $grey-medium 8px,
+        transparent 8px,
+        transparent 14px
+      );
+      pointer-events: none;
+    }
+  }
+
+  &__body {
+    position: relative;
+    isolation: isolate;
+    min-height: 300px;
+    padding: $px-20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    // Dekoration lavet med AI. Holdes fri af tekst og knapper.
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      bottom: 80px;
+      width: 16px;
+      z-index: -1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='180' viewBox='0 0 16 180'%3E%3Cg fill='none' stroke='%23cccccc' stroke-width='.8' stroke-linecap='round'%3E%3Cpath d='M6 8v10m-5-5h10M2.5 9.5l7 7m0-7-7 7'/%3E%3Cpath d='M10 109v10m-5-5h10m-8.5-3.5 7 7m0-7-7 7'/%3E%3C/g%3E%3Cpath fill='%23a6192e' fill-opacity='.55' d='m11 54 1.1 3.9L16 59l-3.9 1.1L11 64l-1.1-3.9L6 59l3.9-1.1Z'/%3E%3Cpath fill='%23cccccc' d='m5 151 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z'/%3E%3C/svg%3E");
+      background-size: 16px 180px;
+      background-repeat: repeat-y;
+      background-position: center top;
+    }
+
+    &::before {
+      left: 3px;
+    }
+
+    &::after {
+      right: 3px;
+      background-position: center 37px;
+      transform: scaleX(-1);
+    }
+  }
+
+  &__icon {
+    width: 100%;
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $px-12;
+    color: $red;
+
+    img,
+    svg {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+
+  &__day {
+    font-size: 72px;
+    line-height: 1.1;
+  }
+
+  &__month {
+    margin-top: $px-5;
+    font-size: $px-16;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  &__status {
+    margin-block: $px-12;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__footer {
+    width: 100%;
+    min-height: 44px;
+    margin-top: auto;
+    display: grid;
+    align-items: center;
+  }
+
+  &__notice {
+    margin: 0;
+    color: $grey-dark;
+    font-size: $px-14;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  &__button {
+    width: 100%;
+    min-height: 44px;
+    padding: $px-12;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $red;
+    border-radius: $border-mini;
+    background-color: $red;
+    color: $white;
+    font-family: inherit;
+    font-size: $px-14;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $red-dark;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $red;
+      outline-offset: 4px;
+    }
+  }
+}
+
+// ADVENT OG JULEAFTEN
+
 .door--advent {
   &:not(.door--locked):not(.door--missed):not(.door--completed) .door__day {
     color: $red;
@@ -362,19 +348,22 @@
   .door__icon img {
     width: 44px;
     height: 32px;
-    object-fit: contain;
   }
 }
 
-// Særlig udgave til juleaften.
 .door--christmas {
+  .door__header {
+    background-color: $white-beige;
+  }
+
   .door__body {
     background-color: $red;
     color: $white;
   }
 
   .door__day,
-  .door__icon {
+  .door__icon,
+  .door__notice {
     color: $white;
   }
 
@@ -394,14 +383,8 @@
     border-color: $white;
     color: $red;
 
-    &:hover:not(:disabled) {
+    &:hover {
       background-color: $white-beige;
-    }
-
-    &:disabled {
-      background-color: $white-beige;
-      border-color: $white-beige;
-      color: $grey-dark;
     }
 
     &:focus-visible {
@@ -410,12 +393,13 @@
   }
 }
 
-// Dagens gave i det opdaterede design.
+// DAGENS GAVE
+
 .door--available:not(.door--christmas) {
   outline: 1px solid $golden;
 
-  .door__header {
-    background-color: $white;
+  &::after {
+    background-image: url('/images/img/handles-golden.png');
   }
 
   .door__day {
@@ -433,12 +417,11 @@
 
   .door__button {
     border-color: $golden-dark;
-    border-radius: $border-mini;
     background-image: $shading-golden;
     background-color: $golden-dark;
     color: $black-light;
 
-    &:hover:not(:disabled) {
+    &:hover {
       background-color: $hover-golden-dark;
     }
 
@@ -450,16 +433,35 @@
   .door__body::before,
   .door__body::after {
     filter: sepia(1) saturate(1.2) brightness(0.7);
-    opacity: 1;
   }
 }
 
-// Tidligere låger beholder deres fulde størrelse og vises i gråtoner.
+// KOMMENDE GAVER
+
+.door--locked {
+  .door__status {
+    font-weight: 700;
+  }
+}
+
+.door--locked:not(.door--christmas) {
+  .door__day {
+    color: $red;
+  }
+}
+
+// TIDLIGERE GAVER
+
 .door--completed,
 .door--missed {
   filter: grayscale(1);
 
-  .door__header {
+  &::after {
+    background-image: url('/images/img/handles-silver.png');
+  }
+
+  .door__header,
+  .door__body {
     background-color: $white-beige;
   }
 
@@ -468,7 +470,6 @@
   }
 
   .door__body {
-    background-color: $white-beige;
     color: $black-light;
   }
 
@@ -486,16 +487,16 @@
   .door__status {
     font-weight: 700;
   }
+}
 
+.door--completed {
   .door__button {
     border-color: $grey-light;
-    border-radius: $border-mini;
     background-image: $shading-silver;
     background-color: $grey-light;
     color: $black-light;
-    font-weight: 700;
 
-    &:hover:not(:disabled) {
+    &:hover {
       background-color: $grey-medium;
       border-color: $grey-medium;
       color: $white;
@@ -507,35 +508,8 @@
   }
 }
 
-// Kommende gaver i det opdaterede design.
-.door--locked:not(.door--christmas) {
-  .door__header {
-    background-color: $white;
-  }
+// DECEMBERREJSE OG MINE GAVER
 
-  .door__day {
-    color: $red;
-  }
-
-  .door__lock {
-    filter: none;
-  }
-
-  .door__status {
-    font-weight: 700;
-  }
-}
-
-.door--available:not(.door--christmas)::after {
-  background-image: url('/images/img/handles-golden.png');
-}
-
-.door--completed::after,
-.door--missed::after {
-  background-image: url('/images/img/handles-silver.png');
-}
-
-// Gaveoversigt og decemberrejse.
 .december-journey {
   max-width: 1344px;
   margin-inline: auto;
@@ -574,26 +548,6 @@
     }
   }
 
-  &__milestones {
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    list-style: none;
-  }
-
-  &__milestone {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $px-5;
-    text-align: center;
-
-    p {
-      font-size: $px-12;
-    }
-  }
-
   &__timeline {
     position: relative;
     flex: 1;
@@ -612,6 +566,26 @@
       display: block;
       height: 100%;
       background-color: $red;
+    }
+  }
+
+  &__milestones {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    list-style: none;
+  }
+
+  &__milestone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $px-5;
+    text-align: center;
+
+    p {
+      font-size: $px-12;
     }
   }
 
@@ -636,14 +610,14 @@
   }
 
   &__marker {
+    position: relative;
     width: 16px;
     height: 16px;
+    display: grid;
+    place-items: center;
     border: 2px solid $grey-medium;
     border-radius: 50%;
     background-color: $white;
-    position: relative;
-    display: grid;
-    place-items: center;
     font-size: 10px;
     line-height: 1;
   }
@@ -665,7 +639,8 @@
   }
 }
 
-// Datobaseret rute med gåsen placeret langs kurven. Lavet med AI.
+// GÅS OG RUTE - LAVET MED AI
+
 .calendar-route {
   position: relative;
   width: 100%;
@@ -707,75 +682,32 @@
   }
 }
 
+// MINDRE DESKTOPSKÆRME
+
 @media (max-width: 1400px) {
   .calendar-layout__main {
     padding-inline: 24px;
   }
 
-  .calendar {
-    gap: 12px;
-  }
-
-  .calendar__doors {
-    gap: 20px;
-  }
-
   .calendar-intro {
-    margin-bottom: 32px;
+    margin-bottom: $px-32;
   }
-}
 
-@media (max-width: 1100px) {
   .calendar {
-    grid-template-columns: 36px minmax(0, 1fr) 36px;
-    gap: 8px;
+    gap: $px-12;
   }
 
   .calendar__doors {
-    gap: 12px;
-  }
-
-  .calendar__arrow {
-    width: 36px;
-    height: 36px;
-  }
-
-  .calendar .door__header {
-    padding: 12px;
-  }
-
-  .calendar .door__body {
-    padding-inline: 16px;
-  }
-
-  .calendar .door__day {
-    font-size: 60px;
-  }
-
-  .calendar .door__month,
-  .calendar .door__status {
-    font-size: 12px;
-    letter-spacing: 0.5px;
-  }
-
-  .calendar .door__button {
-    padding-inline: 4px;
+    gap: $px-20;
   }
 }
 
-// Tomme pladser holder første og sidste låge centreret.
-.calendar__placeholder {
-  min-width: 0;
-  pointer-events: none;
-}
-
-// Tre låger på mindre desktopskærme.
 @media (max-width: 1200px) {
   .calendar__doors {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-width: 840px;
     width: 100%;
+    max-width: 840px;
     margin-inline: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
     .door:nth-child(1),
     .door:nth-child(3) {
@@ -787,5 +719,43 @@
       transform: scale(1.06);
       z-index: 2;
     }
+  }
+}
+
+@media (max-width: 1100px) {
+  .calendar {
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    gap: 8px;
+  }
+
+  .calendar__doors {
+    gap: $px-12;
+  }
+
+  .calendar__arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .calendar .door__header {
+    padding: $px-12;
+  }
+
+  .calendar .door__body {
+    padding-inline: $px-16;
+  }
+
+  .calendar .door__day {
+    font-size: 60px;
+  }
+
+  .calendar .door__month,
+  .calendar .door__status {
+    font-size: $px-12;
+    letter-spacing: 0.5px;
+  }
+
+  .calendar .door__button {
+    padding-inline: 4px;
   }
 }
