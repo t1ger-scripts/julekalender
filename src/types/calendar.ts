@@ -3,7 +3,6 @@ export type ActivityType =
   | 'wheel'
   | 'memory'
   | 'quiz'
-  | 'advent'
   | 'scratch'
 
 // Et felt på lykkehjulet.
