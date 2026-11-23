@@ -1,28 +1,42 @@
 import { useEffect, useRef, useState } from 'react'
 import { loadCalendarData } from '../api/loadCalendarData'
+import ActivityCompletion from '../components/ActivityCompletion'
 import ActivityInfo from '../components/ActivityInfo'
 import ActivityModal from '../components/ActivityModal'
 import ActivityResultView from '../components/ActivityResultView'
 import Calendar from '../components/Calendar'
 import CalendarRoute from '../components/CalendarRoute'
 import DecemberJourney from '../components/DecemberJourney'
+import DevToolbar from '../components/DevToolbar'
 import GiftOverview from '../components/GiftOverview'
 import Header from '../components/Header'
 import MemoryGame from '../components/activities/MemoryGame'
 import Quiz from '../components/activities/Quiz'
 import ScratchCard from '../components/activities/ScratchCard'
 import SpinWheel from '../components/activities/SpinWheel'
-import CalendarLayout from '../templates/CalendarLayout'
-import type { ActivityResult, CalendarData, SavedActivityResult } from '../types/calendar'
-import { loadActivityResults, resetActivityResults, saveActivityResult } from '../utils/activityResults'
-import { animateGoose } from '../utils/animateGoose'
-import { formatCalendarDate, getCalendarDate, totalDoors } from '../utils/calendar'
-import DevToolbar from '../components/DevToolbar'
 import { devConfig } from '../config/dev'
+import CalendarLayout from '../templates/CalendarLayout'
+import type {
+  ActivityResult,
+  CalendarData,
+  SavedActivityResult,
+} from '../types/calendar'
+import {
+  loadActivityResults,
+  resetActivityResults,
+  saveActivityResult,
+} from '../utils/activityResults'
+import { animateGoose } from '../utils/animateGoose'
+import {
+  formatCalendarDate,
+  getCalendarDate,
+  totalDoors,
+} from '../utils/calendar'
 
 type ModalView =
   | { type: 'gifts' }
-  | { type: 'door'; date: string; fromGifts: boolean }
+  | { type: 'activity'; date: string }
+  | { type: 'reward'; date: string }
 
 function getCurrentDate(): string {
   return devConfig.enabled
@@ -38,7 +52,6 @@ function CalendarPage() {
   const [activityResults, setActivityResults] =
     useState<SavedActivityResult[]>(loadActivityResults)
   const [modalView, setModalView] = useState<ModalView | null>(null)
-  const [revealingDate, setRevealingDate] = useState<string | null>(null)
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null)
   const [loadError, setLoadError] = useState(false)
   const [unsavedResult, setUnsavedResult] =
@@ -52,10 +65,9 @@ function CalendarPage() {
   )
 
   const selectedDate =
-    modalView?.type === 'door' ? modalView.date : null
-
-  const fromGifts =
-    modalView?.type === 'door' && modalView.fromGifts
+    modalView && modalView.type !== 'gifts'
+      ? modalView.date
+      : null
 
   const selectedDoor = calendarData?.doors.find(
     (door) => door.date === selectedDate,
@@ -77,22 +89,20 @@ function CalendarPage() {
     activityContent?.title ??
     (selectedDoor ? formatCalendarDate(selectedDoor.date) : '')
 
-  const isShowingResult =
-    selectedResult !== undefined && revealingDate !== selectedDate
+  let modalTitle = activityTitle
 
-  const modalTitle =
-    modalView?.type === 'gifts'
-      ? 'Mine gaver'
-      : isShowingResult
-        ? 'Din belønning'
-        : activityTitle
+  if (modalView?.type === 'gifts') {
+    modalTitle = 'Mine gaver'
+  } else if (modalView?.type === 'reward') {
+    modalTitle = 'Din belønning'
+  }
 
-  // Opdaterer rigtig dato. I udvikling styres datoen fra panelet.
+  // I udvikling styres datoen fra udviklerpanelet.
   useEffect(() => {
     if (devConfig.enabled) return
 
     function updateDate() {
-      setCurrentDate(getCurrentDate())
+      setCurrentDate(getCalendarDate())
     }
 
     const intervalId = window.setInterval(updateDate, 60_000)
@@ -121,22 +131,9 @@ function CalendarPage() {
     }
   }, [])
 
-  // Bevarer spillefeltet kortvarigt, efter resultatet er gemt.
-  useEffect(() => {
-    if (!revealingDate) return
-
-    const timeoutId = window.setTimeout(() => {
-      setRevealingDate(null)
-    }, 1200)
-
-    return () => {
-      window.clearTimeout(timeoutId)
-    }
-  }, [revealingDate])
-
   async function handleOpenDoor(date: string): Promise<void> {
-    const canOpen =
-      date === currentDate || completedDates.includes(date)
+    const isCompleted = completedDates.includes(date)
+    const canOpen = date === currentDate || isCompleted
 
     if (!canOpen || isOpeningDoor.current) return
 
@@ -150,22 +147,32 @@ function CalendarPage() {
       isOpeningDoor.current = false
     }
 
-    setRevealingDate(null)
-    setModalView({ type: 'door', date, fromGifts: false })
+    // Genbesøg går direkte til den gemte belønning.
+    setModalView({
+      type: isCompleted ? 'reward' : 'activity',
+      date,
+    })
   }
 
   function handleOpenGifts() {
     if (!calendarData || isOpeningDoor.current) return
 
-    setRevealingDate(null)
     setModalView({ type: 'gifts' })
   }
 
   function handleSelectGift(date: string) {
     if (date > currentDate || !completedDates.includes(date)) return
 
-    setRevealingDate(null)
-    setModalView({ type: 'door', date, fromGifts: true })
+    setModalView({ type: 'reward', date })
+  }
+
+  function handleViewGift() {
+    if (!selectedDoor || !selectedResult) return
+
+    setModalView({
+      type: 'reward',
+      date: selectedDoor.date,
+    })
   }
 
   function persistResult(result: SavedActivityResult) {
@@ -189,14 +196,12 @@ function CalendarPage() {
   }
 
   function handleComplete(result: ActivityResult) {
-    if (!selectedDoor || selectedResult) return
-
     if (
-      selectedDoor.activity === 'wheel' ||
-      selectedDoor.activity === 'memory' ||
-      selectedDoor.activity === 'scratch'
+      modalView?.type !== 'activity' ||
+      !selectedDoor ||
+      selectedResult
     ) {
-      setRevealingDate(selectedDoor.date)
+      return
     }
 
     const completedResult: SavedActivityResult = {
@@ -210,19 +215,13 @@ function CalendarPage() {
       completedResult,
     ])
 
+    // Gemmer straks uden at skifte væk fra spillefeltet.
     persistResult(completedResult)
   }
 
   function handleDevDateChange(date: string) {
-    if (
-      !devConfig.enabled ||
-      !date ||
-      isOpeningDoor.current
-    ) {
-      return
-    }
+    if (!devConfig.enabled || !date || isOpeningDoor.current) return
 
-    setRevealingDate(null)
     setModalView(null)
     setCurrentDate(date)
   }
@@ -232,13 +231,58 @@ function CalendarPage() {
 
     try {
       resetActivityResults()
-
       setActivityResults([])
       setUnsavedResult(null)
-      setRevealingDate(null)
       setModalView(null)
     } catch (error) {
       console.warn('Testresultaterne kunne ikke nulstilles.', error)
+    }
+  }
+
+  function renderActivity() {
+    if (!selectedDoor || !calendarData) return null
+
+    switch (selectedDoor.activity) {
+      case 'wheel':
+        return (
+          <SpinWheel
+            key={selectedDoor.date}
+            segments={calendarData.activities.wheel.segments}
+            onComplete={handleComplete}
+          />
+        )
+
+      case 'quiz':
+        return selectedQuiz ? (
+          <Quiz
+            key={selectedDoor.date}
+            quiz={selectedQuiz}
+            onComplete={handleComplete}
+          />
+        ) : (
+          <p role="alert">Dagens quiz kunne ikke findes.</p>
+        )
+
+      case 'memory':
+        return (
+          <MemoryGame
+            key={selectedDoor.date}
+            game={calendarData.activities.memory.memoryGame}
+            onComplete={handleComplete}
+          />
+        )
+
+      case 'scratch':
+        return (
+          <ScratchCard
+            key={selectedDoor.date}
+            game={calendarData.activities.scratch.scratchGame}
+            onComplete={handleComplete}
+          />
+        )
+
+      default:
+        return <p role="alert">Aktiviteten kunne ikke findes.</p>
     }
   }
 
@@ -301,9 +345,13 @@ function CalendarPage() {
         <ActivityModal
           title={modalTitle}
           onClose={() => setModalView(null)}
-          onBack={fromGifts ? handleOpenGifts : undefined}
+          onBack={
+            modalView.type === 'reward'
+              ? handleOpenGifts
+              : undefined
+          }
           info={
-            selectedDoor && !fromGifts ? (
+            modalView.type === 'activity' && selectedDoor ? (
               <ActivityInfo
                 title={activityTitle}
                 progress={completedDates.length}
@@ -320,47 +368,30 @@ function CalendarPage() {
               completedDates={completedDates}
               onSelectGift={handleSelectGift}
             />
-          ) : selectedDoor ? (
-            isShowingResult && selectedResult ? (
-              <div className={fromGifts ? 'gift-overview__reward' : undefined}>
+          ) : modalView.type === 'reward' ? (
+            selectedDoor && selectedResult ? (
+              <div className="gift-overview__reward">
                 <ActivityResultView
                   key={selectedDoor.date}
                   result={selectedResult}
                   door={selectedDoor}
                 />
               </div>
-            ) : selectedDoor.activity === 'wheel' ? (
-              <SpinWheel
-                key={selectedDoor.date}
-                segments={calendarData.activities.wheel.segments}
-                onComplete={handleComplete}
-              />
-            ) : selectedDoor.activity === 'quiz' ? (
-              selectedQuiz ? (
-                <Quiz
-                  key={selectedDoor.date}
-                  quiz={selectedQuiz}
-                  onComplete={handleComplete}
-                />
-              ) : (
-                <p role="alert">Dagens quiz kunne ikke findes.</p>
-              )
-            ) : selectedDoor.activity === 'memory' ? (
-              <MemoryGame
-                key={selectedDoor.date}
-                game={calendarData.activities.memory.memoryGame}
-                onComplete={handleComplete}
-              />
-            ) : selectedDoor.activity === 'scratch' ? (
-              <ScratchCard
-                key={selectedDoor.date}
-                game={calendarData.activities.scratch.scratchGame}
-                onComplete={handleComplete}
-              />
             ) : (
-              <p role="alert">Aktiviteten kunne ikke findes.</p>
+              <p role="alert">Belønningen kunne ikke findes.</p>
             )
-          ) : null}
+          ) : (
+            <>
+              {renderActivity()}
+
+              {selectedResult && (
+                <ActivityCompletion
+                  result={selectedResult}
+                  onViewGift={handleViewGift}
+                />
+              )}
+            </>
+          )}
 
           {unsavedResult && (
             <div className="activity-save-error" role="alert">
