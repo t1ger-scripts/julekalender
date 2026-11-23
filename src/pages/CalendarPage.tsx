@@ -20,7 +20,7 @@ import { loadCompletedDays } from '../utils/storage'
 // Sæt enabled til false for at bruge rigtig dato og gemt fremgang.
 const testConfig = {
   enabled: true,
-  date: '2026-12-08',
+  date: '2026-12-01',
   completedDates: ['2026-12-06', '2026-12-07'],
 }
 
