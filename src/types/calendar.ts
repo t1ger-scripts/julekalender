@@ -1,30 +1,4 @@
-/* Definerer fælles interfaces og typer for låger, aktiviteter, præmier og brugerfremgang. */
-
-export interface WheelSegment {
-  color: "white" | "red"
-  label: string
-  type: "discount" | "ticket" | "none"
-  value: number
-}
-
-export interface ActivityRule {
-  icon: string
-  text: string
-}
-
-export interface ActivityContent {
-  title: string
-  description: string[]
-  rules: ActivityRule[]
-}
-
-export interface WheelDoor {
-  day: number
-  activity: "wheel"
-  content: ActivityContent
-  segments: WheelSegment[]
-}
-
+// Fælles typer for kalenderens aktiviteter og indhold.
 export type ActivityType =
   | 'wheel'
   | 'memory'
@@ -32,14 +6,35 @@ export type ActivityType =
   | 'advent'
   | 'scratch'
 
-// Produktet, der er på højkant den pågældende dag.
+// Et felt på lykkehjulet.
+export interface WheelSegment {
+  color: 'white' | 'red'
+  label: string
+  type: 'discount' | 'ticket' | 'none'
+  value: number
+}
+
+// En spilleregel med tilhørende ikon.
+export interface ActivityRule {
+  icon: string
+  text: string
+}
+
+// Fælles information om en aktivitet.
+export interface ActivityContent {
+  title: string
+  description: string[]
+  rules: ActivityRule[]
+}
+
+// Produktet tilknyttet en kalenderlåge.
 export interface CalendarPrize {
   name: string
   image: string
   productUrl: string
 }
 
-// Indholdet bag en bestemt låge.
+// Indholdet bag en låge. Datoformat: YYYY-MM-DD.
 export interface CalendarDoor {
   date: string
   activity: ActivityType | null

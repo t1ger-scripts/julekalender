@@ -1,43 +1,42 @@
 import { useEffect, useRef, useState } from 'react'
-import {
-  loadCompletedDays,
-  saveCompletedDays,
-} from '../utils/storage'
-import CalendarLayout from '../templates/CalendarLayout'
-import Header from '../components/Header'
-import Calendar from '../components/Calendar'
-import DecemberJourney from '../components/DecemberJourney'
-import CalendarRoute from '../components/CalendarRoute'
-import ActivityModal from '../components/ActivityModal'
-import ActivityInfo from '../components/ActivityInfo'
-import { formatCalendarDate, getCalendarDate, totalDoors } from '../utils/calendar'
 import { loadCalendarData } from '../api/loadCalendarData'
+import ActivityInfo from '../components/ActivityInfo'
+import ActivityModal from '../components/ActivityModal'
+import Calendar from '../components/Calendar'
+import CalendarRoute from '../components/CalendarRoute'
+import DecemberJourney from '../components/DecemberJourney'
+import Header from '../components/Header'
+import CalendarLayout from '../templates/CalendarLayout'
 import type { CalendarData } from '../types/calendar'
 import { animateGoose } from '../utils/animateGoose'
+import {
+  formatCalendarDate,
+  getCalendarDate,
+  totalDoors,
+} from '../utils/calendar'
+import { loadCompletedDays } from '../utils/storage'
 
-// Lokal testdato. Sæt til null for at bruge den rigtige dato.
-const testDate: string | null = '2026-12-08'
-
-function getCurrentDate(): string {
-  if (import.meta.env.DEV && testDate !== null) {
-    return testDate
-  }
-
-  return getCalendarDate()
+// Testindstillinger bruges kun lokalt og gemmes ikke i browseren.
+// Sæt enabled til false for at bruge rigtig dato og gemt fremgang.
+const testConfig = {
+  enabled: true,
+  date: '2026-12-08',
+  completedDates: ['2026-12-06', '2026-12-07'],
 }
 
-// Samler kalenderens indhold, brugerens fremgang og handlinger.
+const isTestMode = import.meta.env.DEV && testConfig.enabled
+
+function getCurrentDate(): string {
+  return isTestMode ? testConfig.date : getCalendarDate()
+}
+
+// Samler kalenderens indhold, fremgang og åbning af aktiviteter.
 function CalendarPage() {
   const isOpeningDoor = useRef(false)
+
   const [currentDate, setCurrentDate] = useState(getCurrentDate)
   const [completedDates] = useState<string[]>(() =>
-    import.meta.env.DEV
-      ? [...new Set([
-          ...loadCompletedDays(),
-          '2026-12-06',
-          '2026-12-07',
-        ])]
-      : loadCompletedDays(),
+    isTestMode ? [...testConfig.completedDates] : loadCompletedDays(),
   )
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null)
@@ -51,14 +50,14 @@ function CalendarPage() {
     ? calendarData?.activities[selectedDoor.activity] ?? null
     : null
 
-  // Foreløbig værdi. Lodder kobles på aktiviteterne senere.
-  const tickets = completedDates.length
+  const activityTitle =
+    activityContent?.title ??
+    (selectedDoor ? formatCalendarDate(selectedDoor.date) : '')
 
-  useEffect(() => {
-    saveCompletedDays(completedDates)
-  }, [completedDates])
+  // Tilkobles de gemte aktivitetsresultater ved integration.
+  const tickets = 0
 
-  // Opdaterer datoen, hvis siden står åben hen over midnat.
+  // Holder datoen opdateret ved midnat og ved tilbagevenden til siden.
   useEffect(() => {
     function updateDate() {
       setCurrentDate(getCurrentDate())
@@ -73,26 +72,41 @@ function CalendarPage() {
     }
   }, [])
 
-  // Indlæser kalenderens indhold ved opstart.
+  // Henter indhold fra de lokale JSON-filer.
   useEffect(() => {
     let isActive = true
 
     loadCalendarData()
       .then((data) => {
-        if (isActive) {
-          setCalendarData(data)
-        }
+        if (isActive) setCalendarData(data)
       })
       .catch(() => {
-        if (isActive) {
-          setLoadError(true)
-        }
+        if (isActive) setLoadError(true)
       })
 
     return () => {
       isActive = false
     }
   }, [])
+
+  async function handleOpenDoor(date: string): Promise<void> {
+    const canOpen =
+      date === currentDate || completedDates.includes(date)
+
+    if (!canOpen || isOpeningDoor.current) return
+
+    isOpeningDoor.current = true
+
+    try {
+      await animateGoose(date)
+    } catch {
+      // En afbrudt animation må ikke forhindre åbning.
+    } finally {
+      isOpeningDoor.current = false
+    }
+
+    setSelectedDate(date)
+  }
 
   return (
     <CalendarLayout
@@ -127,29 +141,7 @@ function CalendarPage() {
           calendarDoors={calendarData.doors}
           currentDate={currentDate}
           completedDates={completedDates}
-          onOpenDoor={async (date) => {
-            if (
-              isOpeningDoor.current ||
-              (
-                date !== currentDate &&
-                !completedDates.includes(date)
-              )
-            ) {
-              return
-            }
-
-            isOpeningDoor.current = true
-
-            try {
-              await animateGoose(date)
-            } catch {
-              // Aktiviteten kan stadig åbnes, hvis animationen afbrydes.
-            } finally {
-              isOpeningDoor.current = false
-            }
-
-            setSelectedDate(date)
-          }}
+          onOpenDoor={handleOpenDoor}
         />
       ) : loadError ? (
         <p role="alert">
@@ -163,17 +155,11 @@ function CalendarPage() {
 
       {selectedDoor && (
         <ActivityModal
-          title={
-            activityContent?.title ??
-            formatCalendarDate(selectedDoor.date)
-          }
+          title={activityTitle}
           onClose={() => setSelectedDate(null)}
           info={
             <ActivityInfo
-              title={
-                activityContent?.title ??
-                formatCalendarDate(selectedDoor.date)
-              }
+              title={activityTitle}
               progress={completedDates.length}
               description={
                 activityContent?.description ?? [
