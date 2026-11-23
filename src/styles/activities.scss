@@ -663,13 +663,29 @@
     }
 
     &--completed {
-      color: $grey-dark;
+      border-color: $golden-dark;
+      background-color: $white;
+      color: $black-light;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
       cursor: pointer;
 
-      &:hover {
-        border-color: $golden-dark;
-        background-color: $white;
+      .gift-overview__icon,
+      .gift-overview__status {
+        color: $red;
       }
+
+      &:hover {
+        background-color: $white-beige;
+        border-color: $red;
+      }
+    }
+
+    &--missed {
+      border-color: transparent;
+      background-color: $white-beige;
+      color: $grey-medium;
+      box-shadow: none;
+      cursor: default;
     }
 
     &--locked {
