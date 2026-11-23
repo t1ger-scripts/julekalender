@@ -2,16 +2,22 @@ import { useEffect, useRef, useState } from 'react'
 import { loadCalendarData } from '../api/loadCalendarData'
 import ActivityInfo from '../components/ActivityInfo'
 import ActivityModal from '../components/ActivityModal'
+import ActivityResultView from '../components/ActivityResultView'
 import Calendar from '../components/Calendar'
 import CalendarRoute from '../components/CalendarRoute'
 import DecemberJourney from '../components/DecemberJourney'
 import Header from '../components/Header'
+import SpinWheel from '../components/activities/SpinWheel'
 import CalendarLayout from '../templates/CalendarLayout'
 import type {
+  ActivityResult,
   CalendarData,
   SavedActivityResult,
 } from '../types/calendar'
-import { loadActivityResults } from '../utils/activityResults'
+import {
+  loadActivityResults,
+  saveActivityResult,
+} from '../utils/activityResults'
 import { animateGoose } from '../utils/animateGoose'
 import {
   formatCalendarDate,
@@ -19,44 +25,31 @@ import {
   totalDoors,
 } from '../utils/calendar'
 
-// Testindstillinger bruges kun lokalt og gemmes ikke i browseren.
-// Sæt enabled til false for at bruge rigtig dato og gemte resultater.
+// Testdatoen bruges kun lokalt.
+// Resultater gemmes også i testtilstand, så genbesøg kan kontrolleres.
 const testConfig = {
   enabled: true,
-  date: '2026-12-01',
-  results: [
-    {
-      date: '2026-12-06',
-      tickets: 1,
-      discountPercent: 0,
-    },
-    {
-      date: '2026-12-07',
-      tickets: 2,
-      discountPercent: 10,
-    },
-  ],
+  date: '2026-12-08',
 }
-
-const isTestMode = import.meta.env.DEV && testConfig.enabled
 
 function getCurrentDate(): string {
-  return isTestMode ? testConfig.date : getCalendarDate()
+  return import.meta.env.DEV && testConfig.enabled
+    ? testConfig.date
+    : getCalendarDate()
 }
 
-// Samler kalenderens indhold, resultater og åbning af aktiviteter.
+// Samler kalenderens indhold, resultater og aktiviteter.
 function CalendarPage() {
   const isOpeningDoor = useRef(false)
 
   const [currentDate, setCurrentDate] = useState(getCurrentDate)
-  const [activityResults] = useState<SavedActivityResult[]>(() =>
-    isTestMode
-      ? testConfig.results.map((result) => ({ ...result }))
-      : loadActivityResults(),
-  )
+  const [activityResults, setActivityResults] =
+    useState<SavedActivityResult[]>(loadActivityResults)
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null)
   const [loadError, setLoadError] = useState(false)
+  const [unsavedResult, setUnsavedResult] =
+    useState<SavedActivityResult | null>(null)
 
   const completedDates = activityResults.map((result) => result.date)
 
@@ -69,8 +62,12 @@ function CalendarPage() {
     (door) => door.date === selectedDate,
   )
 
-  const activityContent = selectedDoor?.activity
-    ? calendarData?.activities[selectedDoor.activity] ?? null
+  const selectedResult = activityResults.find(
+    (result) => result.date === selectedDate,
+  )
+
+  const activityContent = selectedDoor
+    ? calendarData?.activities[selectedDoor.activity]
     : null
 
   const activityTitle =
@@ -128,6 +125,46 @@ function CalendarPage() {
     setSelectedDate(date)
   }
 
+  function persistResult(result: SavedActivityResult) {
+    try {
+      const savedResults = saveActivityResult(result.date, result)
+
+      // Bevarer eventuelle resultater, som kun er i hukommelsen,
+      // hvis browseren tidligere har afvist at gemme dem.
+      setActivityResults((current) => [
+        ...savedResults,
+        ...current.filter(
+          (item) =>
+            !savedResults.some((saved) => saved.date === item.date),
+        ),
+      ])
+
+      setUnsavedResult((current) =>
+        current?.date === result.date ? null : current,
+      )
+    } catch {
+      setUnsavedResult(result)
+    }
+  }
+
+  function handleComplete(result: ActivityResult) {
+    if (!selectedDoor || selectedResult) return
+
+    const completedResult: SavedActivityResult = {
+      date: selectedDoor.date,
+      tickets: result.tickets,
+      discountPercent: result.discountPercent,
+    }
+
+    // Bevarer resultatet på siden, også hvis lokal lagring fejler.
+    setActivityResults((current) => [
+      ...current,
+      completedResult,
+    ])
+
+    persistResult(completedResult)
+  }
+
   return (
     <CalendarLayout
       header={
@@ -173,24 +210,47 @@ function CalendarPage() {
 
       <CalendarRoute currentDate={currentDate} />
 
-      {selectedDoor && (
+      {selectedDoor && calendarData && (
         <ActivityModal
-          title={activityTitle}
+          title={selectedResult ? 'Din belønning' : activityTitle}
           onClose={() => setSelectedDate(null)}
           info={
             <ActivityInfo
               title={activityTitle}
               progress={completedDates.length}
-              description={
-                activityContent?.description ?? [
-                  formatCalendarDate(selectedDoor.date),
-                ]
-              }
+              description={activityContent?.description ?? []}
               rules={activityContent?.rules ?? []}
             />
           }
         >
-          <p>Aktiviteten vises her.</p>
+          {selectedResult ? (
+            <ActivityResultView result={selectedResult} />
+          ) : selectedDoor.activity === 'wheel' ? (
+            <SpinWheel
+              key={selectedDoor.date}
+              segments={calendarData.activities.wheel.segments}
+              onComplete={handleComplete}
+            />
+          ) : (
+            <p>Denne aktivitet er endnu ikke tilkoblet.</p>
+          )}
+
+          {unsavedResult && (
+            <div className="activity-save-error" role="alert">
+              <p>
+                Resultatet fra {formatCalendarDate(unsavedResult.date)}
+                {' '}kunne ikke gemmes. Det kan gå tabt, hvis du
+                genindlæser eller forlader siden.
+              </p>
+
+              <button
+                type="button"
+                onClick={() => persistResult(unsavedResult)}
+              >
+                Prøv at gemme igen
+              </button>
+            </div>
+          )}
         </ActivityModal>
       )}
     </CalendarLayout>

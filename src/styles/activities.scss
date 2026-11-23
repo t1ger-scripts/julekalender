@@ -239,3 +239,43 @@
     align-items: center;
   }
 }
+
+// GEMT AKTIVITETSRESULTAT
+
+.activity-summary {
+  padding: $px-30;
+  border: 1px solid $golden;
+  border-radius: $border-medium;
+  background-color: $white-beige;
+
+  h2 {
+    margin-bottom: $px-20;
+    color: $red;
+    font-size: $text-h2-size;
+  }
+
+  p + p {
+    margin-top: $px-12;
+  }
+
+  &__date {
+    margin-bottom: $px-12;
+    color: $grey-dark;
+    font-size: $px-14;
+  }
+}
+
+.activity-save-error {
+  margin-top: $px-20;
+  color: $red;
+
+  button {
+    margin-top: $px-12;
+    padding: $px-5 $px-12;
+    border: 1px solid $red;
+    border-radius: $border-mini;
+    background-color: $white;
+    color: $red;
+    cursor: pointer;
+  }
+}
