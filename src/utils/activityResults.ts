@@ -4,7 +4,10 @@ import type {
 } from '../types/calendar'
 import { calendarDates } from './calendar'
 
-const storageKey = 'ringsted-dun:2026:activity-results'
+// Udvikling og produktionsvisning bruger hver sin lagring.
+const storageKey = import.meta.env.DEV
+  ? 'ringsted-dun:2026:activity-results:dev'
+  : 'ringsted-dun:2026:activity-results'
 
 // Kontrollerer data, der kommer fra browserens lokale lagring.
 function isSavedResult(value: unknown): value is SavedActivityResult {
@@ -94,4 +97,9 @@ export function saveActivityResult(
   localStorage.setItem(storageKey, JSON.stringify(updatedResults))
 
   return updatedResults
+}
+
+// Nulstiller aktivitetsresultaterne for den aktuelle tilstand.
+export function resetActivityResults(): void {
+  localStorage.removeItem(storageKey)
 }

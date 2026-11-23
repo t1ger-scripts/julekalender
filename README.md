@@ -69,3 +69,42 @@ Rigtig nyhedsbrevstilmelding og fælles vindertrækning er ikke tilkoblet.
 - Brug fælles design tokens frem for gentagne farvekoder.
 - Commit package-lock.json, men aldrig node_modules eller dist.
 - Nye SCSS-filer tilkobles i src/styles/style.scss.
+
+## Afprøvning af kalenderen
+
+Start projektet lokalt:
+
+```bash
+npm ci
+npm run dev
+```
+
+Åbn adressen fra terminalen.
+
+Klik på **Udviklerværktøjer** nederst til venstre. Her kan du:
+
+- Vælge kalenderdato uden at ændre computerens dato.
+- Nulstille gennemførte aktiviteter, lodder og belønninger.
+
+Eksempler på spilledatoer:
+
+| Dato | Aktivitet |
+|---|---|
+| 29. november 2026 | Quiz |
+| 2. december 2026 | Pudeflipper |
+| 3. december 2026 | Pudematcher |
+| 8. december 2026 | Lykkehjul |
+
+Efter gennemførsel kan resultatet genbesøges fra kalenderlågen
+eller Mine gaver. Resultater gemmes i browserens localStorage.
+
+Udviklerpanelet vises kun ved `npm run dev`.
+Ved genindlæsning bruges startdatoen fra `src/config/dev.ts`.
+Gemte resultater bevares, indtil de nulstilles.
+
+`npm run build` og `npm run preview` bruger den faktiske dato,
+viser ikke udviklerpanelet og bruger separat lagring.
+
+Daglige lodtrækninger og hovedlodtrækningen juleaften er en del
+af konceptet, men selve lodtrækningerne og fælles registrering
+af deltagere ligger uden for projektets scope.

@@ -13,35 +13,20 @@ import Quiz from '../components/activities/Quiz'
 import ScratchCard from '../components/activities/ScratchCard'
 import SpinWheel from '../components/activities/SpinWheel'
 import CalendarLayout from '../templates/CalendarLayout'
-import type {
-  ActivityResult,
-  CalendarData,
-  SavedActivityResult,
-} from '../types/calendar'
-import {
-  loadActivityResults,
-  saveActivityResult,
-} from '../utils/activityResults'
+import type { ActivityResult, CalendarData, SavedActivityResult } from '../types/calendar'
+import { loadActivityResults, resetActivityResults, saveActivityResult } from '../utils/activityResults'
 import { animateGoose } from '../utils/animateGoose'
-import {
-  formatCalendarDate,
-  getCalendarDate,
-  totalDoors,
-} from '../utils/calendar'
-
-// Testdatoen bruges kun lokalt. Spilresultater gemmes i browseren.
-const testConfig = {
-  enabled: true,
-  date: '2026-12-08',
-}
+import { formatCalendarDate, getCalendarDate, totalDoors } from '../utils/calendar'
+import DevToolbar from '../components/DevToolbar'
+import { devConfig } from '../config/dev'
 
 type ModalView =
   | { type: 'gifts' }
   | { type: 'door'; date: string; fromGifts: boolean }
 
 function getCurrentDate(): string {
-  return import.meta.env.DEV && testConfig.enabled
-    ? testConfig.date
+  return devConfig.enabled
+    ? devConfig.initialDate
     : getCalendarDate()
 }
 
@@ -102,8 +87,10 @@ function CalendarPage() {
         ? 'Din belønning'
         : activityTitle
 
-  // Holder datoen opdateret ved midnat og ved tilbagevenden til siden.
+  // Opdaterer rigtig dato. I udvikling styres datoen fra panelet.
   useEffect(() => {
+    if (devConfig.enabled) return
+
     function updateDate() {
       setCurrentDate(getCurrentDate())
     }
@@ -226,6 +213,35 @@ function CalendarPage() {
     persistResult(completedResult)
   }
 
+  function handleDevDateChange(date: string) {
+    if (
+      !devConfig.enabled ||
+      !date ||
+      isOpeningDoor.current
+    ) {
+      return
+    }
+
+    setRevealingDate(null)
+    setModalView(null)
+    setCurrentDate(date)
+  }
+
+  function handleDevReset() {
+    if (!devConfig.enabled || isOpeningDoor.current) return
+
+    try {
+      resetActivityResults()
+
+      setActivityResults([])
+      setUnsavedResult(null)
+      setRevealingDate(null)
+      setModalView(null)
+    } catch (error) {
+      console.warn('Testresultaterne kunne ikke nulstilles.', error)
+    }
+  }
+
   return (
     <CalendarLayout
       header={
@@ -243,6 +259,14 @@ function CalendarPage() {
         />
       }
     >
+      {devConfig.enabled && (
+        <DevToolbar
+          currentDate={currentDate}
+          onDateChange={handleDevDateChange}
+          onReset={handleDevReset}
+        />
+      )}
+
       <div className="calendar-intro">
         <h1 className="calendar-intro__title">
           <span aria-hidden="true">✦</span>
