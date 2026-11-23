@@ -12,9 +12,10 @@
     "date": "2026-12-01",
     "activity": "wheel",
     "prize": {
-      "name": "En dunpude fra Ringsted Dun",
-      "image": "/images/prizes/day-01.webp",
-      "productUrl": "https://ringsted-dun.dk/"
+      "id": "PUDE01",
+      "name": "UDSKIFT MED PRODUKTNAVN",
+      "image": "/images/prizes/PUDE01.webp",
+      "productUrl": "UDSKIFT MED DIREKTE PRODUKTLINK"
     }
   },
   {
