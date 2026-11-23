@@ -21,7 +21,7 @@ import type { CalendarData } from '../types/calendar'
 import { animateGoose } from '../utils/animateGoose'
 
 // Lokal testdato. Sæt til null for at bruge den rigtige dato.
-const testDate: string | null = '2026-12-06'
+const testDate: string | null = '2026-12-08'
 
 function getCurrentDate(): string {
   if (import.meta.env.DEV && testDate !== null) {
@@ -35,7 +35,15 @@ function getCurrentDate(): string {
 function CalendarPage() {
   const isOpeningDoor = useRef(false)
   const [currentDate, setCurrentDate] = useState(getCurrentDate)
-  const [completedDates] = useState<string[]>(loadCompletedDays)
+  const [completedDates] = useState<string[]>(() =>
+    import.meta.env.DEV
+      ? [...new Set([
+          ...loadCompletedDays(),
+          '2026-12-06',
+          '2026-12-07',
+        ])]
+      : loadCompletedDays(),
+  )
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null)
   const [loadError, setLoadError] = useState(false)
