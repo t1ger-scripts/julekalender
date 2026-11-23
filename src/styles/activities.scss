@@ -430,3 +430,83 @@
   font-size: $text-p-size;
   text-align: center;
 }
+
+// PUDEFLIPPEREN
+
+.scratch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: min(100%, 480px);
+  margin-inline: auto;
+}
+
+.scratch-cell {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: $border-medium;
+  background-color: transparent;
+  perspective: 800px;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: $golden-dark;
+    background-image: $shading-golden;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $red;
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &__inner {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 600ms ease;
+  }
+
+  &__face {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    backface-visibility: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__back {
+    transform: rotateY(180deg);
+  }
+
+  &.is-flipped .scratch-cell__inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.pillows-flipped-counter {
+  margin-top: $px-20;
+  padding-top: $px-16;
+  border-top: 1px solid $grey-light;
+  font-size: $px-20;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scratch-cell__inner {
+    transition: none;
+  }
+}

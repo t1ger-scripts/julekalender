@@ -10,6 +10,7 @@ import Header from '../components/Header'
 import SpinWheel from '../components/activities/SpinWheel'
 import Quiz from '../components/activities/Quiz'
 import MemoryGame from '../components/activities/MemoryGame'
+import ScratchCard from '../components/activities/ScratchCard'
 import CalendarLayout from '../templates/CalendarLayout'
 import type {
   ActivityResult,
@@ -31,7 +32,7 @@ import {
 // Resultater gemmes også i testtilstand, så genbesøg kan kontrolleres.
 const testConfig = {
   enabled: true,
-  date: '2026-12-03',
+  date: '2026-12-02',
 }
 
 function getCurrentDate(): string {
@@ -173,7 +174,8 @@ function CalendarPage() {
 
     if (
       selectedDoor.activity === 'wheel' ||
-      selectedDoor.activity === 'memory'
+      selectedDoor.activity === 'memory' ||
+      selectedDoor.activity === 'scratch'
     ) {
       setRevealingDate(selectedDoor.date)
     }
@@ -273,6 +275,12 @@ function CalendarPage() {
             <MemoryGame
               key={selectedDoor.date}
               game={calendarData.activities.memory.memoryGame}
+              onComplete={handleComplete}
+            />
+          ) : selectedDoor.activity === 'scratch' ? (
+            <ScratchCard
+              key={selectedDoor.date}
+              game={calendarData.activities.scratch.scratchGame}
               onComplete={handleComplete}
             />
           ) : (
