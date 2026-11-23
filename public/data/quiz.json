@@ -1,0 +1,92 @@
+[
+  {
+    "id": "quiz-1",
+    "quiz": {
+      "image": "/images/img/quiz/quiz-pillow.jpg",
+      "imageAlt": "Hovedpude fra Ringsted Dun (midlertidigt quizbillede)",
+      "question": "Siden hvilket år har Ringsted Dun produceret dyner og puder i Danmark?",
+      "answers": [
+        "1945",
+        "1947",
+        "1950"
+      ],
+      "correctAnswer": 1,
+      "reward": {
+        "type": "discount",
+        "value": 20
+      }
+    }
+  },
+  {
+    "id": "quiz-2",
+    "quiz": {
+      "image": "/images/img/quiz/quiz-pillow.jpg",
+      "imageAlt": "Hovedpude fra Ringsted Dun (midlertidigt quizbillede)",
+      "question": "Hvor bliver Ringsted Duns dyner og puder produceret?",
+      "answers": [
+        "I Sverige",
+        "I Tyskland",
+        "I Danmark"
+      ],
+      "correctAnswer": 2,
+      "reward": {
+        "type": "ticket",
+        "value": 1
+      }
+    }
+  },
+  {
+    "id": "quiz-3",
+    "quiz": {
+      "image": "/images/img/quiz/quiz-pillow.jpg",
+      "imageAlt": "Hovedpude fra Ringsted Dun (midlertidigt quizbillede)",
+      "question": "Hvilken type fyld bruger Ringsted Dun blandt andet i sine dyner?",
+      "answers": [
+        "Gåsedun",
+        "Silkepapir",
+        "Savsmuld"
+      ],
+      "correctAnswer": 0,
+      "reward": {
+        "type": "ticket",
+        "value": 2
+      }
+    }
+  },
+  {
+    "id": "quiz-4",
+    "quiz": {
+      "image": "/images/img/quiz/quiz-pillow.jpg",
+      "imageAlt": "Hovedpude fra Ringsted Dun (midlertidigt quizbillede)",
+      "question": "Hvad hedder Ringsted Duns serie med økologiske og Svanemærkede dyner og puder?",
+      "answers": [
+        "Classic Prestige",
+        "Omtanke",
+        "Klodshans"
+      ],
+      "correctAnswer": 1,
+      "reward": {
+        "type": "discount",
+        "value": 10
+      }
+    }
+  },
+  {
+    "id": "quiz-5",
+    "quiz": {
+      "image": "/images/img/quiz/quiz-pillow.jpg",
+      "imageAlt": "Hovedpude fra Ringsted Dun (midlertidigt quizbillede)",
+      "question": "Hvilken dato fejrer man traditionelt juleaften i Danmark?",
+      "answers": [
+        "23. december",
+        "24. december",
+        "25. december"
+      ],
+      "correctAnswer": 1,
+      "reward": {
+        "type": "ticket",
+        "value": 3
+      }
+    }
+  }
+]

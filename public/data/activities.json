@@ -1,22 +1,217 @@
 {
   "wheel": {
-    "title": "Drej julen i gang",
+    "title": "LYKKEHJULET",
     "description": [
-      "December er begyndt, og dagens gave venter på dig.",
-      "Drej hjulet og se, hvor det lander."
+      "Er juleheldet med dig? Drej på lykkehjulet, og se, hvilken præmie der venter på dig. Du har ét forsøg, så kryds fingre og lad heldet bestemme!",
+      "Landede du på et felt uden gevinst? Fortvivl ikke – der venter flere juleoverraskelser i kalenderen.",
+      "Tilmeld dig vores nyhedsbrev, så du ikke glemmer en gave."
     ],
     "rules": [
       {
-        "icon": "/images/icons/games/icon-ticket-red.png",
-        "text": "Tryk på “Drej hjulet” for at starte."
+        "icon": "/images/icons/games/icon-click.png",
+        "text": "Tryk på \"Drej hjulet\" for at sætte lykkehjulet i gang."
       },
       {
-        "icon": "/images/icons/calendar/icon-door-gift-red-small.png",
-        "text": "Vent, til hjulet er stoppet, og dit resultat bliver vist."
+        "icon": "/images/icons/games/icon-spin-wheel.png",
+        "text": "Du har ét forsøg, og hjulet stopper automatisk på et tilfældigt felt."
+      },
+      {
+        "icon": "/images/icons/games/icon-door-gift-red-small.png",
+        "text": "Vind rabatter eller ekstra lodder til konkurrencen om vores store julepræmie."
+      },
+      {
+        "icon": "/images/icons/games/icon-ticket-red.png",
+        "text": "Eventuelle gevinster vises i din præmieoversigt, når kalenderen er koblet sammen."
+      }
+    ],
+    "segments": [
+      {
+        "color": "white",
+        "label": "25% Rabat",
+        "type": "discount",
+        "value": 25
+      },
+      {
+        "color": "red",
+        "label": "Øv!",
+        "type": "none",
+        "value": 0
+      },
+      {
+        "color": "white",
+        "label": "20% Rabat",
+        "type": "discount",
+        "value": 20
+      },
+      {
+        "color": "red",
+        "label": "1 Lod",
+        "type": "ticket",
+        "value": 1
+      },
+      {
+        "color": "white",
+        "label": "10% Rabat",
+        "type": "discount",
+        "value": 10
+      },
+      {
+        "color": "red",
+        "label": "2 Lodder",
+        "type": "ticket",
+        "value": 2
+      },
+      {
+        "color": "white",
+        "label": "Øv!",
+        "type": "none",
+        "value": 0
+      },
+      {
+        "color": "red",
+        "label": "3 Lodder",
+        "type": "ticket",
+        "value": 3
       }
     ]
   },
-  "memory": null,
-  "quiz": null,
-  "scratch": null
+  "memory": {
+    "title": "PUDE-MATCHEREN",
+    "description": [
+      "Åh nej – alle de fine gaver er blevet blandet sammen! Hjælp os med at finde de rigtige par.",
+      "Find alle seks par på højst 15 forsøg. Ét forsøg er to vendte puder.",
+      "Når du åbner dagens låge, deltager du automatisk i lodtrækningen om dagens hovedpræmie. Vinderen offentliggøres dagen efter."
+    ],
+    "rules": [
+      {
+        "icon": "/images/icons/games/icon-click.png",
+        "text": "Vend to puder ad gangen. Det tæller som ét forsøg."
+      },
+      {
+        "icon": "/images/icons/games/icon-check.png",
+        "text": "Matchende puder bliver liggende med billedsiden opad."
+      },
+      {
+        "icon": "/images/icons/games/icon-door-gift-red-small.png",
+        "text": "Find alle seks par inden for 15 forsøg for at vinde en ekstra gevinst."
+      },
+      {
+        "icon": "/images/icons/games/icon-ticket-red.png",
+        "text": "Uanset resultatet deltager du i lodtrækningen om dagens hovedpræmie. Vinderen offentliggøres dagen efter."
+      }
+    ],
+    "memoryGame": {
+      "frontImage": "/images/icons/games/pillows/pillow-unflipped.png",
+      "fieldCount": 12,
+      "outcomes": {
+        "royal": {
+          "image": "/images/icons/games/pillows/pillow-royal.png"
+        },
+        "kiddy": {
+          "image": "/images/icons/games/pillows/pillow-kiddy.png"
+        },
+        "classic": {
+          "image": "/images/icons/games/pillows/pillow-classic.png"
+        },
+        "hcandersen": {
+          "image": "/images/icons/games/pillows/pillow-hc-andersen.png"
+        },
+        "organiccare": {
+          "image": "/images/icons/games/pillows/pillow-organic-care.png"
+        },
+        "tickets": {
+          "image": "/images/icons/games/pillows/pillow-ticket-black.png"
+        }
+      },
+      "attemptLimit": 15,
+      "reward": {
+        "type": "ticket",
+        "value": 2
+      }
+    }
+  },
+  "quiz": {
+    "title": "JULEQUIZZEN",
+    "description": [
+      "Hvor godt kender du egentlig Ringsted Dun? Sæt din viden på prøve i dagens julequiz, og få chancen for en ekstra gevinst.",
+      "Læs spørgsmålet grundigt, og vælg mellem de tre svarmuligheder. Du har ét forsøg, og kun ét svar er korrekt.",
+      "Når du åbner dagens låge, deltager du automatisk i lodtrækningen om dagens hovedpræmie. Vinderen offentliggøres dagen efter."
+    ],
+    "rules": [
+      {
+        "icon": "/images/icons/games/icon-question.png",
+        "text": "Læs dagens spørgsmål grundigt."
+      },
+      {
+        "icon": "/images/icons/games/icon-click.png",
+        "text": "Vælg ét af de tre svar."
+      },
+      {
+        "icon": "/images/icons/games/icon-check.png",
+        "text": "Du har kun ét forsøg på at svare."
+      },
+      {
+        "icon": "/images/icons/games/icon-door-gift-red-small.png",
+        "text": "Et korrekt svar giver en ekstra gevinst: rabat på dagens hovedpræmie eller lodder til julepræmien."
+      }
+    ]
+  },
+  "scratch": {
+    "title": "PUDE-FLIPPEREN",
+    "description": [
+      "Find de gemte gaver under puderne. Du har fem forsøg til at finde tre gaver.",
+      "Finder du alle tre, får du en ekstra gevinst. Ellers kan en fundet fjer give rabat, eller et lod kan give en ekstra chance i julekonkurrencen.",
+      "Når du åbner dagens låge, deltager du automatisk i lodtrækningen om dagens hovedpræmie. Vinderen offentliggøres dagen efter."
+    ],
+    "rules": [
+      {
+        "icon": "/images/icons/games/icon-click.png",
+        "text": "Tryk på en pude for at vende den. Du kan vende fem puder."
+      },
+      {
+        "icon": "/images/icons/games/icon-door-gift-red-small.png",
+        "text": "Find tre gaver for at få en ekstra gevinst – ikke dagens hovedpræmie direkte."
+      },
+      {
+        "icon": "/images/icons/games/icon-feather-red.png",
+        "text": "Fjer kan give 5 % rabat pr. fundet fjer på dagens hovedpræmie."
+      },
+      {
+        "icon": "/images/icons/games/icon-ticket-red.png",
+        "text": "Lodder tæller med i lodtrækningen om den store julepræmie den 24. december."
+      },
+      {
+        "icon": "/images/icons/games/icon-check.png",
+        "text": "Du deltager altid i dagens lodtrækning ved at åbne lågen."
+      }
+    ],
+    "scratchGame": {
+      "frontImage": "/images/icons/games/pillows/pillow-unflipped.png",
+      "fieldCount": 9,
+      "attemptLimit": 5,
+      "giftsToWin": 3,
+      "outcomeWeights": {
+        "gift": 40,
+        "feather": 37.36,
+        "ticket": 22.64
+      },
+      "outcomes": {
+        "gift": {
+          "image": "/images/icons/games/pillows/pillow-gift.png"
+        },
+        "feather": {
+          "image": "/images/icons/games/pillows/pillow-feather.png",
+          "discount": 5
+        },
+        "ticket": {
+          "image": "/images/icons/games/pillows/pillow-ticket-red.png",
+          "points": 5
+        }
+      },
+      "reward": {
+        "type": "ticket",
+        "value": 2
+      }
+    }
+  }
 }
