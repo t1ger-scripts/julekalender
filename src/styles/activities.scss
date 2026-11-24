@@ -617,6 +617,8 @@
 
 // MINE GAVER
 
+// MINE GAVER
+
 .gift-overview {
   &__intro {
     margin-bottom: $px-30;
@@ -642,63 +644,95 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+    > li {
+      min-width: 0;
+    }
   }
 
   &__day {
+    position: relative;
+    box-sizing: border-box;
     width: 100%;
-    min-height: 140px;
+    min-height: 150px;
     padding: $px-12;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid $grey-light;
+    gap: 4px;
+    border: 1px solid transparent;
     border-radius: $border-mini;
     background-color: $white-beige;
-    color: $grey-medium;
-    cursor: default;
-
-    &:focus-visible {
-      outline: 2px solid $red;
-      outline-offset: 3px;
-    }
+    color: $grey-dark;
+    font-family: inherit;
+    text-align: center;
 
     &--completed {
-      border-color: $golden-dark;
-      background-color: $white;
+      border-color: $status-green;
+      background-color: $status-green-light;
       color: $black-light;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
       cursor: pointer;
 
       .gift-overview__icon,
+      .gift-overview__number {
+        color: $status-green;
+      }
+
       .gift-overview__status {
-        color: $red;
+        padding: $px-5 $px-12;
+        border-radius: $border-mini;
+        background-color: $status-green;
+        color: $white;
+        font-weight: 700;
       }
 
       &:hover {
-        background-color: $white-beige;
-        border-color: $red;
+        border-color: $status-green-dark;
+
+        .gift-overview__status {
+          background-color: $status-green-dark;
+        }
+      }
+
+      &:focus-visible {
+        outline: 2px solid $status-green-dark;
+        outline-offset: 3px;
       }
     }
 
     &--missed {
-      border-color: transparent;
       background-color: $white-beige;
-      color: $grey-medium;
-      box-shadow: none;
-      cursor: default;
     }
 
     &--locked {
-      border-color: $golden;
+      border-color: $grey-light;
+      border-style: dashed;
       background-color: $white;
-      color: $red;
     }
 
     &--available {
       border-color: $golden-dark;
       background-color: $white;
-      color: $golden-dark;
+
+      .gift-overview__number {
+        color: $black-light;
+      }
     }
+  }
+
+  &__today {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 3px 6px;
+    border-radius: $border-mini;
+    background-color: $golden-dark;
+    color: $black-light;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   &__icon {
@@ -708,10 +742,19 @@
     justify-content: center;
     font-size: $px-20;
 
-    img {
+    img,
+    svg {
       width: 20px;
       height: 20px;
       object-fit: contain;
+    }
+
+    svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
   }
 
@@ -728,8 +771,9 @@
 
   &__status {
     margin-top: auto;
-    padding-top: $px-5;
+    padding: $px-5 0;
     font-size: $px-12;
+    line-height: 1.4;
   }
 
   &__reward {

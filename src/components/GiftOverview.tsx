@@ -8,14 +8,6 @@ interface GiftOverviewProps {
   onSelectGift: (date: string) => void
 }
 
-const statusLabels = {
-  completed: 'Se din gave',
-  locked: 'Låst',
-  available: 'Åbn i kalenderen',
-  missed: 'Ikke åbnet',
-}
-
-// Viser alle datoer og giver adgang til gennemførte dages belønninger.
 function GiftOverview({
   doors,
   currentDate,
@@ -33,60 +25,85 @@ function GiftOverview({
     <div className="gift-overview">
       <div className="gift-overview__intro">
         <h2>Mine gaver</h2>
-
-        <p>
-          Vælg en gennemført dag for at se din gemte belønning.
-        </p>
+        <p>Vælg en gennemført dag for at se din gemte belønning.</p>
       </div>
 
       <ul className="gift-overview__grid">
         {doors.map((door) => {
           const status = getStatus(door.date)
+          const isToday = door.date === currentDate
           const day = Number(door.date.slice(8, 10))
-          const month =
-            door.date.slice(5, 7) === '11' ? 'November' : 'December'
+          const isNovember = door.date.slice(5, 7) === '11'
+          const month = isNovember ? 'November' : 'December'
+          const shortMonth = isNovember ? 'nov.' : 'dec.'
+
+          const statusText = {
+            completed: 'Se din gave',
+            locked: `Åbner ${day}. ${shortMonth}`,
+            available: 'Åbn i kalenderen',
+            missed: 'Misset',
+          }[status]
+
+          const className =
+            `gift-overview__day gift-overview__day--${status}`
+
+          const content = (
+            <>
+              {isToday && (
+                <span className="gift-overview__today">I dag</span>
+              )}
+
+              <span className="gift-overview__icon" aria-hidden="true">
+                {status === 'completed' && (
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="m8 12 3 3 5-6" />
+                  </svg>
+                )}
+
+                {status === 'locked' && (
+                  <svg viewBox="0 0 24 24">
+                    <rect x="5" y="10" width="14" height="11" rx="2" />
+                    <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                  </svg>
+                )}
+
+                {status === 'available' && (
+                  <img
+                    src="/images/icons/calendar/icon-door-gift-golden-big.png"
+                    alt=""
+                  />
+                )}
+
+                {status === 'missed' && '–'}
+              </span>
+
+              <span className="gift-overview__number">{day}</span>
+              <span className="gift-overview__month">{month}</span>
+              <span className="gift-overview__status">{statusText}</span>
+            </>
+          )
 
           return (
-            <li key={door.date}>
-              <button
-                type="button"
-                className={`gift-overview__day gift-overview__day--${status}`}
-                disabled={status !== 'completed'}
-                onClick={() => onSelectGift(door.date)}
-                aria-label={
-                  `${formatCalendarDate(door.date)} - ` +
-                  statusLabels[status]
-                }
-              >
-                <span
-                  className="gift-overview__icon"
-                  aria-hidden="true"
+            <li
+              key={door.date}
+              aria-current={isToday ? 'date' : undefined}
+            >
+              {status === 'completed' ? (
+                <button
+                  type="button"
+                  className={className}
+                  onClick={() => onSelectGift(door.date)}
+                  aria-label={
+                    `${formatCalendarDate(door.date)} – Se din gave` +
+                    (isToday ? ' – I dag' : '')
+                  }
                 >
-                  {status === 'completed' && '✓'}
-
-                  {status === 'locked' && (
-                    <img
-                      src="/images/icons/calendar/icon-lock-red-big.png"
-                      alt=""
-                    />
-                  )}
-
-                  {status === 'available' && (
-                    <img
-                      src="/images/icons/calendar/icon-door-gift-golden-big.png"
-                      alt=""
-                    />
-                  )}
-
-                  {status === 'missed' && '–'}
-                </span>
-
-                <span className="gift-overview__number">{day}</span>
-                <span className="gift-overview__month">{month}</span>
-                <span className="gift-overview__status">
-                  {statusLabels[status]}
-                </span>
-              </button>
+                  {content}
+                </button>
+              ) : (
+                <div className={className}>{content}</div>
+              )}
             </li>
           )
         })}
