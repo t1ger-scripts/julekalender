@@ -61,30 +61,6 @@
     font-weight: 700;
     line-height: 1.2;
   }
-
-  &__newsletter {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 44px;
-    margin-left: auto;
-    padding: 8px $px-20;
-    border: 1px solid $red;
-    border-radius: $border-big;
-    color: $red;
-    font-size: $px-14;
-    font-weight: 700;
-    text-decoration: none;
-
-    &:hover {
-      background-color: $white-beige;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $red;
-      outline-offset: 3px;
-    }
-  }
 }
 
 .activity-progress {

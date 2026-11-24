@@ -76,15 +76,6 @@ function ActivityModal({
               </span>
             )}
 
-            <a
-              className="activity-heading__newsletter"
-              href="https://ringsted-dun.dk/nyhedsbrev-tilmeld/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Tilmeld nyhedsbrev hos Ringsted Dun (åbner i en ny fane)"
-            >
-              Tilmeld nyhedsbrev
-            </a>
           </header>
 
           <div className="activity-layout">
