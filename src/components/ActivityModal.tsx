@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react'
 import type { ReactNode } from 'react'
+import { totalDoors } from '../utils/calendar'
 
 interface ActivityModalProps {
   title: string
+  progress?: number
   info?: ReactNode
   children: ReactNode
   onClose: () => void
@@ -12,6 +14,7 @@ interface ActivityModalProps {
 // Genbruger samme dialog til aktiviteter, gaveoversigt og belønninger.
 function ActivityModal({
   title,
+  progress,
   info,
   children,
   onClose,
@@ -63,10 +66,32 @@ function ActivityModal({
       </div>
 
       {info ? (
-        <div className="activity-layout">
-          <div className="activity-info">{info}</div>
-          <div className="activity-game">{children}</div>
-        </div>
+        <>
+          <header className="activity-heading">
+            <h2>{title}</h2>
+
+            {progress !== undefined && (
+              <span className="activity-progress">
+                {progress} / {totalDoors} gennemført
+              </span>
+            )}
+
+            <a
+              className="activity-heading__newsletter"
+              href="https://ringsted-dun.dk/nyhedsbrev-tilmeld/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Tilmeld nyhedsbrev hos Ringsted Dun (åbner i en ny fane)"
+            >
+              Tilmeld nyhedsbrev
+            </a>
+          </header>
+
+          <div className="activity-layout">
+            <div className="activity-info">{info}</div>
+            {children}
+          </div>
+        </>
       ) : (
         children
       )}

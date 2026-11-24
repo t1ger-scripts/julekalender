@@ -344,6 +344,7 @@ function CalendarPage() {
       {modalView && calendarData && (
         <ActivityModal
           title={modalTitle}
+          progress={completedDates.length}
           onClose={() => setModalView(null)}
           onBack={
             modalView.type === 'reward'
@@ -353,8 +354,6 @@ function CalendarPage() {
           info={
             modalView.type === 'activity' && selectedDoor ? (
               <ActivityInfo
-                title={activityTitle}
-                progress={completedDates.length}
                 description={activityContent?.description ?? []}
                 rules={activityContent?.rules ?? []}
               />
@@ -381,16 +380,25 @@ function CalendarPage() {
               <p role="alert">Belønningen kunne ikke findes.</p>
             )
           ) : (
-            <>
-              {renderActivity()}
+            <div
+              className={
+                'activity-game' +
+                (selectedResult ? ' activity-game--completed' : '')
+              }
+            >
+              <div className="activity-game__stage">
+                {renderActivity()}
+              </div>
 
-              {selectedResult && (
-                <ActivityCompletion
-                  result={selectedResult}
-                  onViewGift={handleViewGift}
-                />
-              )}
-            </>
+              <div className="activity-game__result">
+                {selectedResult && (
+                  <ActivityCompletion
+                    result={selectedResult}
+                    onViewGift={handleViewGift}
+                  />
+                )}
+              </div>
+            </div>
           )}
 
           {unsavedResult && (
