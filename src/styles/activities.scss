@@ -798,8 +798,7 @@
   }
 
   &__reward {
-    max-width: 720px;
-    margin-inline: auto;
+    width: 100%;
   }
 }
 
@@ -902,6 +901,216 @@
       &:focus-visible {
         outline-color: $status-green-dark;
       }
+    }
+  }
+}
+
+// GEMT RESULTAT OG DAGENS PRÆMIE
+
+.result-view {
+  &__heading {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $px-16;
+    margin-bottom: $px-30;
+    padding-bottom: $px-20;
+    border-bottom: 1px solid $grey-light;
+
+    h2 {
+      margin: 0;
+      color: $black-light;
+      font-size: clamp(28px, 2.5vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+  }
+
+  &__date,
+  &__completed {
+    padding: 6px $px-16;
+    border-radius: $border-big;
+    font-size: $px-14;
+    font-weight: 700;
+  }
+
+  &__date {
+    background-color: $white-beige;
+    color: $grey-dark;
+  }
+
+  &__completed {
+    background-color: $status-green-light;
+    color: $status-green;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: $px-36;
+
+    &--no-product {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__image {
+    min-width: 0;
+    margin: 0;
+    padding: $px-16;
+    border-radius: $border-medium;
+    background-color: $white-beige;
+
+    img {
+      display: block;
+      width: 100%;
+      height: clamp(240px, 40dvh, 420px);
+      object-fit: contain;
+    }
+
+    figcaption {
+      margin-top: $px-12;
+      color: $grey-dark;
+      font-size: $px-14;
+      text-align: center;
+    }
+  }
+
+  &__content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $px-20;
+    font-size: $px-16;
+    line-height: 1.5;
+
+    p {
+      margin: 0;
+    }
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  &__eyebrow {
+    color: $grey-dark;
+    font-size: $px-12;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  &__product h3 {
+    margin-top: $px-5;
+    font-size: clamp(22px, 1.8vw, 28px);
+    line-height: 1.3;
+  }
+
+  &__participation {
+    p:first-child {
+      font-weight: 700;
+    }
+
+    p + p {
+      margin-top: $px-5;
+      color: $grey-dark;
+      font-size: $px-14;
+    }
+  }
+
+  &__bonus {
+    padding: $px-16;
+    border-radius: $border-medium;
+    background-color: $white-beige;
+
+    h3 {
+      margin-bottom: $px-5;
+      font-size: $px-16;
+    }
+
+    p + p {
+      margin-top: $px-5;
+    }
+
+    &--won {
+      background-color: $status-green-light;
+
+      h3 {
+        color: $status-green;
+      }
+    }
+  }
+
+  &__discount {
+    h3 {
+      margin-bottom: $px-12;
+      font-size: $px-16;
+    }
+
+    code {
+      display: block;
+      padding: $px-12;
+      border: 1px dashed $golden-dark;
+      border-radius: $border-mini;
+      background-color: $white-beige;
+      color: $black-light;
+      font-family: inherit;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+      user-select: all;
+    }
+
+    button {
+      margin-top: $px-12;
+    }
+
+    p {
+      margin-top: $px-5;
+      color: $grey-dark;
+      font-size: $px-14;
+    }
+  }
+
+  &__actions {
+    padding-top: $px-16;
+    border-top: 1px solid $grey-light;
+
+    p {
+      margin-top: $px-5;
+      color: $grey-dark;
+      font-size: $px-12;
+    }
+  }
+
+  &__discount button,
+  &__actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: $px-12 $px-20;
+    border: 1px solid $red;
+    border-radius: $border-big;
+    background-color: $red;
+    color: $white;
+    font-family: inherit;
+    font-size: $px-14;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $red-dark;
+      background-color: $red-dark;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $red;
+      outline-offset: 3px;
     }
   }
 }

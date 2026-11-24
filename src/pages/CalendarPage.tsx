@@ -92,9 +92,9 @@ function CalendarPage() {
   let modalTitle = activityTitle
 
   if (modalView?.type === 'gifts') {
-    modalTitle = 'Mine gaver'
+    modalTitle = 'Mine resultater'
   } else if (modalView?.type === 'reward') {
-    modalTitle = 'Din belønning'
+    modalTitle = 'Dit resultat'
   }
 
   // I udvikling styres datoen fra udviklerpanelet.

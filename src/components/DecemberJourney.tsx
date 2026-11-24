@@ -52,7 +52,7 @@ function DecemberJourney({
         aria-haspopup="dialog"
       >
         <span className="december-journey__collection-title">
-          Mine gaver
+          Mine resultater
         </span>
 
         <img
@@ -61,7 +61,7 @@ function DecemberJourney({
         />
 
         <span className="december-journey__collection-count">
-          {completedDoors} / {totalDoors} gaver gennemført
+          {completedDoors} / {totalDoors} aktiviteter gennemført
         </span>
       </button>
 

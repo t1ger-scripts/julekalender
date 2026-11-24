@@ -1,5 +1,5 @@
 import type { SavedActivityResult } from '../types/calendar'
-import { getRewardMessages } from '../utils/rewardMessages'
+import { completedActivityMessage, getRewardMessages } from '../utils/rewardMessages'
 
 interface ActivityCompletionProps {
   result: SavedActivityResult
@@ -25,12 +25,12 @@ function ActivityCompletion({
         ))}
 
         <p className="activity-completion__saved">
-          Aktiviteten er gennemført. Dit resultat er gemt.
+          {completedActivityMessage}
         </p>
       </div>
 
       <button type="button" onClick={onViewGift}>
-        Se din gave
+        Se dit resultat
       </button>
     </div>
   )

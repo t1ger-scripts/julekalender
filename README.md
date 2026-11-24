@@ -21,7 +21,7 @@ npm run dev
 - Fire aktiviteter: lykkehjul, quiz, pudematcher og pudeflipper.
 - Gennemførte aktiviteter og belønninger gemmes i browseren.
 - Genbesøg viser det gemte resultat uden et nyt spilforsøg.
-- Mine gaver giver adgang til gennemførte dages belønninger.
+- Mine resultater giver adgang til gennemførte dages belønninger.
 - Produktvisning med billede, produktlink og eventuel rabatkode.
 - Link til Ringsted Duns nyhedsbrevstilmelding.
 

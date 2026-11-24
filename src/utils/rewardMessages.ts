@@ -1,15 +1,13 @@
 import type { ActivityResult } from '../types/calendar'
 
 export const completedActivityMessage =
-  'Dagens aktivitet er gennemført. Du deltager i dagens lodtrækning.'
+  'Aktiviteten er gennemført. Du deltager i lodtrækningen om dagens produkt.'
 
-export function getRewardTitle(result: ActivityResult): string {
-  return result.tickets > 0 || result.discountPercent > 0
-    ? 'Din belønning'
-    : 'Tak for spillet'
+export function getRewardTitle(_result: ActivityResult): string {
+  return 'Dit resultat'
 }
 
-// Bruges både efter aktiviteten og i den gemte gavevisning.
+// Bruges både efter aktiviteten og ved genbesøg.
 export function getRewardMessages(result: ActivityResult): string[] {
   const messages: string[] = []
 
@@ -28,9 +26,7 @@ export function getRewardMessages(result: ActivityResult): string[] {
   }
 
   if (messages.length === 0) {
-    messages.push(
-      'Det blev ikke til en ekstra gevinst denne gang. Der venter flere muligheder bag kalenderens kommende låger.',
-    )
+    messages.push('Ingen ekstra gevinst denne gang.')
   }
 
   return messages

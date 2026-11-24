@@ -24,8 +24,8 @@ function GiftOverview({
   return (
     <div className="gift-overview">
       <div className="gift-overview__intro">
-        <h2>Mine gaver</h2>
-        <p>Vælg en gennemført dag for at se din gemte belønning.</p>
+        <h2>Mine resultater</h2>
+        <p>Vælg en gennemført dag for at se dit resultat og dagens præmie.</p>
       </div>
 
       <ul className="gift-overview__grid">
@@ -38,7 +38,7 @@ function GiftOverview({
           const shortMonth = isNovember ? 'nov.' : 'dec.'
 
           const statusText = {
-            completed: 'Se din gave',
+            completed: 'Se dit resultat',
             locked: `Åbner ${day}. ${shortMonth}`,
             available: 'Åbn i kalenderen',
             missed: 'Misset',
@@ -95,7 +95,7 @@ function GiftOverview({
                   className={className}
                   onClick={() => onSelectGift(door.date)}
                   aria-label={
-                    `${formatCalendarDate(door.date)} – Se din gave` +
+                    `${formatCalendarDate(door.date)} – Se dit resultat` +
                     (isToday ? ' – I dag' : '')
                   }
                 >

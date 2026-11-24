@@ -26,7 +26,7 @@ function Door({ date, status, onOpen, adventNumber }: DoorProps) {
   const canOpen = status === 'available' || status === 'completed'
 
   const buttonText =
-    status === 'completed' ? 'Se din gave' : 'Åbn gaven'
+    status === 'completed' ? 'Se dit resultat' : 'Åbn gaven'
 
   const className = [
     'door',
