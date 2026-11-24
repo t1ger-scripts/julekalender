@@ -344,6 +344,11 @@ function CalendarPage() {
       {modalView && calendarData && (
         <ActivityModal
           title={modalTitle}
+          viewKey={
+            modalView.type === 'gifts'
+              ? 'gifts'
+              : `${modalView.type}:${modalView.date}`
+          }
           progress={completedDates.length}
           onClose={() => setModalView(null)}
           onBack={

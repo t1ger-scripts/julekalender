@@ -4,6 +4,7 @@ import { totalDoors } from '../utils/calendar'
 
 interface ActivityModalProps {
   title: string
+  viewKey: string
   progress?: number
   info?: ReactNode
   children: ReactNode
@@ -11,9 +12,9 @@ interface ActivityModalProps {
   onBack?: () => void
 }
 
-// Genbruger samme dialog til aktiviteter, gaveoversigt og belønninger.
 function ActivityModal({
   title,
+  viewKey,
   progress,
   info,
   children,
@@ -21,19 +22,50 @@ function ActivityModal({
   onBack,
 }: ActivityModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
 
+  // Åbn dialogen og husk det element, brugeren kom fra.
   useEffect(() => {
     const dialog = dialogRef.current
+    if (!dialog) return
+
+    const opener =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null
+
     const previousOverflow = document.body.style.overflow
 
-    dialog?.showModal()
+    dialog.showModal()
     document.body.style.overflow = 'hidden'
 
     return () => {
-      dialog?.close()
+      dialog.close()
       document.body.style.overflow = previousOverflow
+
+      if (opener?.isConnected) {
+        opener.focus({ preventScroll: true })
+      }
     }
   }, [])
+
+  // Fokusér overskriften ved åbning og skift af visning.
+  // Et afsluttet spil ændrer ikke viewKey og flytter derfor ikke fokus.
+  useEffect(() => {
+    const content = contentRef.current
+    const heading = content?.querySelector<HTMLHeadingElement>('h2')
+
+    if (heading) {
+      heading.tabIndex = -1
+      heading.focus({ preventScroll: true })
+    } else {
+      content?.focus({ preventScroll: true })
+    }
+
+    if (dialogRef.current) {
+      dialogRef.current.scrollTop = 0
+    }
+  }, [viewKey])
 
   return (
     <dialog
@@ -65,27 +97,32 @@ function ActivityModal({
         </button>
       </div>
 
-      {info ? (
-        <>
-          <header className="activity-heading">
-            <h2>{title}</h2>
+      <div
+        ref={contentRef}
+        className="activity-modal__content"
+        tabIndex={-1}
+      >
+        {info ? (
+          <>
+            <header className="activity-heading">
+              <h2>{title}</h2>
 
-            {progress !== undefined && (
-              <span className="activity-progress">
-                {progress} / {totalDoors} gennemført
-              </span>
-            )}
+              {progress !== undefined && (
+                <span className="activity-progress">
+                  {progress} / {totalDoors} gennemført
+                </span>
+              )}
+            </header>
 
-          </header>
-
-          <div className="activity-layout">
-            <div className="activity-info">{info}</div>
-            {children}
-          </div>
-        </>
-      ) : (
-        children
-      )}
+            <div className="activity-layout">
+              <div className="activity-info">{info}</div>
+              {children}
+            </div>
+          </>
+        ) : (
+          children
+        )}
+      </div>
     </dialog>
   )
 }
