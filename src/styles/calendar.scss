@@ -382,7 +382,12 @@
 // DAGENS GAVE
 
 .door--available:not(.door--christmas) {
-  outline: 1px solid $golden;
+  .door__body {
+    box-shadow:
+      inset 1px 0 0 $golden,
+      inset -1px 0 0 $golden,
+      inset 0 -1px 0 $golden;
+  }
 
   &::after {
     background-image: url('/images/img/handles-golden.png');
