@@ -340,17 +340,6 @@
 
 // ADVENT OG JULEAFTEN
 
-.door--advent {
-  &:not(.door--locked):not(.door--missed):not(.door--completed) .door__day {
-    color: $red;
-  }
-
-  .door__icon img {
-    width: 44px;
-    height: 32px;
-  }
-}
-
 .door--christmas {
 
   .door__body {
@@ -541,6 +530,42 @@
 
   .door__status {
     font-weight: 700;
+  }
+}
+
+// ADVENTSLÅGERNES RØDE TOP
+
+.door--advent {
+  // Bevar den røde top, også på missede adventslåger.
+  filter: none;
+
+  .door__header {
+    background-color: $red;
+
+    img {
+      filter: brightness(0) invert(1);
+      opacity: 1;
+    }
+
+    &::before {
+      background-image: repeating-linear-gradient(
+        to right,
+        $white 0,
+        $white 8px,
+        transparent 8px,
+        transparent 14px
+      );
+      opacity: 0.6;
+    }
+  }
+
+  .door__body {
+    background-color: $white;
+  }
+
+  .door__icon img {
+    width: 44px;
+    height: 32px;
   }
 }
 
