@@ -4,26 +4,26 @@
 
 .calendar-layout {
   min-height: 100dvh;
-  display: grid;
-  grid-template-rows: auto 1fr;
+  display: flex;
+  flex-direction: column;
+  background-color: $white-beige;
+  background-image: url('/images/background.webp');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
 
   &__header {
     min-height: 64px;
     padding: 8px 32px;
     display: flex;
     align-items: center;
-    background-color: $white;
   }
 
   &__page {
+    flex: 1;
     min-width: 0;
     display: flex;
     flex-direction: column;
-    background-color: $white-beige;
-    background-image: url('/images/background.webp');
-    background-size: cover;
-    background-position: center bottom;
-    background-repeat: no-repeat;
   }
 
   &__main {
@@ -48,7 +48,7 @@
     justify-content: center;
     gap: $px-16;
     color: $red;
-    font-size: $px-36;
+    font-size: clamp(36px, 3vw, 55px);
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: 3px;
@@ -56,7 +56,7 @@
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
 
     span {
-      font-size: $px-20;
+      font-size: clamp(20px, 1.5vw, 30px);
       text-shadow: none;
     }
   }
@@ -64,7 +64,7 @@
   &__description {
     margin-top: $px-5;
     color: $golden-dark;
-    font-size: $px-20;
+    font-size: clamp(20px, 1.6vw, 30px);
     font-weight: 300;
     letter-spacing: 1px;
     text-transform: uppercase;

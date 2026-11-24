@@ -1,25 +1,14 @@
 @use './tokens' as *;
 
-// Headerens indhold.
+// Knap og tællere øverst på kalenderens baggrund.
 .site-header {
-  display: flex;
-  align-items: center;
-  gap: $px-32;
   width: 100%;
-
-  &__brand {
-    flex-shrink: 0;
-  }
-
-  &__logo {
-    width: 150px;
-    height: auto;
-  }
+  display: flex;
+  justify-content: flex-end;
 
   &__counters {
     display: flex;
     align-items: center;
-    margin-left: auto;
     gap: $px-16;
   }
 
@@ -30,27 +19,26 @@
     background-color: $white-beige;
     white-space: nowrap;
   }
-}
 
-// Adgang til den fælles gaveoversigt.
-.site-header__gifts {
-  min-height: 36px;
-  padding: $px-5 $px-16;
-  border: 1px solid $golden-dark;
-  border-radius: $border-medium;
-  background-color: $golden-dark;
-  background-image: $shading-golden;
-  color: $black-light;
-  font-weight: 700;
-  white-space: nowrap;
-  cursor: pointer;
+  &__gifts {
+    min-height: 36px;
+    padding: $px-5 $px-16;
+    border: 1px solid $golden-dark;
+    border-radius: $border-medium;
+    background-color: $golden-dark;
+    background-image: $shading-golden;
+    color: $black-light;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
 
-  &:hover {
-    background-color: $hover-golden-dark;
-  }
+    &:hover {
+      background-color: $hover-golden-dark;
+    }
 
-  &:focus-visible {
-    outline: 2px solid $red;
-    outline-offset: 3px;
+    &:focus-visible {
+      outline: 2px solid $red;
+      outline-offset: 3px;
+    }
   }
 }

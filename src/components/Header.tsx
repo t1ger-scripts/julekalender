@@ -7,7 +7,7 @@ interface HeaderProps {
   onOpenGifts: () => void
 }
 
-// Viser logo, gaveoversigt og brugerens fremgang.
+// Viser gaveoversigt og fremgang øverst på baggrunden.
 function Header({
   tickets,
   completedDoors,
@@ -15,14 +15,6 @@ function Header({
 }: HeaderProps) {
   return (
     <div className="site-header">
-      <div className="site-header__brand">
-        <img
-          src="/images/logo.webp"
-          alt="Ringsted Dun - Established 1947"
-          className="site-header__logo"
-        />
-      </div>
-
       <div className="site-header__counters">
         <button
           type="button"
