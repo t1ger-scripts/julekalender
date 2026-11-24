@@ -415,8 +415,8 @@
   }
 
   &.is-matched {
-    background-color: $white;
-    border-color: $red;
+    background-color: $status-green-light;
+    border-color: $status-green;
   }
 
   &:disabled {

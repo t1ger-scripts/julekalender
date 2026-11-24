@@ -452,7 +452,65 @@
 
 // TIDLIGERE GAVER
 
-.door--completed,
+.door--completed {
+
+  &::after {
+    background-image: none;
+    background-color: $status-green;
+
+    mask-image: url('/images/img/handles-red.png');
+    mask-size: contain;
+    mask-position: center top;
+    mask-repeat: no-repeat;
+  }
+
+  .door__header {
+    background-color: $white;
+  }
+
+  .door__body {
+    background-color: $white;
+    color: $black-light;
+
+    box-shadow:
+      inset 2px 0 0 $status-green,
+      inset -2px 0 0 $status-green,
+      inset 0 -2px 0 $status-green;
+  }
+
+  .door__day,
+  .door__icon,
+  .door__status {
+    color: $status-green;
+  }
+
+  .door__status {
+    font-weight: 700;
+  }
+
+  .door__body::before,
+  .door__body::after {
+    filter: grayscale(1);
+    opacity: 0.6;
+  }
+
+  .door__button {
+    border-color: $status-green;
+    background-color: $status-green;
+    background-image: none;
+    color: $white;
+
+    &:hover {
+      border-color: $status-green-dark;
+      background-color: $status-green-dark;
+    }
+
+    &:focus-visible {
+      outline-color: $status-green;
+    }
+  }
+}
+
 .door--missed {
   filter: grayscale(1);
 
@@ -486,25 +544,6 @@
 
   .door__status {
     font-weight: 700;
-  }
-}
-
-.door--completed {
-  .door__button {
-    border-color: $grey-light;
-    background-image: $shading-silver;
-    background-color: $grey-light;
-    color: $black-light;
-
-    &:hover {
-      background-color: $grey-medium;
-      border-color: $grey-medium;
-      color: $white;
-    }
-
-    &:focus-visible {
-      outline-color: $grey-dark;
-    }
   }
 }
 
