@@ -4,22 +4,22 @@ import { totalDoors } from '../utils/calendar'
 interface HeaderProps {
   tickets: number
   completedDoors: number
-  onOpenGifts: () => void
+  onOpenResults: () => void
 }
 
-// Viser gaveoversigt og fremgang øverst på baggrunden.
+// Viser resultatoversigt og fremgang øverst på baggrunden.
 function Header({
   tickets,
   completedDoors,
-  onOpenGifts,
+  onOpenResults,
 }: HeaderProps) {
   return (
     <div className="site-header">
       <div className="site-header__counters">
         <button
           type="button"
-          className="site-header__gifts"
-          onClick={onOpenGifts}
+          className="site-header__results"
+          onClick={onOpenResults}
           aria-haspopup="dialog"
         >
           Mine resultater

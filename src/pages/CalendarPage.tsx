@@ -8,7 +8,7 @@ import Calendar from '../components/Calendar'
 import CalendarRoute from '../components/CalendarRoute'
 import DecemberJourney from '../components/DecemberJourney'
 import DevToolbar from '../components/DevToolbar'
-import GiftOverview from '../components/GiftOverview'
+import ResultOverview from '../components/ResultOverview'
 import Header from '../components/Header'
 import MemoryGame from '../components/activities/MemoryGame'
 import Quiz from '../components/activities/Quiz'
@@ -34,9 +34,9 @@ import {
 } from '../utils/calendar'
 
 type ModalView =
-  | { type: 'gifts' }
+  | { type: 'results' }
   | { type: 'activity'; date: string }
-  | { type: 'reward'; date: string }
+  | { type: 'result'; date: string }
 
 function getCurrentDate(): string {
   return devConfig.enabled
@@ -65,7 +65,7 @@ function CalendarPage() {
   )
 
   const selectedDate =
-    modalView && modalView.type !== 'gifts'
+    modalView && modalView.type !== 'results'
       ? modalView.date
       : null
 
@@ -91,9 +91,9 @@ function CalendarPage() {
 
   let modalTitle = activityTitle
 
-  if (modalView?.type === 'gifts') {
+  if (modalView?.type === 'results') {
     modalTitle = 'Mine resultater'
-  } else if (modalView?.type === 'reward') {
+  } else if (modalView?.type === 'result') {
     modalTitle = 'Dit resultat'
   }
 
@@ -147,30 +147,30 @@ function CalendarPage() {
       isOpeningDoor.current = false
     }
 
-    // Genbesøg går direkte til den gemte belønning.
+    // Genbesøg går direkte til det gemte resultat.
     setModalView({
-      type: isCompleted ? 'reward' : 'activity',
+      type: isCompleted ? 'result' : 'activity',
       date,
     })
   }
 
-  function handleOpenGifts() {
+  function handleOpenResults() {
     if (!calendarData || isOpeningDoor.current) return
 
-    setModalView({ type: 'gifts' })
+    setModalView({ type: 'results' })
   }
 
-  function handleSelectGift(date: string) {
+  function handleSelectResult(date: string) {
     if (date > currentDate || !completedDates.includes(date)) return
 
-    setModalView({ type: 'reward', date })
+    setModalView({ type: 'result', date })
   }
 
-  function handleViewGift() {
+  function handleViewResult() {
     if (!selectedDoor || !selectedResult) return
 
     setModalView({
-      type: 'reward',
+      type: 'result',
       date: selectedDoor.date,
     })
   }
@@ -292,14 +292,14 @@ function CalendarPage() {
         <Header
           tickets={tickets}
           completedDoors={completedDates.length}
-          onOpenGifts={handleOpenGifts}
+          onOpenResults={handleOpenResults}
         />
       }
       journey={
         <DecemberJourney
           completedDoors={completedDates.length}
           currentDate={currentDate}
-          onOpenGifts={handleOpenGifts}
+          onOpenResults={handleOpenResults}
         />
       }
     >
@@ -345,15 +345,15 @@ function CalendarPage() {
         <ActivityModal
           title={modalTitle}
           viewKey={
-            modalView.type === 'gifts'
-              ? 'gifts'
+            modalView.type === 'results'
+              ? 'results'
               : `${modalView.type}:${modalView.date}`
           }
           progress={completedDates.length}
           onClose={() => setModalView(null)}
           onBack={
-            modalView.type === 'reward'
-              ? handleOpenGifts
+            modalView.type === 'result'
+              ? handleOpenResults
               : undefined
           }
           info={
@@ -365,16 +365,16 @@ function CalendarPage() {
             ) : undefined
           }
         >
-          {modalView.type === 'gifts' ? (
-            <GiftOverview
+          {modalView.type === 'results' ? (
+            <ResultOverview
               doors={calendarData.doors}
               currentDate={currentDate}
               completedDates={completedDates}
-              onSelectGift={handleSelectGift}
+              onSelectResult={handleSelectResult}
             />
-          ) : modalView.type === 'reward' ? (
+          ) : modalView.type === 'result' ? (
             selectedDoor && selectedResult ? (
-              <div className="gift-overview__reward">
+              <div className="result-overview__reward">
                 <ActivityResultView
                   key={selectedDoor.date}
                   result={selectedResult}
@@ -399,7 +399,7 @@ function CalendarPage() {
                 {selectedResult && (
                   <ActivityCompletion
                     result={selectedResult}
-                    onViewGift={handleViewGift}
+                    onViewResult={handleViewResult}
                   />
                 )}
               </div>

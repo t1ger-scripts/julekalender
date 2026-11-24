@@ -91,13 +91,13 @@ function SpinWheel({ segments, onComplete }: SpinWheelProps) {
                 }}
               >
                 <img
-                  src={`/images/icons/games/wheel/wheel-segment-${segment.color}.png`}
+                  src={`/images/games/wheel/wheel-segment-${segment.color}.png`}
                   alt=""
                   className="wheel-segment-image"
                 />
 
                 <img
-                  src={`/images/icons/games/${getIcon(segment)}`}
+                  src={`/images/games/icons/${getIcon(segment)}`}
                   alt=""
                   className="wheel-icon"
                 />
@@ -111,7 +111,7 @@ function SpinWheel({ segments, onComplete }: SpinWheelProps) {
         </div>
 
         <img
-          src="/images/icons/games/wheel/wheel-pointer.png"
+          src="/images/games/wheel/wheel-pointer.png"
           alt=""
           className="wheel-pointer"
         />

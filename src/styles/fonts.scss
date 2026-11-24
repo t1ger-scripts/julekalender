@@ -1,7 +1,7 @@
 // Registrerer projektets skrifttyper.
 @font-face {
   font-family: 'Gill Sans Std';
-  src: url('../../Gill Sans Std Font/GillSansStd.otf') format('opentype');
+  src: url('../assets/fonts/GillSansStd.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'Gill Sans Std';
-  src: url('../../Gill Sans Std Font/GillSansStdLight.otf') format('opentype');
+  src: url('../assets/fonts/GillSansStdLight.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'Gill Sans Std';
-  src: url('../../Gill Sans Std Font/GillSansStdBold.otf') format('opentype');
+  src: url('../assets/fonts/GillSansStdBold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;

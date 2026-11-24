@@ -1,0 +1,322 @@
+@use './tokens' as *;
+
+// LYKKEHJUL
+
+.wheel-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spin-wheel {
+  position: relative;
+  width: min(100%, clamp(260px, 42dvh, 400px));
+  aspect-ratio: 1;
+  margin: $px-30 auto $px-20;
+}
+
+.wheel-disc {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.wheel-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 2s ease-out;
+}
+
+.wheel-segment {
+  position: absolute;
+  top: 50%;
+  left: 49.25%;
+  width: 50%;
+  translate: 0 -51.5%;
+  transform-origin: 1.5% 51.5%;
+}
+
+.wheel-segment-image {
+  display: block;
+  width: 100%;
+}
+
+.wheel-label {
+  position: absolute;
+  top: 51.5%;
+  left: 62%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  white-space: nowrap;
+  font-size: $text-button-size-standard;
+
+  &.white {
+    color: $red;
+  }
+
+  &.red {
+    color: $white;
+  }
+}
+
+.wheel-icon {
+  position: absolute;
+  top: 51.5%;
+  left: 80%;
+  width: 18%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -8%;
+  left: 50%;
+  z-index: 2;
+  width: 16%;
+  transform: translateX(-50%);
+}
+
+.wheel-button {
+  padding: $px-12 $px-48;
+  border: none;
+  border-radius: $border-big;
+  background-color: $red;
+  color: $text-light-tone;
+  font-size: $text-button-size-standard;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: $hover-red;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $red;
+    outline-offset: 4px;
+  }
+
+  &:disabled {
+    background-color: $grey-light;
+    cursor: not-allowed;
+  }
+}
+
+// JULEQUIZ
+
+.quiz-game {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.quiz-image {
+  width: 45%;
+  margin-bottom: $px-30;
+  object-fit: contain;
+}
+
+.quiz-question {
+  margin-bottom: $px-36;
+  color: $text-dark-tone;
+  font-size: $text-p-size;
+  font-weight: 400;
+  text-align: center;
+}
+
+.quiz-answers {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $px-30;
+}
+
+.quiz-answer,
+.quiz-submit {
+  width: 50%;
+  padding: $px-12;
+  border: 2px solid transparent;
+  border-radius: $border-big;
+  font-size: $text-button-size-standard;
+  font-weight: 400;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $red;
+    outline-offset: 4px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.quiz-answer {
+  background-color: $red;
+  color: $text-light-tone;
+
+  &:hover:not(:disabled) {
+    background-color: $hover-red;
+  }
+
+  &.selected {
+    background-color: $red-dark;
+    border-color: $golden-dark;
+  }
+}
+
+.quiz-submit {
+  margin-top: $px-30;
+  background-color: $white-beige;
+  border-color: $red;
+  color: $red;
+
+  &:hover:not(:disabled) {
+    background-color: $hover-white-beige;
+  }
+
+  &:disabled {
+    border-color: $grey-light;
+    color: $grey-medium;
+  }
+}
+
+// PUDEMATCHEREN
+
+.memory-game {
+  width: 100%;
+  max-width: 550px;
+  margin-inline: auto;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: $px-12;
+}
+
+.memory-cell {
+  min-width: 0;
+  padding: $px-5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border: 2px solid $golden-dark;
+  border-radius: $border-medium;
+  background-color: $white-beige;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: $hover-white-beige;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $red;
+    outline-offset: 3px;
+  }
+
+  &.is-matched {
+    background-color: $status-green-light;
+    border-color: $status-green;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.memory-progress {
+  margin-top: $px-20;
+  color: $text-dark-tone;
+  font-size: $text-p-size;
+  text-align: center;
+}
+
+// PUDEFLIPPEREN
+
+.scratch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: min(100%, 480px);
+  margin-inline: auto;
+}
+
+.scratch-cell {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: $border-medium;
+  background-color: transparent;
+  perspective: 800px;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: $golden-dark;
+    background-image: $shading-golden;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $red;
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &__inner {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 600ms ease;
+  }
+
+  &__face {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    backface-visibility: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__back {
+    transform: rotateY(180deg);
+  }
+
+  &.is-flipped .scratch-cell__inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.pillows-flipped-counter {
+  margin-top: $px-20;
+  padding-top: $px-16;
+  border-top: 1px solid $grey-light;
+  font-size: $px-20;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scratch-cell__inner {
+    transition: none;
+  }
+}

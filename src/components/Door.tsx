@@ -60,7 +60,7 @@ function Door({ date, status, onOpen, adventNumber }: DoorProps) {
 
       return (
         <img
-          src={`/images/icons/calendar/icon-candles-advent-${adventNumber}-${iconState}.png`}
+          src={`/images/calendar/candles/advent-${adventNumber}-${iconState}.png`}
           alt=""
         />
       )
@@ -78,16 +78,15 @@ function Door({ date, status, onOpen, adventNumber }: DoorProps) {
     if (status === 'locked') {
       return (
         <img
-          src="/images/icons/calendar/icon-lock-red-big.png"
+          src="/images/calendar/lock-red-big.png"
           alt=""
-          className="door__lock"
         />
       )
     }
 
     return (
       <img
-        src="/images/icons/calendar/icon-door-gift-golden-big.png"
+        src="/images/calendar/door-gift-golden-big.png"
         alt=""
       />
     )
@@ -96,7 +95,7 @@ function Door({ date, status, onOpen, adventNumber }: DoorProps) {
   return (
     <article className={className} data-door-date={date}>
       <div className="door__header">
-        <img src="/images/logo.webp" alt="Ringsted Dun" />
+        <img src="/images/branding/logo.webp" alt="Ringsted Dun" />
       </div>
 
       <div className="door__body">

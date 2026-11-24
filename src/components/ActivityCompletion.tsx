@@ -1,14 +1,17 @@
 import type { SavedActivityResult } from '../types/calendar'
-import { completedActivityMessage, getRewardMessages } from '../utils/rewardMessages'
+import {
+  completedActivityMessage,
+  getRewardMessages,
+} from '../utils/rewardMessages'
 
 interface ActivityCompletionProps {
   result: SavedActivityResult
-  onViewGift: () => void
+  onViewResult: () => void
 }
 
 function ActivityCompletion({
   result,
-  onViewGift,
+  onViewResult,
 }: ActivityCompletionProps) {
   const hasReward = result.tickets > 0 || result.discountPercent > 0
 
@@ -29,7 +32,7 @@ function ActivityCompletion({
         </p>
       </div>
 
-      <button type="button" onClick={onViewGift}>
+      <button type="button" onClick={onViewResult}>
         Se dit resultat
       </button>
     </div>

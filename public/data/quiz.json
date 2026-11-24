@@ -3,7 +3,7 @@
     
     "id": "quiz-1",
     "quiz": {
-      "image": "/images/logo-variations/logo-goose-red.png",
+      "image": "/images/branding/goose-red.png",
       "imageAlt": "Ringsted Duns røde logo",
       "question": "Siden hvilket år har Ringsted Dun produceret dyner og puder i Danmark?",
       "answers": [
@@ -21,7 +21,7 @@
   {
     "id": "quiz-2",
     "quiz": {
-      "image": "/images/img/quiz/quiz-2.png",
+      "image": "/images/games/quiz/quiz-2.png",
       "imageAlt": "Syning af en dyne på symaskine",
       "question": "Hvor bliver Ringsted Duns dyner og puder produceret?",
       "answers": [
@@ -39,7 +39,7 @@
   {
     "id": "quiz-3",
     "quiz": {
-      "image": "/images/img/quiz/quiz-3.png",
+      "image": "/images/games/quiz/quiz-3.png",
       "imageAlt": "Hvide dun på mørk baggrund",
       "question": "Hvilken type fyld bruger Ringsted Dun blandt andet i sine dyner?",
       "answers": [
@@ -57,7 +57,7 @@
   {
     "id": "quiz-4",
     "quiz": {
-      "image": "/images/img/quiz/quiz-4.png",
+      "image": "/images/games/quiz/quiz-4.png",
       "imageAlt": "Ringsted Dun-hovedpude med mærkat",
       "question": "Hvad hedder Ringsted Duns serie med økologiske og Svanemærkede dyner og puder?",
       "answers": [
@@ -75,7 +75,7 @@
   {
     "id": "quiz-5",
     "quiz": {
-      "image": "/images/img/quiz/quiz-5.png",
+      "image": "/images/games/quiz/quiz-5.png",
       "imageAlt": "Ringsted Dun-dyne i julepyntet soveværelse",
       "question": "Hvilken dato fejrer man traditionelt juleaften i Danmark?",
       "answers": [

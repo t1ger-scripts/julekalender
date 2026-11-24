@@ -36,8 +36,6 @@ export interface QuizQuestion {
   reward: ActivityReward
 }
 
-export type QuizReward = ActivityReward
-
 // Et spørgsmål identificeret fra quiz.json.
 export interface QuizEntry {
   id: string

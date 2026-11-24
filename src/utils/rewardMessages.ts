@@ -3,10 +3,6 @@ import type { ActivityResult } from '../types/calendar'
 export const completedActivityMessage =
   'Aktiviteten er gennemført. Du deltager i lodtrækningen om dagens produkt.'
 
-export function getRewardTitle(_result: ActivityResult): string {
-  return 'Dit resultat'
-}
-
 // Bruges både efter aktiviteten og ved genbesøg.
 export function getRewardMessages(result: ActivityResult): string[] {
   const messages: string[] = []

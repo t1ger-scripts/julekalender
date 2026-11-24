@@ -7,19 +7,19 @@
     ],
     "rules": [
       {
-        "icon": "/images/icons/games/icon-click.png",
+        "icon": "/images/games/icons/icon-click.png",
         "text": "Tryk på \"Drej hjulet\" for at sætte lykkehjulet i gang."
       },
       {
-        "icon": "/images/icons/games/icon-spin-wheel.png",
+        "icon": "/images/games/icons/icon-spin-wheel.png",
         "text": "Du har ét forsøg, og hjulet stopper automatisk på et tilfældigt felt."
       },
       {
-        "icon": "/images/icons/games/icon-door-gift-red-small.png",
+        "icon": "/images/games/icons/icon-door-gift-red-small.png",
         "text": "Vind rabatter eller ekstra lodder til konkurrencen om vores store julepræmie."
       },
       {
-        "icon": "/images/icons/games/icon-ticket-red.png",
+        "icon": "/images/games/icons/icon-ticket-red.png",
         "text": "Dit resultat gemmes automatisk og kan ses igen under Mine resultater. Når hjulet er stoppet, deltager du også i dagens lodtrækning."
       }
     ],
@@ -83,43 +83,43 @@
     ],
     "rules": [
       {
-        "icon": "/images/icons/games/icon-click.png",
+        "icon": "/images/games/icons/icon-click.png",
         "text": "Vend to puder ad gangen. Det tæller som ét forsøg."
       },
       {
-        "icon": "/images/icons/games/icon-check.png",
+        "icon": "/images/games/icons/icon-check.png",
         "text": "Matchende puder bliver liggende med billedsiden opad."
       },
       {
-        "icon": "/images/icons/games/icon-door-gift-red-small.png",
+        "icon": "/images/games/icons/icon-door-gift-red-small.png",
         "text": "Find alle seks par inden for 15 forsøg for at vinde en ekstra gevinst."
       },
       {
-        "icon": "/images/icons/games/icon-ticket-red.png",
+        "icon": "/images/games/icons/icon-ticket-red.png",
         "text": "Når du afslutter spillet, deltager du i dagens lodtrækning, uanset om du vinder spillet eller ej."
       }
     ],
     "memoryGame": {
-      "frontImage": "/images/icons/games/pillows/pillow-unflipped.png",
+      "frontImage": "/images/games/pillows/pillow-unflipped.png",
       "fieldCount": 12,
       "outcomes": {
         "royal": {
-          "image": "/images/icons/games/pillows/pillow-royal.png"
+          "image": "/images/games/pillows/pillow-royal.png"
         },
         "kiddy": {
-          "image": "/images/icons/games/pillows/pillow-kiddy.png"
+          "image": "/images/games/pillows/pillow-kiddy.png"
         },
         "classic": {
-          "image": "/images/icons/games/pillows/pillow-classic.png"
+          "image": "/images/games/pillows/pillow-classic.png"
         },
         "hcandersen": {
-          "image": "/images/icons/games/pillows/pillow-hc-andersen.png"
+          "image": "/images/games/pillows/pillow-hc-andersen.png"
         },
         "organiccare": {
-          "image": "/images/icons/games/pillows/pillow-organic-care.png"
+          "image": "/images/games/pillows/pillow-organic-care.png"
         },
         "tickets": {
-          "image": "/images/icons/games/pillows/pillow-ticket-black.png"
+          "image": "/images/games/pillows/pillow-ticket-black.png"
         }
       },
       "attemptLimit": 15,
@@ -138,19 +138,19 @@
     ],
     "rules": [
       {
-        "icon": "/images/icons/games/icon-question.png",
+        "icon": "/images/games/icons/icon-question.png",
         "text": "Læs dagens spørgsmål grundigt."
       },
       {
-        "icon": "/images/icons/games/icon-click.png",
+        "icon": "/images/games/icons/icon-click.png",
         "text": "Vælg ét af de tre svar."
       },
       {
-        "icon": "/images/icons/games/icon-check.png",
+        "icon": "/images/games/icons/icon-check.png",
         "text": "Du har kun ét forsøg på at svare."
       },
       {
-        "icon": "/images/icons/games/icon-door-gift-red-small.png",
+        "icon": "/images/games/icons/icon-door-gift-red-small.png",
         "text": "Et korrekt svar giver en ekstra gevinst: rabat på dagens produkt eller lodder til julepræmien."
       }
     ]
@@ -164,28 +164,28 @@
     ],
     "rules": [
       {
-        "icon": "/images/icons/games/icon-click.png",
+        "icon": "/images/games/icons/icon-click.png",
         "text": "Tryk på en pude for at vende den. Du kan vende fem puder."
       },
       {
-        "icon": "/images/icons/games/icon-door-gift-red-small.png",
+        "icon": "/images/games/icons/icon-door-gift-red-small.png",
         "text": "Find tre gaver for at få en ekstra gevinst – ikke dagens hovedpræmie direkte."
       },
       {
-        "icon": "/images/icons/games/icon-feather-red.png",
+        "icon": "/images/games/icons/icon-feather-red.png",
         "text": "Fjer kan give 5 % rabat pr. fundet fjer på dagens hovedpræmie."
       },
       {
-        "icon": "/images/icons/games/icon-ticket-red.png",
+        "icon": "/images/games/icons/icon-ticket-red.png",
         "text": "Vundne lodder tæller kun med i lodtrækningen om hovedpræmien juleaften. Deltagelse i dagens lodtrækning kræver blot, at du gennemfører aktiviteten."
       },
       {
-        "icon": "/images/icons/games/icon-check.png",
+        "icon": "/images/games/icons/icon-check.png",
         "text": "Du deltager automatisk i dagens lodtrækning, når spillet er afsluttet."
       }
     ],
     "scratchGame": {
-      "frontImage": "/images/icons/games/pillows/pillow-unflipped.png",
+      "frontImage": "/images/games/pillows/pillow-unflipped.png",
       "fieldCount": 9,
       "attemptLimit": 5,
       "giftsToWin": 3,
@@ -196,14 +196,14 @@
       },
       "outcomes": {
         "gift": {
-          "image": "/images/icons/games/pillows/pillow-gift.png"
+          "image": "/images/games/pillows/pillow-gift.png"
         },
         "feather": {
-          "image": "/images/icons/games/pillows/pillow-feather.png",
+          "image": "/images/games/pillows/pillow-feather.png",
           "discount": 5
         },
         "ticket": {
-          "image": "/images/icons/games/pillows/pillow-ticket-red.png",
+          "image": "/images/games/pillows/pillow-ticket-red.png",
           "points": 5
         }
       },

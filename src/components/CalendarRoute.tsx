@@ -81,7 +81,7 @@ function CalendarRoute({ currentDate }: CalendarRouteProps) {
 
       <img
         ref={gooseRef}
-        src="/images/logo-variations/logo-goose-red.png"
+        src="/images/branding/goose-red.png"
         alt=""
         className="calendar-route__goose"
       />

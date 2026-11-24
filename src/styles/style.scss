@@ -2,7 +2,9 @@
 @use './fonts';
 @use './header';
 @use './calendar';
-@use './activities';
+@use './modal';
+@use './games';
+@use './results';
 
 // Reservere pladsen til scrollbaren, så siden ikke ændrer bredde, når modalvinduet åbner. Lavet med AI.
 html {

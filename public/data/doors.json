@@ -6,7 +6,7 @@
     "prize": {
       "id": "rd-00-breeze",
       "name": "Breeze – temperaturregulerende dyne",
-      "image": "/images/prizes/day-00.jpg",
+      "image": "/images/products/day-00.jpg",
       "productUrl": "https://ringsted-dun.dk/breeze/"
     },
     "quizId": "quiz-1",
@@ -19,7 +19,7 @@
     "prize": {
       "id": "rd-002-klodshans-3-kammer-puder",
       "name": "Klodshans – 3-kammer hovedpude",
-      "image": "/images/prizes/day-01.jpg",
+      "image": "/images/products/day-01.jpg",
       "productUrl": "https://ringsted-dun.dk/klodshans-3-kammer-puder/"
     }
   },
@@ -30,7 +30,7 @@
     "prize": {
       "id": "rd-003-den-lille-pige-med-svovlstikkerne",
       "name": "Den lille pige med svovlstikkerne – gåsedunsdyne",
-      "image": "/images/prizes/day-02.jpg",
+      "image": "/images/products/day-02.jpg",
       "productUrl": "https://ringsted-dun.dk/den-lille-pige-med-svovlstikkerne/"
     }
   },
@@ -41,7 +41,7 @@
     "prize": {
       "id": "rd-004-klodshans-1-kammer-puder",
       "name": "Klodshans – 1-kammer hovedpude",
-      "image": "/images/prizes/day-03.jpg",
+      "image": "/images/products/day-03.jpg",
       "productUrl": "https://ringsted-dun.dk/klodshans-1-kammer-puder/"
     }
   },
@@ -52,7 +52,7 @@
     "prize": {
       "id": "rd-005-svinedrengen",
       "name": "Svinedrengen – moskusdyne",
-      "image": "/images/prizes/day-04.jpg",
+      "image": "/images/products/day-04.jpg",
       "productUrl": "https://ringsted-dun.dk/svinedrengen/"
     }
   },
@@ -63,7 +63,7 @@
     "prize": {
       "id": "rd-006-snedronningen-puder",
       "name": "Snedronningen – 3-kammer hovedpude",
-      "image": "/images/prizes/day-05.jpg",
+      "image": "/images/products/day-05.jpg",
       "productUrl": "https://ringsted-dun.dk/snedronningen-puder/"
     }
   },
@@ -74,7 +74,7 @@
     "prize": {
       "id": "rd-007-klodshans",
       "name": "Klodshans – moskusdyne",
-      "image": "/images/prizes/day-06.jpg",
+      "image": "/images/products/day-06.jpg",
       "productUrl": "https://ringsted-dun.dk/klodshans/"
     },
     "quizId": "quiz-2",
@@ -87,7 +87,7 @@
     "prize": {
       "id": "rd-008-classic-comfort",
       "name": "Classic Comfort – andedunsdyne",
-      "image": "/images/prizes/day-07.jpg",
+      "image": "/images/products/day-07.jpg",
       "productUrl": "https://ringsted-dun.dk/classic-comfort/"
     }
   },
@@ -98,7 +98,7 @@
     "prize": {
       "id": "rd-025-classic-comfort-3-kammer-puder",
       "name": "Classic Comfort – 3-kammer hovedpude",
-      "image": "/images/prizes/day-08.jpg",
+      "image": "/images/products/day-08.jpg",
       "productUrl": "https://ringsted-dun.dk/classic-comfort-3-kammer-puder/"
     }
   },
@@ -109,7 +109,7 @@
     "prize": {
       "id": "rd-010-classic-supreme-3-kammer-puder",
       "name": "Classic Supreme 3-kammerpuden",
-      "image": "/images/prizes/day-09.jpg",
+      "image": "/images/products/day-09.jpg",
       "productUrl": "https://ringsted-dun.dk/classic-supreme-3-kammer-puder/"
     }
   },
@@ -120,7 +120,7 @@
     "prize": {
       "id": "rd-011-kiddy-moskus-dyne",
       "name": "Kiddy Moskus dyne",
-      "image": "/images/prizes/day-10.jpg",
+      "image": "/images/products/day-10.jpg",
       "productUrl": "https://ringsted-dun.dk/kiddy-moskus/"
     }
   },
@@ -131,7 +131,7 @@
     "prize": {
       "id": "rd-012-snedronningen",
       "name": "Snedronningen – gåsedunsdyne",
-      "image": "/images/prizes/day-11.jpg",
+      "image": "/images/products/day-11.jpg",
       "productUrl": "https://ringsted-dun.dk/snedronningen/"
     }
   },
@@ -142,7 +142,7 @@
     "prize": {
       "id": "rd-013-svinedrengen-3-kammer-puder",
       "name": "Svinedrengen – 3-kammer hovedpude",
-      "image": "/images/prizes/day-12.jpg",
+      "image": "/images/products/day-12.jpg",
       "productUrl": "https://ringsted-dun.dk/svinedrengen-3-kammer-puder/"
     }
   },
@@ -153,7 +153,7 @@
     "prize": {
       "id": "rd-014-countdown",
       "name": "Countdown – moskusdyne",
-      "image": "/images/prizes/day-13.jpg",
+      "image": "/images/products/day-13.jpg",
       "productUrl": "https://ringsted-dun.dk/countdown/"
     },
     "quizId": "quiz-3",
@@ -166,7 +166,7 @@
     "prize": {
       "id": "rd-014-classic-lux",
       "name": "Classic Lux – moskusdyne",
-      "image": "/images/prizes/day-14.jpg",
+      "image": "/images/products/day-14.jpg",
       "productUrl": "https://ringsted-dun.dk/classic-lux/"
     }
   },
@@ -177,7 +177,7 @@
     "prize": {
       "id": "rd-016-tommelise",
       "name": "Tommelise – gåsedunsdyne",
-      "image": "/images/prizes/day-15.jpg",
+      "image": "/images/products/day-15.jpg",
       "productUrl": "https://ringsted-dun.dk/tommelise/"
     }
   },
@@ -188,7 +188,7 @@
     "prize": {
       "id": "rd-017-klodshans-4-kammer-puder",
       "name": "Klodshans – 4-kammer hovedpude",
-      "image": "/images/prizes/day-16.jpg",
+      "image": "/images/products/day-16.jpg",
       "productUrl": "https://ringsted-dun.dk/klodshans-4-kammer-puder/"
     }
   },
@@ -199,7 +199,7 @@
     "prize": {
       "id": "rd-018-kiddy-organic",
       "name": "Kiddy Organic – pude",
-      "image": "/images/prizes/day-17.jpg",
+      "image": "/images/products/day-17.jpg",
       "productUrl": "https://ringsted-dun.dk/kiddy-organic/"
     }
   },
@@ -210,7 +210,7 @@
     "prize": {
       "id": "rd-019-classic-prestige",
       "name": "Classic Prestige – gåsedunsdyne",
-      "image": "/images/prizes/day-18.jpg",
+      "image": "/images/products/day-18.jpg",
       "productUrl": "https://ringsted-dun.dk/classic-prestige/"
     }
   },
@@ -221,7 +221,7 @@
     "prize": {
       "id": "rd-020-classic-supreme",
       "name": "Classic Supreme – moskusdyne",
-      "image": "/images/prizes/day-19.jpg",
+      "image": "/images/products/day-19.jpg",
       "productUrl": "https://ringsted-dun.dk/classic-supreme/"
     }
   },
@@ -230,7 +230,7 @@
     "prize": {
       "id": "rd-015-hyrdinden-og-skortensfejeren",
       "name": "Hyrdinden og Skorstensfejeren – edderdunsmixdyne",
-      "image": "/images/prizes/day-20.jpg",
+      "image": "/images/products/day-20.jpg",
       "productUrl": "https://ringsted-dun.dk/hyrdinden-og-skortensfejeren/"
     
     },
@@ -244,7 +244,7 @@
     "prize": {
       "id": "rd-022-organic-care-pude",
       "name": "Organic Care – pude",
-      "image": "/images/prizes/day-21.jpg",
+      "image": "/images/products/day-21.jpg",
       "productUrl": "https://ringsted-dun.dk/organic-care-3-kammer-puder/"
     }
   },
@@ -255,7 +255,7 @@
     "prize": {
       "id": "rd-023-prinsessen-paa-aerten",
       "name": "Prinsessen på ærten – edderdunsdyne",
-      "image": "/images/prizes/day-22.jpg",
+      "image": "/images/products/day-22.jpg",
       "productUrl": "https://ringsted-dun.dk/prinsessen-paa-aerten/"
     }
   },
@@ -266,7 +266,7 @@
     "prize": {
       "id": "rd-024-classic-prestige-3-kammer-puder",
       "name": "Classic Prestige – 3-kammer hovedpude",
-      "image": "/images/prizes/day-23.jpg",
+      "image": "/images/products/day-23.jpg",
       "productUrl": "https://ringsted-dun.dk/classic-prestige-3-kammer-puder/"
     }
   },
@@ -277,7 +277,7 @@
     "prize": {
       "id": "rd-025-nattergalen",
       "name": "Nattergalen – gåsedunsdyne",
-      "image": "/images/prizes/day-24.jpg",
+      "image": "/images/products/day-24.jpg",
       "productUrl": "https://ringsted-dun.dk/nattergalen/"
     },
     "quizId": "quiz-5"

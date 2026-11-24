@@ -109,7 +109,7 @@ function ScratchCard({ game, onComplete }: ScratchCardProps) {
     const nextOutcomes = Object.values(next).filter(
       (value): value is ScratchOutcomeType => value !== undefined,
     )
-    
+
     const nextGifts = nextOutcomes.filter(
       (value) => value === 'gift',
     ).length

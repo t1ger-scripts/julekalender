@@ -3,7 +3,7 @@ import { totalDoors } from '../utils/calendar'
 interface DecemberJourneyProps {
   completedDoors: number
   currentDate: string
-  onOpenGifts: () => void
+  onOpenResults: () => void
 }
 
 const milestones = [
@@ -18,11 +18,11 @@ function getTimestamp(date: string): number {
   return Date.parse(`${date}T00:00:00Z`)
 }
 
-// Viser brugerens gennemførte gaver og datoernes milepæle.
+// Viser brugerens gennemførte aktiviteter og datoernes milepæle.
 function DecemberJourney({
   completedDoors,
   currentDate,
-  onOpenGifts,
+  onOpenResults,
 }: DecemberJourneyProps) {
   const nextIndex = milestones.findIndex(
     (milestone) => milestone.date > currentDate,
@@ -48,7 +48,7 @@ function DecemberJourney({
       <button
         type="button"
         className="december-journey__collection"
-        onClick={onOpenGifts}
+        onClick={onOpenResults}
         aria-haspopup="dialog"
       >
         <span className="december-journey__collection-title">
@@ -56,7 +56,7 @@ function DecemberJourney({
         </span>
 
         <img
-          src="/images/icons/calendar/icon-door-gift-red-small.png"
+          src="/images/calendar/door-gift-red-small.png"
           alt=""
         />
 
@@ -94,8 +94,8 @@ function DecemberJourney({
                   {milestone.adventNumber ? (
                     <img
                       src={
-                        '/images/icons/calendar/' +
-                        `icon-candles-advent-${milestone.adventNumber}-${iconState}.png`
+                        '/images/calendar/candles/' +
+                        `advent-${milestone.adventNumber}-${iconState}.png`
                       }
                       alt=""
                     />

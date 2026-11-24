@@ -1,19 +1,19 @@
 import type { CalendarDoor } from '../types/calendar'
 import { formatCalendarDate } from '../utils/calendar'
 
-interface GiftOverviewProps {
+interface ResultOverviewProps {
   doors: CalendarDoor[]
   currentDate: string
   completedDates: string[]
-  onSelectGift: (date: string) => void
+  onSelectResult: (date: string) => void
 }
 
-function GiftOverview({
+function ResultOverview({
   doors,
   currentDate,
   completedDates,
-  onSelectGift,
-}: GiftOverviewProps) {
+  onSelectResult,
+}: ResultOverviewProps) {
   function getStatus(date: string) {
     if (date > currentDate) return 'locked'
     if (completedDates.includes(date)) return 'completed'
@@ -22,13 +22,13 @@ function GiftOverview({
   }
 
   return (
-    <div className="gift-overview">
-      <div className="gift-overview__intro">
+    <div className="result-overview">
+      <div className="result-overview__intro">
         <h2>Mine resultater</h2>
         <p>Vælg en gennemført dag for at se dit resultat og dagens præmie.</p>
       </div>
 
-      <ul className="gift-overview__grid">
+      <ul className="result-overview__grid">
         {doors.map((door) => {
           const status = getStatus(door.date)
           const isToday = door.date === currentDate
@@ -45,15 +45,15 @@ function GiftOverview({
           }[status]
 
           const className =
-            `gift-overview__day gift-overview__day--${status}`
+            `result-overview__day result-overview__day--${status}`
 
           const content = (
             <>
               {isToday && (
-                <span className="gift-overview__today">I dag</span>
+                <span className="result-overview__today">I dag</span>
               )}
 
-              <span className="gift-overview__icon" aria-hidden="true">
+              <span className="result-overview__icon" aria-hidden="true">
                 {status === 'completed' && (
                   <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="9" />
@@ -70,7 +70,7 @@ function GiftOverview({
 
                 {status === 'available' && (
                   <img
-                    src="/images/icons/calendar/icon-door-gift-golden-big.png"
+                    src="/images/calendar/door-gift-golden-big.png"
                     alt=""
                   />
                 )}
@@ -78,9 +78,9 @@ function GiftOverview({
                 {status === 'missed' && '–'}
               </span>
 
-              <span className="gift-overview__number">{day}</span>
-              <span className="gift-overview__month">{month}</span>
-              <span className="gift-overview__status">{statusText}</span>
+              <span className="result-overview__number">{day}</span>
+              <span className="result-overview__month">{month}</span>
+              <span className="result-overview__status">{statusText}</span>
             </>
           )
 
@@ -93,7 +93,7 @@ function GiftOverview({
                 <button
                   type="button"
                   className={className}
-                  onClick={() => onSelectGift(door.date)}
+                  onClick={() => onSelectResult(door.date)}
                   aria-label={
                     `${formatCalendarDate(door.date)} – Se dit resultat` +
                     (isToday ? ' – I dag' : '')
@@ -112,4 +112,4 @@ function GiftOverview({
   )
 }
 
-export default GiftOverview
+export default ResultOverview

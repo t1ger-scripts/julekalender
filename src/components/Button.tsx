@@ -1,1 +1,0 @@
-/* Genbrugelig knap med forskellige visuelle varianter. */
