@@ -470,9 +470,9 @@
     color: $black-light;
 
     box-shadow:
-      inset 2px 0 0 $status-green,
-      inset -2px 0 0 $status-green,
-      inset 0 -2px 0 $status-green;
+      inset 1px 0 0 $status-green,
+      inset -1px 0 0 $status-green,
+      inset 0 -1px 0 $status-green;
   }
 
   .door__day,
