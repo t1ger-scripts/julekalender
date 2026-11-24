@@ -33,7 +33,7 @@ function ActivityCompletion({
       </div>
 
       <button type="button" onClick={onViewResult}>
-        Se dit resultat
+        Se din låge
       </button>
     </div>
   )

@@ -24,8 +24,11 @@ function ResultOverview({
   return (
     <div className="result-overview">
       <div className="result-overview__intro">
-        <h2>Mine resultater</h2>
-        <p>Vælg en gennemført dag for at se dit resultat og dagens præmie.</p>
+        <h2>Min julesamling</h2>
+        <p>
+          Genbesøg dine åbnede låger, og se dagens præmier
+          og dine ekstra gevinster.
+        </p>
       </div>
 
       <ul className="result-overview__grid">
@@ -38,7 +41,7 @@ function ResultOverview({
           const shortMonth = isNovember ? 'nov.' : 'dec.'
 
           const statusText = {
-            completed: 'Se dit resultat',
+            completed: 'Se din låge',
             locked: `Åbner ${day}. ${shortMonth}`,
             available: 'Åbn i kalenderen',
             missed: 'Misset',
@@ -95,7 +98,7 @@ function ResultOverview({
                   className={className}
                   onClick={() => onSelectResult(door.date)}
                   aria-label={
-                    `${formatCalendarDate(door.date)} – Se dit resultat` +
+                    `${formatCalendarDate(door.date)} – Se din låge` +
                     (isToday ? ' – I dag' : '')
                   }
                 >

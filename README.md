@@ -21,7 +21,7 @@ npm run dev
 - Fire aktiviteter: lykkehjul, quiz, pudematcher og pudeflipper.
 - Gennemførte aktiviteter og belønninger gemmes i browseren.
 - Genbesøg viser det gemte resultat uden et nyt spilforsøg.
-- Mine resultater giver adgang til gennemførte dages gemte resultater.
+- Min julesamling giver adgang til gennemførte dages gemte resultater.
 - Produktvisning med billede, produktlink og eventuel rabatkode.
 - Link til Ringsted Duns nyhedsbrevstilmelding.
 
@@ -120,7 +120,7 @@ npm run lint     # ESLint-kontrol
 
 - Skift dato i udviklerpanelet, og afprøv de fire aktivitetstyper.
 - Gennemfør en aktivitet, genindlæs, og kontrollér, at resultat og lodder bevares.
-- Åbn en gennemført låge og samme dato via Mine resultater; resultatet skal være det samme.
+- Åbn en gennemført låge og samme dato via Min julesamling; resultatet skal være det samme.
 - Kontrollér rabatkode ved rabat og fravær af rabatkode ved lodder eller ingen ekstra gevinst.
 - Kontrollér første og sidste dato samt tre/fem låger ved ændret desktopbredde.
 - Brug Tab og Shift + Tab til navigation, Enter til åbning og Escape til lukning af modalen.

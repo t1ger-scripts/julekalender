@@ -43,7 +43,7 @@ function ActivityResultView({
   return (
     <section className="result-view">
       <header className="result-view__heading">
-        <h2>Dit resultat</h2>
+        <h2>Din låge</h2>
 
         <span className="result-view__date">
           {formatCalendarDate(result.date)}

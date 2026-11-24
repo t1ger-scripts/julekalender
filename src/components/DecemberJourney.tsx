@@ -52,7 +52,7 @@ function DecemberJourney({
         aria-haspopup="dialog"
       >
         <span className="december-journey__collection-title">
-          Mine resultater
+          Min julesamling
         </span>
 
         <img

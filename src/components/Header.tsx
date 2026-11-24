@@ -22,7 +22,7 @@ function Header({
           onClick={onOpenResults}
           aria-haspopup="dialog"
         >
-          Mine resultater
+          Min julesamling
         </button>
 
         <Counter

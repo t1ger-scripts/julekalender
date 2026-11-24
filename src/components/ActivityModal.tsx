@@ -84,7 +84,7 @@ function ActivityModal({
             className="activity-back activity-back--overview"
             onClick={onBack}
           >
-            Tilbage til Mine resultater
+            Tilbage til min julesamling
           </button>
         )}
 
